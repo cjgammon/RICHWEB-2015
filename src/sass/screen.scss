@@ -1,0 +1,510 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+$orange: #ff9c00;
+$red: #ff4800;
+$teal: #00a4ae;
+$navy: #020d17;
+
+
+/* customize ui variables */
+$menu-item-selected-color: $teal;
+$menu-item-primed-color: darken($teal, 15%);
+$menu-item-color: darken($teal, 30%);
+$menu-input-text-color: $teal;
+$menu-input-bg-color: white;
+$progress-holder-color: black;
+$progress-bar-color: #444;
+$hud-bg-color: #222;
+$spinner-color: $teal;
+
+@mixin flexbox{
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	display: -moz-flex;
+	-moz-flex-direction: column;
+	-moz-align-items: center;
+	-moz-justify-content: center;
+}
+
+/* import base css */
+@import "compass/reset";
+@import "compass/css3";
+@import "pres/pres";
+@import "components/buttons";
+@import "components/iframe";
+@import "components/filter";
+
+/* custom styles */
+body{
+	font-family: "Futura PT", "futura-pt", "Futura Std", impact, sans-serif;
+	font-size: 2rem;
+	color: white;
+	background: black;
+}
+
+b, h2, h3, h4{
+	position: relative;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-align: center;
+	letter-spacing: .1em;
+	margin-bottom: 1rem;
+
+    a{
+        font-weight: bold;
+    }
+}
+
+h2{
+	font-size: 6rem;
+}
+
+h3{
+	font-size: 4rem;
+}
+
+h4{
+	font-size: 2rem;	
+}
+
+a{
+	color: #efefef;
+	text-decoration: none;
+	font-weight: 500;
+	
+	&:hover{
+		color: white;
+	};
+}
+
+ol{
+	font-size: 3rem;
+	text-transform: uppercase;
+	list-style-type: decimal;
+}
+
+li{
+	line-height: 1.5;
+}
+
+header{
+	position: absolute;
+	margin-top: 2rem;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;	
+	font-weight: 700;
+	font-size: 1.2rem;
+	line-height: 1.5;
+	
+	small{
+		font-size: .8rem;
+	}
+}
+
+footer{
+	position: absolute;
+	margin-bottom: 1rem;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;	
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+blockquote{
+	padding: 100px;
+	font-size: 4rem;
+	font-weight: bold;
+	color: white;
+	font-style: italic;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+em{
+	font-weight: bold;
+}
+
+code{
+	display: block;
+	background: white;
+	padding: 1em;
+	margin-top: 1em;
+	max-width: 100%;
+	color: black;
+	line-height: 1.5;
+	font-size: 1.3rem;
+	font-family: 'source code pro', courier, monospace;
+	white-space: pre;
+	
+	em{
+		color: #cc0000;
+	}
+	
+	span{
+		font-weight: bold;
+		color: #660066;
+	}
+}
+
+.slide{
+	-webkit-box-sizing: border-box;
+	padding: 1rem;
+}
+
+.slide--black{
+	color: white;
+	background: #333;
+}
+
+.slide--video{
+	video{
+		position: absolute;
+	}
+}
+
+.slide--iframe{
+	background: #f2f2f2;
+	
+	h2{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		margin: auto;
+		height: 100px;
+		color: white;
+		z-index: 2;
+	}
+	
+	header{
+        color: black;
+    }
+
+	a{
+		color: $teal;
+		&:hover{
+			color: black;
+		};
+	}
+}
+
+.slide--full{
+	padding: 0;
+	
+	iframe{
+		width: 100vw;
+		height: 100vh;
+        pointer-events: none;
+        background-color: black;
+	}
+}
+
+.slide--namecard.visible{
+	justify-content: flex-end;
+	-webkit-justify-content: flex-end;
+	-moz-justify-content: flex-end;
+	padding: 3rem;
+	font-weight: bold;
+	text-transform: uppercase;
+
+	.name, .handle{
+		text-transform: none;
+	}
+}
+
+#fixed a{
+	font-family: 'avenir', serif;
+    font-weight: 100;
+    font-size: 1.5rem;
+    text-transform: lowercase;
+}
+
+#cover{
+	background-color: transparent;
+    background-size: cover;
+	background-position: center;
+}
+
+#hi{
+    background-image: url(../assets/images/yosemite.png);
+	background-size: cover;
+	background-position: center;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.head-shot{
+	width: 200px;
+	margin-bottom: 1em;
+	border-radius: 50%;
+	border: 10px solid white;
+	-webkit-clip-path: ellipse(50%, 50%, 50%, 50%);
+}
+
+h2.top-left{
+    position: absolute;
+    top: 3rem;
+    bottom: auto;
+    left: 3rem;
+    right: auto;
+    max-width: 50%;
+    text-align: left;
+    font-size: 4rem;
+}
+
+#quote{
+	blockquote{
+		font-size: 2.5rem;
+		line-height: 1.2;
+		padding: 20px;
+	}
+}
+
+#storytelling{
+	background-image: url(../assets/images/comm/comm-02.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+#writing{
+	background-image: url(../assets/images/comm/comm-03.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+#broadcast{
+	background-image: url(../assets/images/comm/comm-04.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+#film{
+	background-image: url(../assets/images/comm/comm-05.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#digital{
+	background-image: url(../assets/images/comm/comm-06.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#digital-example-ff{
+	background-image: url(../assets/images/digital_ff.png);
+	background-size: cover;
+}
+
+#digital-example-avatar{
+	background-image: url(../assets/images/digital_avatar.png);
+	background-size: cover;
+}
+
+#games{
+	background-image: url(../assets/images/comm/comm-07.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+#games-2d{
+	background-image: url(../assets/images/pacman.png);
+	background-size: cover;
+}
+
+#myst{
+	background-image: url(../assets/images/myst.png);
+	background-size: cover;	
+}
+
+#games-3d{
+	background-image: url(../assets/images/game_3d.png);
+	background-size: cover;
+}
+
+#mobile{
+	
+	img{
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 500px;
+		margin-left: -250px;
+		pointer-events: none;
+	}
+	
+	iframe{
+		position: absolute;
+		top: 210px;
+		left: 50%;
+		margin-left: -150px;
+		width: 300px;
+		height: 425px;
+		z-index: -1;
+		pointer-events: auto;
+		outline: none;
+	}
+}
+
+#caniuse{
+	background-image: url(../assets/images/caniuse.png);
+	background-size: cover;
+	background-position: center;
+	justify-content: flex-end;
+	padding: 100px;
+}
+
+#masking-vector{
+	background-image: url(../assets/images/clippath.jpg);
+	background-size: cover;
+}
+
+#masking-alpha{
+	background-image: url(../assets/images/mask.jpg);
+	background-size: cover;
+}
+
+#word-girl-demo, #communicating, #vector-graphics, #masking-webgl-example, #masking-css-composite, #masking-canvas-css-example, #masking-canvas-example, #masking-css-example, #masking-svg-example, #clip-webgl-example, #clip-canvas-example, #clip-svg-example, #masking-css-example, #masking-css-composite-1, #masking-css-composite-2, #clip-css-example{
+	background: transparent;
+	
+	iframe{
+		background: transparent;
+	}
+}
+
+#masking-cupcakes{
+	background-image: url(../assets/images/logo-food-network.svg);
+	background-position: center 100px;
+	background-repeat: no-repeat;
+	background-size: 150px;
+}
+
+#blending{
+	background-image: url(../assets/images/blend.jpg);
+	background-size: cover;
+}
+
+#video{
+	color: #e81e6f;;
+}
+
+#semantics{
+	background-image: url(../assets/images/wes.png);
+	background-size: cover;
+	background-position: center;
+}
+
+#word-girl{
+	background-image: url(../assets/images/wordgirl-psd.png);
+	background-size: contain;
+	background-position: top left;
+	background-repeat: no-repeat;
+
+	a{
+		color: orange;
+	}
+}
+
+#resources{
+	font-size: 1rem;
+	
+	h2{
+		font-size: 3rem;
+	}
+	
+	h3{
+		font-size: 2rem;
+	}
+}
+
+#warning{
+	display: none;
+}
+
+.no-flexbox{
+	#warning{
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: black;
+		color: white;
+		text-align: center;
+		z-index: 10000;
+		
+		p{
+			display: block;
+			margin: 100px auto;
+			width: 70%;
+			line-height: 1.5;
+		}
+	}
+}
+
+.touch{
+	#preloader{
+		display: none;
+	}
+	
+	#deck{
+		position: static;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+	
+	.slide{
+		@include flexbox;
+		left: 0;
+		top: 0;
+		position: relative;
+		opacity: 1;
+		pointer-events: auto;
+	}
+	
+	.slide--iframe{
+		display: none;
+	}
+	
+	#ui-button-css .ui-button-css-side, #ui-button-css, #ui-button-css-mask, #ui-button-css-blend{
+		width: 100px;
+		height: 100px;
+	}
+	
+	#filter-list-image{
+		width: 200px
+	}
+	
+	.mask-item, .mask-dynamic-item{
+		height: 100px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	html{
+		font-size: .3em;
+	}
+}
+
