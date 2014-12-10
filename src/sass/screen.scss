@@ -41,8 +41,7 @@ $spinner-color: $teal;
 
 /* custom styles */
 body{
-	/*font-family: "Futura PT", "futura-pt", "Futura Std", impact, sans-serif;*/
-	font-family: "Open Sans", helvetica, sans-serif;
+	font-family: "Futura PT", "futura-pt", "Futura Std", impact, sans-serif;
 	font-size: 2rem;
 	color: white;
 	background: black;
@@ -51,14 +50,18 @@ body{
 b, h2, h3, h4{
 	position: relative;
 	text-transform: uppercase;
-	font-weight: 100;
+	font-weight: 800;
 	text-align: center;
 	letter-spacing: .1em;
 	margin-bottom: 1rem;
 
     a{
-        font-weight: bold;
+        font-weight: 100;
     }
+}
+
+em{
+	font-weight: 800;
 }
 
 h2{
