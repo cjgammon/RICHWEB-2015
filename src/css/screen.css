@@ -1022,237 +1022,30 @@ code span {
   text-transform: lowercase;
 }
 
-/* line 238, ../sass/screen.scss */
-#cover {
-  background-color: transparent;
-  background-size: cover;
-  background-position: center;
+/* line 239, ../sass/screen.scss */
+#cover h2 {
+  font-weight: 100;
 }
 
 /* line 244, ../sass/screen.scss */
-#hi {
-  background-image: url(../assets/images/yosemite.png);
-  background-size: cover;
-  background-position: center;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-/* line 252, ../sass/screen.scss */
-.head-shot {
-  width: 200px;
-  margin-bottom: 1em;
-  border-radius: 50%;
-  border: 10px solid white;
-  -webkit-clip-path: ellipse(50%, 50%, 50%, 50%);
-}
-
-/* line 260, ../sass/screen.scss */
-h2.top-left {
-  position: absolute;
-  top: 3rem;
-  bottom: auto;
-  left: 3rem;
-  right: auto;
-  max-width: 50%;
-  text-align: left;
-  font-size: 4rem;
-}
-
-/* line 272, ../sass/screen.scss */
-#quote blockquote {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  padding: 20px;
-}
-
-/* line 279, ../sass/screen.scss */
-#storytelling {
-  background-image: url(../assets/images/comm/comm-02.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-/* line 286, ../sass/screen.scss */
-#writing {
-  background-image: url(../assets/images/comm/comm-03.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-/* line 293, ../sass/screen.scss */
-#broadcast {
-  background-image: url(../assets/images/comm/comm-04.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-/* line 300, ../sass/screen.scss */
-#film {
-  background-image: url(../assets/images/comm/comm-05.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-/* line 307, ../sass/screen.scss */
-#digital {
-  background-image: url(../assets/images/comm/comm-06.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-/* line 314, ../sass/screen.scss */
-#digital-example-ff {
-  background-image: url(../assets/images/digital_ff.png);
-  background-size: cover;
-}
-
-/* line 319, ../sass/screen.scss */
-#digital-example-avatar {
-  background-image: url(../assets/images/digital_avatar.png);
-  background-size: cover;
-}
-
-/* line 324, ../sass/screen.scss */
-#games {
-  background-image: url(../assets/images/comm/comm-07.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-/* line 331, ../sass/screen.scss */
-#games-2d {
-  background-image: url(../assets/images/pacman.png);
-  background-size: cover;
-}
-
-/* line 336, ../sass/screen.scss */
-#myst {
-  background-image: url(../assets/images/myst.png);
-  background-size: cover;
-}
-
-/* line 341, ../sass/screen.scss */
-#games-3d {
-  background-image: url(../assets/images/game_3d.png);
-  background-size: cover;
-}
-
-/* line 348, ../sass/screen.scss */
-#mobile img {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 500px;
-  margin-left: -250px;
-  pointer-events: none;
-}
-/* line 357, ../sass/screen.scss */
-#mobile iframe {
-  position: absolute;
-  top: 210px;
-  left: 50%;
-  margin-left: -150px;
-  width: 300px;
-  height: 425px;
-  z-index: -1;
-  pointer-events: auto;
-  outline: none;
-}
-
-/* line 370, ../sass/screen.scss */
-#caniuse {
-  background-image: url(../assets/images/caniuse.png);
-  background-size: cover;
-  background-position: center;
-  justify-content: flex-end;
-  padding: 100px;
-}
-
-/* line 378, ../sass/screen.scss */
-#masking-vector {
-  background-image: url(../assets/images/clippath.jpg);
-  background-size: cover;
-}
-
-/* line 383, ../sass/screen.scss */
-#masking-alpha {
-  background-image: url(../assets/images/mask.jpg);
-  background-size: cover;
-}
-
-/* line 388, ../sass/screen.scss */
-#word-girl-demo, #communicating, #vector-graphics, #masking-webgl-example, #masking-css-composite, #masking-canvas-css-example, #masking-canvas-example, #masking-css-example, #masking-svg-example, #clip-webgl-example, #clip-canvas-example, #clip-svg-example, #masking-css-example, #masking-css-composite-1, #masking-css-composite-2, #clip-css-example {
-  background: transparent;
-}
-/* line 391, ../sass/screen.scss */
-#word-girl-demo iframe, #communicating iframe, #vector-graphics iframe, #masking-webgl-example iframe, #masking-css-composite iframe, #masking-canvas-css-example iframe, #masking-canvas-example iframe, #masking-css-example iframe, #masking-svg-example iframe, #clip-webgl-example iframe, #clip-canvas-example iframe, #clip-svg-example iframe, #masking-css-example iframe, #masking-css-composite-1 iframe, #masking-css-composite-2 iframe, #clip-css-example iframe {
-  background: transparent;
-}
-
-/* line 396, ../sass/screen.scss */
-#masking-cupcakes {
-  background-image: url(../assets/images/logo-food-network.svg);
-  background-position: center 100px;
-  background-repeat: no-repeat;
-  background-size: 150px;
-}
-
-/* line 403, ../sass/screen.scss */
-#blending {
-  background-image: url(../assets/images/blend.jpg);
-  background-size: cover;
-}
-
-/* line 408, ../sass/screen.scss */
-#video {
-  color: #e81e6f;
-}
-
-/* line 412, ../sass/screen.scss */
-#semantics {
-  background-image: url(../assets/images/wes.png);
-  background-size: cover;
-  background-position: center;
-}
-
-/* line 418, ../sass/screen.scss */
-#word-girl {
-  background-image: url(../assets/images/wordgirl-psd.png);
-  background-size: contain;
-  background-position: top left;
-  background-repeat: no-repeat;
-}
-/* line 424, ../sass/screen.scss */
-#word-girl a {
-  color: orange;
-}
-
-/* line 429, ../sass/screen.scss */
 #resources {
   font-size: 1rem;
 }
-/* line 432, ../sass/screen.scss */
+/* line 247, ../sass/screen.scss */
 #resources h2 {
   font-size: 3rem;
 }
-/* line 436, ../sass/screen.scss */
+/* line 251, ../sass/screen.scss */
 #resources h3 {
   font-size: 2rem;
 }
 
-/* line 441, ../sass/screen.scss */
+/* line 256, ../sass/screen.scss */
 #warning {
   display: none;
 }
 
-/* line 446, ../sass/screen.scss */
+/* line 261, ../sass/screen.scss */
 .no-flexbox #warning {
   position: absolute;
   display: block;
@@ -1265,7 +1058,7 @@ h2.top-left {
   text-align: center;
   z-index: 10000;
 }
-/* line 458, ../sass/screen.scss */
+/* line 273, ../sass/screen.scss */
 .no-flexbox #warning p {
   display: block;
   margin: 100px auto;
@@ -1273,17 +1066,17 @@ h2.top-left {
   line-height: 1.5;
 }
 
-/* line 468, ../sass/screen.scss */
+/* line 283, ../sass/screen.scss */
 .touch #preloader {
   display: none;
 }
-/* line 472, ../sass/screen.scss */
+/* line 287, ../sass/screen.scss */
 .touch #deck {
   position: static;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* line 478, ../sass/screen.scss */
+/* line 293, ../sass/screen.scss */
 .touch .slide {
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -1303,26 +1096,26 @@ h2.top-left {
   opacity: 1;
   pointer-events: auto;
 }
-/* line 487, ../sass/screen.scss */
+/* line 302, ../sass/screen.scss */
 .touch .slide--iframe {
   display: none;
 }
-/* line 491, ../sass/screen.scss */
+/* line 306, ../sass/screen.scss */
 .touch #ui-button-css .ui-button-css-side, .touch #ui-button-css, .touch #ui-button-css-mask, .touch #ui-button-css-blend {
   width: 100px;
   height: 100px;
 }
-/* line 496, ../sass/screen.scss */
+/* line 311, ../sass/screen.scss */
 .touch #filter-list-image {
   width: 200px;
 }
-/* line 500, ../sass/screen.scss */
+/* line 315, ../sass/screen.scss */
 .touch .mask-item, .touch .mask-dynamic-item {
   height: 100px;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 506, ../sass/screen.scss */
+  /* line 321, ../sass/screen.scss */
   html {
     font-size: .3em;
   }
