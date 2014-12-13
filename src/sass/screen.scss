@@ -37,7 +37,7 @@ $spinner-color: $teal;
 @import "pres/pres";
 @import "components/buttons";
 @import "components/iframe";
-@import "components/filter";
+@import "components/snippets";
 
 /* custom styles */
 body{
@@ -50,7 +50,7 @@ body{
 b, h2, h3, h4{
 	position: relative;
 	text-transform: uppercase;
-	font-weight: 800;
+	font-weight: 600;
 	text-align: center;
 	letter-spacing: .1em;
 	margin-bottom: 1rem;
@@ -302,19 +302,7 @@ code{
 	.slide--iframe{
 		display: none;
 	}
-	
-	#ui-button-css .ui-button-css-side, #ui-button-css, #ui-button-css-mask, #ui-button-css-blend{
-		width: 100px;
-		height: 100px;
-	}
-	
-	#filter-list-image{
-		width: 200px
-	}
-	
-	.mask-item, .mask-dynamic-item{
-		height: 100px;
-	}
+
 }
 
 @media screen and (max-width: 600px) {

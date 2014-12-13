@@ -8,6 +8,7 @@ define(function (require) {
 		NotesView = require('pres/views/notes-view'),
 		SlideBasicView = require('app/views/slide-basic-view'),
 		SequenceView = require('app/views/sequence-view'),
+		InOutView = require('app/views/inout-view'),
 		VideoView = require('app/views/video-view'),
 		IframeView = require('app/views/iframe-view'),
 		IframeFullView = require('app/views/iframe-full-view'),
@@ -20,6 +21,7 @@ define(function (require) {
 			{cl: 'iframe-full', view: IframeFullView},
 			{cl: 'iframe', view: IframeView},
 			{cl: 'video', view: VideoView},
+			{cl: 'in-out', view: InOutView},
 			{cl: 'sequence', view: SequenceView}
 		],
 	
@@ -32,7 +34,7 @@ define(function (require) {
 
             this.notesView = new NotesView();
 
-			//this.bg = new BgView();
+			this.bg = new BgView();
 			this.render();
         },
 
@@ -52,13 +54,11 @@ define(function (require) {
         },
 
         render: function () {
-	
             AppBase.prototype.render.call(this);
 
-            if (this.bg) {
+	        if (this.bg) {
 			    this.bg.render();
             }
-
         }
     });
 

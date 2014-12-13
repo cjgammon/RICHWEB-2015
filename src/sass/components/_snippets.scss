@@ -1,0 +1,19 @@
+/*
+* long-shadow
+* $rgba - colors 0-255
+* $n    - length of shadow
+*/
+@function long-shadow($r, $g, $b, $a, $n){
+  $value: 'rgba(#{$r}, #{$g}, #{$b}, #{$a}) 1px 1px';
+
+  @for $i from 1 through $n {
+    @if ($i < round($n / 2)) {
+      $value: '#{$value}, rgba(#{$r}, #{$g}, #{$b}, ' + $a + ') ' + $i + 'px ' + $i + 'px';
+    }
+    @else {
+      $value: '#{$value}, rgba(#{$r}, #{$g}, #{$b}, ' + ($a - (($a / round($n / 2)) * ($i - ($n / 2)))) + ') ' + $i + 'px ' + $i + 'px';
+    }
+  }
+
+  @return unquote($value);
+}

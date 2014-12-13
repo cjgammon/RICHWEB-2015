@@ -5,33 +5,21 @@ define(function (require) {
 		Vars = require('pres/models/vars'),
 		UserEvent = require('pres/events/user-event'),
 		AppEvent = require('pres/events/app-event'),
-		Camera = require('pres/models/camera'),
-		MeshBg = require('app/views/bg/mesh-bg'),
-		isTerrain,
+		CircleBg = require('app/views/bg/trans-circle-bg'),
 		currentSlide,
 		currentBg,
-		BG_LIST,
 		BgView;
 	
-	require('three');
-
 	BgView = Backbone.View.extend({
 
 		initialize: function () {
-			
-			BG_LIST = [
-			];
 				
 			this.$el = $('#bg');
-			this.addRenderer();
-						
+			this.canvas = this.$el[0];
+			this.ctx = this.canvas.getContext('2d');
+			
+			this.resize();
 			UserEvent.on('resize', this.resize, this);
-		},
-		
-		addRenderer: function () {
-			this.renderer = new THREE.WebGLRenderer({canvas: this.$el[0], antialias: true});
-			this.renderer.setSize(window.innerWidth, window.innerHeight);
-			this.renderer.setClearColor(0x000000);		
 		},
 		
 		render: function () {
@@ -41,36 +29,14 @@ define(function (require) {
 			if (currentSlide !== Vars.get('currentSlide')) {
 				slide = Vars.get('slides').at(Vars.get('currentSlide'));
 				
-				//check if Terrain
-				//if (typeof(slide.get('view').$el.data('pos')) !== 'undefined') {
-				//	this.handleTerrainSlide();
-				//} else {
 				this.handleNormalSlide();
-				//}
 			}
 		
 			if (currentBg) {
 				currentBg.render();
 			}		
 		},
-/*
-		handleTerrainSlide: function () {
-			if (!isTerrain) {
-				if (typeof(currentSlide) !== 'undefined' && currentBg) {
-					currentBg.destroy();
-				}
-
-				currentSlide = Vars.get('currentSlide');
-
-				currentBg = null;
-				currentBg = new TerrainBg();
-				currentBg.init(this.renderer);
-				isTerrain = true;
-			}
-
-			return;
-		},
-*/		
+		
 		handleNormalSlide: function () {
 			var slide = slide = Vars.get('slides').at(Vars.get('currentSlide'));
 			
@@ -84,28 +50,23 @@ define(function (require) {
 			if (currentView) {
 				currentBg = null;
 				currentBg = new currentView();
-				currentBg.init(this.renderer);
+				currentBg.init(this.ctx);
 			} else {
 				currentBg = null;
+				this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			}
 			
-			isTerrain = false;
 		},
 
-		getCurrentView: function (slide) {
-			var i;
-			
-			for (i = 0; i < BG_LIST.length; i += 1) {
-				if (BG_LIST[i].id == slide.get('name')) {
-					return BG_LIST[i].view;
-				} else if (slide.get('view').$el.data('color')) {
-					return MeshBg;
-				}
+		getCurrentView: function (slide) {			
+			if (slide.get('view').$el.data('color')) {
+				return CircleBg;
 			}
 		},
 
 		resize: function () {
-			this.renderer.setSize(window.innerWidth, window.innerHeight);
+			this.canvas.width = window.innerWidth;
+			this.canvas.height = window.innerHeight;
 		}
 	});
 		

@@ -753,59 +753,11 @@ iframe.focus {
   cursor: auto;
 }
 
-/* line 2, ../sass/components/_filter.scss */
-#filter-list-container {
-  text-align: center;
-  color: #ccc;
-}
-/* line 6, ../sass/components/_filter.scss */
-#filter-list-container img {
-  cursor: pointer;
-  display: block;
-  margin: .5rem auto;
-  width: 500px;
-}
-/* line 13, ../sass/components/_filter.scss */
-#filter-list-container #filter-list {
-  margin: 1em auto;
-  width: 70vw;
-  font-size: 2rem;
-}
-/* line 18, ../sass/components/_filter.scss */
-#filter-list-container #filter-list .filter-item {
-  display: inline-block;
-  position: relative;
-  padding: 0.3em 0.3em;
-  overflow: hidden;
-  white-space: nowrap;
-  cursor: pointer;
-  background: #ccc;
-  color: white;
-  border-radius: .2em;
-  -webkit-transition: background 0.2s, color 0.2s;
-  -moz-transition: background 0.2s, color 0.2s;
-  -o-transition: background 0.2s, color 0.2s;
-  transition: background 0.2s, color 0.2s;
-}
-/* line 30, ../sass/components/_filter.scss */
-#filter-list-container #filter-list .filter-item.out {
-  color: #ccc;
-  background: transparent;
-}
-/* line 35, ../sass/components/_filter.scss */
-#filter-list-container #filter-list .filter-item span {
-  pointer-events: none;
-}
-
-/* line 42, ../sass/components/_filter.scss */
-#filter-list-image {
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
+/*
+* long-shadow
+* $rgba - colors 0-255
+* $n    - length of shadow
+*/
 /* custom styles */
 /* line 43, ../sass/screen.scss */
 body {
@@ -819,7 +771,7 @@ body {
 b, h2, h3, h4 {
   position: relative;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 600;
   text-align: center;
   letter-spacing: .1em;
   margin-bottom: 1rem;
@@ -1100,22 +1052,9 @@ code span {
 .touch .slide--iframe {
   display: none;
 }
-/* line 306, ../sass/screen.scss */
-.touch #ui-button-css .ui-button-css-side, .touch #ui-button-css, .touch #ui-button-css-mask, .touch #ui-button-css-blend {
-  width: 100px;
-  height: 100px;
-}
-/* line 311, ../sass/screen.scss */
-.touch #filter-list-image {
-  width: 200px;
-}
-/* line 315, ../sass/screen.scss */
-.touch .mask-item, .touch .mask-dynamic-item {
-  height: 100px;
-}
 
 @media screen and (max-width: 600px) {
-  /* line 321, ../sass/screen.scss */
+  /* line 309, ../sass/screen.scss */
   html {
     font-size: .3em;
   }

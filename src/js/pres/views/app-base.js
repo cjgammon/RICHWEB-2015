@@ -107,7 +107,7 @@ define(function (require) {
         },
 
         handle_KEYDOWN: function (e) {
-			console.log(e.keyCode);
+			//console.log(e.keyCode);
 			UserEvent.trigger('keydown', e);
 		},
 		
