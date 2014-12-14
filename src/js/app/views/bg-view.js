@@ -6,6 +6,8 @@ define(function (require) {
 		UserEvent = require('pres/events/user-event'),
 		AppEvent = require('pres/events/app-event'),
 		CircleBg = require('app/views/bg/trans-circle-bg'),
+		ArcBg = require('app/views/bg/trans-arc-bg'),
+		BG_ARRAY = [CircleBg, ArcBg],
 		currentSlide,
 		currentBg,
 		BgView;
@@ -58,9 +60,13 @@ define(function (require) {
 			
 		},
 
-		getCurrentView: function (slide) {			
-			if (slide.get('view').$el.data('color')) {
-				return CircleBg;
+		getCurrentView: function (slide) {
+			var transition = slide.get('view').$el.data('trans');
+					
+			if (transition) {
+				return BG_ARRAY[parseInt(transition)];
+			} else if (slide.get('view').$el.data('color')) {
+				return BG_ARRAY[0];
 			}
 		},
 
