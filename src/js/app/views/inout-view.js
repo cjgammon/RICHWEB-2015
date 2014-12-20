@@ -52,7 +52,6 @@ define(function (require) {
         trigger: function () {
             this.step += 1;
             
-			console.log(this.step);
             if (this.step < 2) {
 				this.animOut();
             } else {
