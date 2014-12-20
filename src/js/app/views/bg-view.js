@@ -19,7 +19,6 @@ define(function (require) {
 			this.$el = $('#bg');
 			this.canvas = this.$el[0];
 			this.ctx = this.canvas.getContext('2d');
-			
 			this.resize();
 			UserEvent.on('resize', this.resize, this);
 		},
@@ -73,6 +72,7 @@ define(function (require) {
 		resize: function () {
 			this.canvas.width = window.innerWidth;
 			this.canvas.height = window.innerHeight;
+			this.render();
 		}
 	});
 		

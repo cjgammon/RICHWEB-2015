@@ -29,9 +29,7 @@ define(function (require) {
 			instance.timeline.add(TweenMax.to(instance.points[2], 0.5, {y: window.innerHeight, ease: Circ.easeIn}), 0);
 		};
 
-		instance.render = function () {
-			var i;
-						
+		instance.render = function () {						
 			if (instance.alive) {
 				instance.ctx.fillStyle = instance.color;
 				instance.ctx.beginPath();

@@ -52,23 +52,20 @@ define(function (require) {
 		
 		animIn: function () {
 			var tl = new TimelineMax();
-			
 			tl.add(TweenMax.to(this.circle1, 0.5, {snap: {r: 118}, ease: Quad.easeOut}));
 			tl.add(TweenMax.to(this.circle2, 0.5, {snap: {r: 103}, ease: Quad.easeOut}), 0.2);
 			tl.add(TweenMax.to(this.guy, 1, {snap: {ty: 0}, ease: Back.easeOut}));
-			tl.add(TweenMax.to(this.h2, 0.2, {opacity: 1, y: 0, ease: Quad.easeOut}), '-=0.5');
-			tl.add(TweenMax.to(this.h4, 0.2, {opacity: 1, y: 0, ease: Quad.easeOut}), '-=0.2');
-			
+			tl.add(TweenMax.to(this.h2, 0.2, {opacity: 1, y: 0, ease: Quad.easeOut}), '-=1');
+			tl.add(TweenMax.to(this.h4, 0.2, {opacity: 1, y: 0, ease: Quad.easeOut}), '-=0.8');
 		},
 		
 		animOut: function () {
 			var tl = new TimelineMax({onComplete: this.animOutComplete});
-			
-			tl.add(TweenMax.to(this.guy, 1, {snap: {ty: 200}, ease: Back.easeIn}));
+			tl.add(TweenMax.to(this.guy, 0.5, {snap: {ty: 200}, ease: Back.easeIn}));
 			tl.add(TweenMax.to(this.h2, 0.2, {opacity: 0, y: 10, ease: Quad.easeIn}), 0);
 			tl.add(TweenMax.to(this.h4, 0.2, {opacity: 0, y: 10, ease: Quad.easeIn}), 0);
-			tl.add(TweenMax.to(this.circle2, 0.5, {snap: {r: 0}, ease: Quad.easeIn}));
-			tl.add(TweenMax.to(this.circle1, 0.5, {snap: {r: 0}, ease: Quad.easeIn}), '-=0.3');
+			tl.add(TweenMax.to(this.circle2, 0.2, {snap: {r: 0}, ease: Quad.easeIn}));
+			tl.add(TweenMax.to(this.circle1, 0.2, {snap: {r: 0}, ease: Quad.easeIn}), '-=0.1');
 		},
 		
 		animOutComplete: function () {
@@ -78,7 +75,6 @@ define(function (require) {
         trigger: function () {
             this.step += 1;
             
-			console.log('trigger', this.step);
             if (this.step < 2) {
 				this.animOut();
             } else {

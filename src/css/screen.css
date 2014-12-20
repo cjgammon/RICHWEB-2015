@@ -913,7 +913,7 @@ code span {
 
 /* line 180, ../sass/screen.scss */
 .slide--iframe {
-  background: #f2f2f2;
+  background: transparent;
 }
 /* line 183, ../sass/screen.scss */
 .slide--iframe h2 {
@@ -949,7 +949,7 @@ code span {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  background-color: black;
+  background-color: transparent;
 }
 
 /* line 218, ../sass/screen.scss */

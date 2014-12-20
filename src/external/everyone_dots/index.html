@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			#my-canvas{
+				width: 100vw;
+				height: 100vh;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<canvas id="my-canvas" width="1024" height="768"></canvas>
+		
+		<script src="gsap/TweenMax.js"></script>
+		<script>
+		var canvas = document.getElementById('my-canvas'),
+			ctx = canvas.getContext('2d'),
+			j,
+			i,
+			_radius = 12,
+			_padding = 12,
+			_margin = 20,
+			_x = _margin,
+			_y = _margin,
+			_offset = _radius + _padding * 2,
+			rows,
+			columns,
+			circles = [],
+			column,
+			delta,
+			POS_X,
+			POS_Y,
+			INTERVAL,
+			INTERVAL_SPEED = 100,
+			c,
+			str = "this_is_for_everyone____";
+			map = {
+				t: [
+					[0, 0, 0, 0, 0],
+					[1, 1, 1, 1, 1],
+					[0, 0, 1, 0, 0],
+					[0, 0, 1, 0, 0],
+					[0, 0, 1, 0, 0],
+					[0, 0, 1, 0, 0],
+					[0, 0, 0, 0, 0]
+				],
+				h: [
+					[0, 0, 0, 0],
+					[1, 0, 0, 1],
+					[1, 0, 0, 1],
+					[1, 1, 1, 1],
+					[1, 0, 0, 1],
+					[1, 0, 0, 1],
+					[0, 0, 0, 0]
+				],
+				i: [
+					[0],
+					[1],
+					[1],
+					[1],
+					[1],
+					[1],
+					[0]
+				],
+				s: [
+					[0, 0, 0, 0],
+					[1, 1, 1, 1],
+					[1, 0, 0, 0],
+					[1, 1, 1, 1],
+					[0, 0, 0, 1],
+					[1, 1, 1, 1],
+					[0, 0, 0, 0]
+				],
+				_: [
+					[0, 0],
+					[0, 0],
+					[0, 0],
+					[0, 0],
+					[0, 0],
+					[0, 0],
+					[0, 0]
+				],
+				f: [
+					[0, 0, 0, 0],
+					[1, 1, 1, 1],
+					[1, 0, 0, 0],
+					[1, 1, 1, 1],
+					[1, 0, 0, 0],
+					[1, 0, 0, 0],
+					[0, 0, 0, 0]
+				],
+				o: [
+					[0, 0, 0, 0],
+					[1, 1, 1, 1],
+					[1, 0, 0, 1],
+					[1, 0, 0, 1],
+					[1, 0, 0, 1],
+					[1, 1, 1, 1],
+					[0, 0, 0, 0]
+				],
+				r: [
+					[0, 0, 0, 0],
+					[1, 1, 1, 1],
+					[1, 0, 0, 1],
+					[1, 1, 1, 1],
+					[1, 0, 1, 0],
+					[1, 0, 0, 1],
+					[0, 0, 0, 0]
+				],
+				e: [
+					[0, 0, 0, 0],
+					[1, 1, 1, 1],
+					[1, 0, 0, 0],
+					[1, 1, 1, 1],
+					[1, 0, 0, 0],
+					[1, 1, 1, 1],
+					[0, 0, 0, 0]
+				],
+				v: [
+					[0, 0, 0, 0, 0],
+					[1, 0, 0, 0, 1],
+					[1, 0, 0, 0, 1],
+					[0, 1, 0, 1, 0],
+					[0, 1, 0, 1, 0],
+					[0, 0, 1, 0, 0],
+					[0, 0, 0, 0, 0]
+				],
+				y: [
+					[0, 0, 0, 0, 0],
+					[1, 0, 0, 0, 1],
+					[0, 1, 0, 1, 0],
+					[0, 0, 1, 0, 0],
+					[0, 0, 1, 0, 0],
+					[0, 0, 1, 0, 0],
+					[0, 0, 0, 0, 0]
+				],
+				n: [
+					[0, 0, 0, 0],
+					[1, 0, 0, 1],
+					[1, 1, 0, 1],
+					[1, 0, 1, 1],
+					[1, 0, 0, 1],
+					[1, 0, 0, 1],
+					[0, 0, 0, 0]
+				],
+			};
+		
+		init();
+			
+		function init() {
+			var _cx = window.innerWidth / 2,
+				_cy = window.innerHeight / 2;
+			
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			rows = Math.round(canvas.width / _offset);
+			columns = Math.round(canvas.height / _offset);
+			
+			delta = -rows;
+			POS_Y = Math.floor(columns / 3);
+			
+			for (i = 0; i < rows; i += 1) {
+				column = [];
+
+				for (j = 0; j < columns; j += 1) {
+					c = {x: _cx, y: _cy, gx: _x, gy: _y, r: 0, color: '#ffa227'};
+					column.push(c);	
+					_y += _offset;
+				}
+
+				circles.push(column);
+
+				_y = _margin;
+				_x += _offset;
+			}
+			
+			requestAnimationFrame(draw);
+		}
+		
+		function draw() {
+			var i;
+			
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			
+			for (i = 0; i < circles.length; i += 1) {
+				for (j = 0; j < circles[i].length; j += 1) {
+				
+					ctx.fillStyle = circles[i][j].color;
+					ctx.beginPath();
+		      		ctx.arc(circles[i][j].x, circles[i][j].y, circles[i][j].r, 0, 2 * Math.PI, false);
+					ctx.closePath();
+					ctx.fill();
+				}
+			}
+			
+			requestAnimationFrame(draw);
+		}
+		
+		function drawLetterAt(letter, x, y) {
+			for (i = 0; i < circles.length; i += 1) {
+				for (j = 0; j < circles[i].length; j += 1) {
+					if (circles[i + x]) {
+						c = circles[i + x][j + y];
+
+						if (letter[j]){
+							if (letter[j][i]) {
+								c.color = '#e8e8e8';
+							} else {
+								c.color = '#ffa227';
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		function cycle() {	
+			var k,
+				letters = [];		
+
+			for (k = 0; k < str.length; k += 1) {
+				letters.push(map[str[k]]);
+			}
+			
+			POS_X = -delta;
+			
+			for (k = 0; k < letters.length; k += 1) {
+				drawLetterAt(letters[k], POS_X, POS_Y);
+				POS_X += letters[k][0].length + 2;
+			}
+			
+			if (POS_X < 10) { //loop
+				delta = -rows;
+			}
+			
+			delta += 1;
+		}
+		
+		function animInComplete() {
+			INTERVAL = setInterval(cycle, INTERVAL_SPEED);
+		}
+		
+		window.animIn = function () {
+			var i,
+				j,
+				tl,
+				_speed;
+			
+			tl = new TimelineMax({onComplete: animInComplete});
+			
+			for (i = 0; i < circles.length; i += 1) {
+				for (j = 0; j < circles[i].length; j += 1) {
+					_speed = 0.5;
+					tl.to(circles[i][j], _speed, {r: _radius, ease: Back.easeOut}, 0);
+					tl.to(circles[i][j], _speed, {x: circles[i][j].gx, y: circles[i][j].gy, ease: Sine.easeOut}, 0.7);
+				}
+			}
+		}
+		
+		window.animOut = function (cb) {
+			var i,
+				j,
+				_speed,
+				tl;
+			
+			clearInterval(INTERVAL);
+			
+			tl = new TimelineMax({onComplete: cb});
+			
+			for (i = 0; i < circles.length; i += 1) {
+				for (j = 0; j < circles[i].length; j += 1) {
+					_speed = 0.5;
+					tl.to(circles[i][j], _speed, {x: canvas.width / 2, y: canvas.height / 2, ease: Sine.easeIn}, 0);
+					tl.to(circles[i][j], _speed, {r: 0, ease: Back.easeIn}, 0.7);
+				}
+			}
+		}
+		
+		</script>
+	</body>
+</html>
