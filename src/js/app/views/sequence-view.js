@@ -35,9 +35,9 @@ define(function (require) {
 
         trigger: function () {
             this.step += 1;
-            
+            			
             if (this.step < this.iframe[0].contentWindow.stepcount) {
-                this.iframe[0].contentWindow.trigger();
+                this.iframe[0].contentWindow.trigger(this.trigger.bind(this));
             } else {
 		        AppEvent.trigger('next');
             }

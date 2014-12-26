@@ -241,6 +241,50 @@ code{
 	}
 }
 
+
+@-webkit-keyframes opacity{
+	0%{
+		opacity: 1;
+	}
+	
+	100%{
+		opacity: 0.2;
+	}
+}
+
+#hw-opacity-anim{
+	-webkit-animation: opacity 2s infinite alternate;
+}
+
+@-webkit-keyframes transform{
+	0%{
+		-webkit-transform: rotateX(0deg);
+	}
+	
+	100%{
+		-webkit-transform: rotateX(0deg) rotateZ(20deg) scale(0.2);
+	}
+}
+
+#hw-transform-anim{
+	-webkit-animation: transform 2s infinite alternate;
+}
+
+@-webkit-keyframes blur{
+	0%{
+		-webkit-filter: blur(0px);
+	}
+	
+	100%{
+		-webkit-filter: blur(5px);
+	}
+}
+
+#hw-filter-anim{
+	-webkit-animation: blur 2s infinite alternate;
+}
+
+
 #resources{
 	font-size: 1rem;
 	

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>no styling</title>
+		
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+				background: #D62B58;
+			}
+			
+			#mycanvas{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		
+		<script src="greensock/TweenMax.js"></script>
+		<script>
+		var canvas = document.getElementById('mycanvas'),
+			ctx = canvas.getContext('2d'),
+			tempCanvas,
+			tempCtx,
+			timeline,
+			textureImg,
+			scale = 20,
+			textureData,
+			racing = false,
+			texture = "pacman-ghost-colour.png",
+			delta = 0,
+			photo = {x: 0, y: 0},
+			pixels = {x: 0, y: 0},
+			camera = {x: 0, y: 0},
+			road = {x: 0, y: 500},
+			white = {alpha: 0},
+			circle = {r: 0},
+			circle2 = {r: 0},
+			photoforward = true,
+			pixelforward = true;
+		
+		canvas.width = 1024;
+		canvas.height = 768;
+		
+		ctx.imageSmoothingEnabled = false;
+		
+		cameraImg = new Image();
+		cameraImg.src = "camera.png";
+		
+		textureImg = new Image();
+		textureImg.src = texture;
+		textureImg.addEventListener('load', handle_texture_LOAD);
+		
+		window.step = 0;
+		window.stepcount = 5;
+		
+		
+		
+		window.trigger = function (cb) {
+			
+			window.step += 1;
+			
+			switch (window.step) {
+				case 1:
+					timeline.tweenTo('road');
+				break;
+				case 2:
+					timeline.tweenTo('camera');
+				break;
+				case 3:
+					timeline.tweenTo('prepare');
+				break;
+				case 4:
+					timeline.tweenTo('race');
+				break;
+			}
+		}
+		
+		function handle_texture_LOAD(e) {
+			tempCanvas = document.createElement('canvas');
+			tempCtx = tempCanvas.getContext('2d');
+				
+			tempCanvas.width = textureImg.width;
+			tempCanvas.height = textureImg.height;
+			
+			tempCtx.drawImage(textureImg, 0, 0);
+			
+			textureData = tempCtx.getImageData(0, 0, textureImg.width, textureImg.height);
+			
+			init();
+		}
+		
+		function init() {
+			timeline = new TimelineMax({paused: true});
+			timeline.to(circle, 0.5, {r: 10});
+			timeline.addLabel('show');
+			timeline.to(pixels, 1, {x: '-=300', y: '+=200', ease: Quad.easeInOut});
+			timeline.to(road, 1, {y: 0, ease: Quad.easeOut}, '-=1');
+			timeline.addLabel('road');
+			timeline.to(circle2, 0.5, {r: 200});
+			timeline.addLabel('camera');
+			timeline.to(white, 0.1, {alpha: 1});
+			timeline.to(white, 0.2, {alpha: 0});
+			timeline.to(photo, 1, {y: '+=250'});
+			timeline.to(photo, 1, {x: '-=250', y: '+=20'});
+			timeline.to(camera, 0.5, {y: '-=500', ease: Quad.easeIn});
+			timeline.addLabel('prepare', '-=0.01');
+			timeline.addLabel('race');
+			timeline.add(race);
+						
+			pixels.x = (canvas.width / 2) - (textureImg.width / 2 * scale);
+			pixels.y = (canvas.height / 2) - (textureImg.height / 2 * scale);
+			
+			photo.x = (canvas.width / 2) - (textureImg.width / 2 * scale);
+			photo.y = (canvas.height / 2) - (textureImg.height / 2 * scale) - 150;
+			
+			camera.x = (canvas.width / 2) - (cameraImg.width / 2);
+			camera.y = (canvas.height / 2) - (cameraImg.height / 2) - 100;
+			
+			timeline.tweenTo('show');
+			requestAnimationFrame(draw);
+		}
+		
+		function race() {
+			racing = true;
+		}
+		
+		function draw() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			
+			ctx.save();
+			ctx.translate(0, -100);
+			
+			if (racing !== false) {
+				delta += 1;
+
+				if (delta % (tempCanvas.width * tempCanvas.height) == 0) {
+					console.log(pixelforward);
+					pixels.x = pixelforward ? pixels.x + 20 : pixels.x - 20;
+				}
+				
+				photo.x = photoforward ? photo.x + 10 : photo.x - 10;
+
+				if (photo.x > 800) {
+					photoforward = false;
+				}
+				if (photo.x < 100) {
+					photoforward = true;
+				}
+				
+				if (pixels.x > 700) {
+					pixelforward = false;
+				}
+				if (pixels.x < 50) {
+					pixelforward = true;
+				}
+			}
+			
+			drawRoad();
+			drawCamera();
+			drawPhoto();
+			drawPixels();
+			drawWhite();
+
+			ctx.restore();
+			
+			requestAnimationFrame(draw);
+		}
+		
+		function drawWhite() {
+			if (white.alpha > 0) {
+				ctx.fillStyle = "rgba(255, 255, 255, " + white.alpha + ")";
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+			}
+
+		}
+		
+		function drawCamera() {
+			ctx.save();
+			ctx.translate(camera.x, camera.y);
+			
+			if (circle2.r < 200) {
+				ctx.beginPath();
+				ctx.arc(cameraImg.width / 2, cameraImg.height / 2, circle2.r, 0, 2 * Math.PI, false);
+				ctx.clip();
+			}
+			
+			ctx.drawImage(cameraImg, 0, 0, cameraImg.width, cameraImg.height, 0, 0, cameraImg.width, cameraImg.height);
+			
+			ctx.restore();
+		}
+		
+		function drawRoad() {
+			
+			ctx.save();
+			ctx.translate(road.x, road.y);
+			
+			ctx.fillStyle = "#CC6E8A";
+			ctx.beginPath();
+			ctx.moveTo(108, 560);
+			ctx.lineTo(960, 560);
+			ctx.lineTo(910, 680);
+			ctx.lineTo(58, 680);
+			ctx.closePath();
+			ctx.fill();
+			
+			ctx.setLineDash([60, 33]);
+			ctx.strokeStyle = "#D62B58";
+			ctx.lineWidth = 10;
+			ctx.beginPath();
+			ctx.moveTo(86, 615);
+			ctx.lineTo(939, 615);
+			ctx.stroke();
+			ctx.closePath();
+			
+			ctx.restore();
+		}
+		
+		function drawPhoto() {
+			ctx.save();
+			
+			ctx.beginPath();
+			ctx.rect(0, (canvas.height / 2) - 10, canvas.width, canvas.height / 2);
+			ctx.closePath();
+			ctx.clip();
+			
+			ctx.translate(photo.x, photo.y);
+			ctx.scale(scale, scale);
+			
+			ctx.beginPath();
+			ctx.fillStyle = "white";
+			ctx.fillRect(-1, -1, tempCanvas.width + 2, tempCanvas.height + 3);
+			ctx.fill();
+			ctx.closePath();
+			
+			ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, tempCanvas.width, tempCanvas.height);
+
+			ctx.restore();
+		}
+		
+		function drawPixels() {
+			var i,
+				x,
+				y,
+				j = delta,
+				k = 0,
+				data = textureData.data;
+
+			ctx.save();
+			ctx.translate(pixels.x, pixels.y);
+			ctx.scale(scale, scale);
+
+			if (racing !== true) {
+				
+				if (circle.r < 10) {
+					ctx.beginPath();
+					ctx.arc(tempCanvas.width / 2, tempCanvas.height / 2, circle.r, 0, 2 * Math.PI, false);
+					ctx.clip();
+				}
+				
+				ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, tempCanvas.width, tempCanvas.height);
+			} else {
+				// iterate over all pixels based on x and y coordinates
+			    for(y = 0; y < tempCanvas.width; y++) {
+			          // loop through each column
+			    	for(x = 0; x < tempCanvas.width; x++) {
+						var pos = ((tempCanvas.width * y) + x);
+			    		var red = data[pos * 4];
+			    		var green = data[pos * 4 + 1];
+			    		var blue = data[pos * 4 + 2];
+			    		var alpha = data[pos * 4 + 3];
+
+						if (alpha !== 0) {
+							if (k < j % (tempCanvas.width * tempCanvas.height)) {
+								alpha = 0;
+							}
+						}
+
+						ctx.fillStyle = "rgba(" + red + ", " + green + ", " + blue + ", " + alpha + ")";
+						ctx.fillRect(x, y, 1, 1);
+
+						j += 1;
+						k += 1;
+			    	}
+			    }
+			}
+		
+			ctx.restore();
+		}
+		
+		</script>
+	</body>
+</html>
