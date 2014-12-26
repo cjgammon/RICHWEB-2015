@@ -42,8 +42,10 @@
 			white = {alpha: 0},
 			circle = {r: 0},
 			circle2 = {r: 0},
+			circle3 = {r: 10},
 			photoforward = true,
-			pixelforward = true;
+			pixelforward = true,
+			squareclip = true;
 		
 		canvas.width = 1024;
 		canvas.height = 768;
@@ -58,9 +60,7 @@
 		textureImg.addEventListener('load', handle_texture_LOAD);
 		
 		window.step = 0;
-		window.stepcount = 5;
-		
-		
+		window.stepcount = 7;
 		
 		window.trigger = function (cb) {
 			
@@ -78,6 +78,12 @@
 				break;
 				case 4:
 					timeline.tweenTo('race');
+				break;
+				case 5:
+					timeline.tweenTo('winner');
+				break;
+				case 6:
+					timeline.tweenTo('end', {onComplete: cb});
 				break;
 			}
 		}
@@ -113,7 +119,15 @@
 			timeline.addLabel('prepare', '-=0.01');
 			timeline.addLabel('race');
 			timeline.add(race);
-						
+			timeline.to(road, 1, {y: 500, ease: Quad.easeIn}, '+=0.1');
+			timeline.add(stop);
+			timeline.to(circle, 0.5, {r: 0});
+			timeline.to(photo, 1, {x: (canvas.width / 2) - (textureImg.width / 2 * scale), y: (canvas.height / 2) - (textureImg.height / 2 * scale)});
+			timeline.addLabel('winner');
+			timeline.to(circle3, 0.5, {r: 0});
+			timeline.addLabel('end');
+			
+			
 			pixels.x = (canvas.width / 2) - (textureImg.width / 2 * scale);
 			pixels.y = (canvas.height / 2) - (textureImg.height / 2 * scale);
 			
@@ -131,6 +145,11 @@
 			racing = true;
 		}
 		
+		function stop() {
+			racing = false;
+			squareclip = false;
+		}
+		
 		function draw() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			
@@ -141,7 +160,6 @@
 				delta += 1;
 
 				if (delta % (tempCanvas.width * tempCanvas.height) == 0) {
-					console.log(pixelforward);
 					pixels.x = pixelforward ? pixels.x + 20 : pixels.x - 20;
 				}
 				
@@ -225,13 +243,22 @@
 		function drawPhoto() {
 			ctx.save();
 			
-			ctx.beginPath();
-			ctx.rect(0, (canvas.height / 2) - 10, canvas.width, canvas.height / 2);
-			ctx.closePath();
-			ctx.clip();
-			
+			if (squareclip == true) {
+				ctx.beginPath();
+				ctx.rect(0, (canvas.height / 2) - 10, canvas.width, canvas.height / 2);
+				ctx.closePath();
+				ctx.clip();
+			}
+
 			ctx.translate(photo.x, photo.y);
 			ctx.scale(scale, scale);
+			
+			if (circle3.r < 10) {
+				ctx.beginPath();
+				ctx.arc(tempCanvas.width / 2, tempCanvas.height / 2, circle3.r, 0, 2 * Math.PI, false);
+				ctx.closePath();
+				ctx.clip();
+			}
 			
 			ctx.beginPath();
 			ctx.fillStyle = "white";
