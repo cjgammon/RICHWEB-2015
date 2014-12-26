@@ -29,7 +29,7 @@
 					tl;
 
 				window.step = 0;
-				window.stepcount = 3;
+				window.stepcount = 4;
 
 				start();
 
@@ -46,7 +46,10 @@
 							tl.tweenTo('two');
 						break;
 						case 2:
-							tl.tweenTo('three', {onComplete: cb});
+							tl.tweenTo('three');
+						break;
+						case 3:
+							tl.tweenTo('four', {onComplete: cb});
 						break;
 					}
 				}
@@ -56,7 +59,8 @@
 						tl = comp.timeline();
 						tl.addLabel('one', 15);
 						tl.addLabel('two', 101);
-						tl.addLabel('three', 158);
+						tl.addLabel('three', 180);
+						tl.addLabel('four', 205);
 
 						tl.play();
 						tl.tweenTo('one');
