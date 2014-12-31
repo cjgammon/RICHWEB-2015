@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			#svgcanvas{
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<svg id="svgcanvas" width="1024" height="768" viewBox="0 0 1024 768">
+			<g id="globe" opacity="0">
+				<defs>
+					<clipPath id="SVGID_2_">
+						<circle id="SVGID_1_" cx="1.5" cy="3.5" r="112.2"/>
+					</clipPath>
+				</defs>
+				<circle fill="none" stroke="#FFFFFF" stroke-width="5.9624" stroke-linecap="round" stroke-miterlimit="10" cx="1.5" cy="1.7" r="110.8"/>
+				<g clip-path="url(#SVGID_2_)">
+					<polygon fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" points="-109.2,-32.8 -84.5,-22.9 -84.5,-11 -64.5,-4.7 -56.3,12.3 -49.3,6.6 -32.2,23.5 -13,23.5 -7.3,33.5 3.5,33.5 3.5,40.1 3.5,57.1 34.5,73.5 34.5,121.7 52.3,114.3 83.1,63.3 88.9,29.3 62.9,30.4 35.5,16.8 10.8,25.9 -9.5,17.5 -15.2,7.5 -21.5,7.5 -29.9,14.9 -35.5,6.1 -35.5,-7.6 -20.2,-12.7 -11.5,-2.5 -11.5,-24.6 1.2,-33.8 21,-52.3 -11.5,-68.2 -11.5,-48.4 -31.6,-58 -10.2,-81.8 8.4,-77.3 11.2,-81.8 -10,-88.7 -31.7,-86.6 -44,-73.4 -84.8,-79.6 -81,-61.5 -99.7,-61.5 			"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="5.1074" stroke-miterlimit="10" d="M30.4-49.3c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="5.1074" stroke-miterlimit="10" d="M-46.2,88.6c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6s2.7-4.2,6.2-5"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="5.1074" stroke-miterlimit="10" d="M20.2-27.2c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5c3.5-0.9,4.3,2.5,7.8,1.6c3.5-0.9,2.7-4.2,6.2-5"/>
+					<polygon fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" points="8.1,-112.2 -9.8,-94.5 2.4,-94.5 13.8,-97.8 26.2,-85.7 31.7,-77.5 43.2,-77.5 65.3,-109.1"/>
+					<polygon fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" points="-18.9,-112.5 -26.1,-95.3 -43.6,-86.2 -56.3,-99.4"/>
+					<polygon fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" points="-62.4,-94.5 -56.3,-82.5 -58.9,-82.5 -70.8,-90.3"/>
+					<polygon fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" points="112.2,-40.5 105.5,-28.4 105.5,-12.7 121.5,11.6 121.5,-17.8"/>
+				</g>
+			</g>
+		</svg>
+		
+		<script src="snap.svg-min.js"></script>
+		<script src="gsap/TweenMax.js"></script>
+		<script src="gsap/plugins/SnapPlugin.js"></script>
+		<script>
+			var s = new Snap('#svgcanvas'),
+				globe = s.select('#globe'),
+				bg = '#D62B58';
+			
+			globe.transform('translate(512, 300)');
+			globe.animate({opacity: 1}, 200);
+			
+			group = s.g();
+			group.transform('translate(412, 500)');
+			
+			tl = new TimelineMax({yoyo: true, repeat: -1});
+			
+			tw = new Twn({scale: 0.5}, 1);
+			group.add(tw.el);
+			tl.add(tw.tween);
+			
+			function Twn(props, dur, ease) {
+				var start,
+					path,
+					end,
+					ease = ease || Quad.easeOut;
+				
+				this.dur = dur || 1;
+				this.el = s.g();
+				
+				path = s.line(0, 0, 0, 0);
+				path.animate({x2: this.dur * 200}, 200);
+				path.attr({stroke: 'white', strokeWidth: 5});
+				this.el.add(path);
+				
+				this.playhead = s.circle(0, 0, 10);
+				this.playhead.attr({fill: 'white', opacity: 0});
+				this.playhead.animate({opacity: 2}, 200);
+				this.el.add(this.playhead);
+				
+				start = s.circle(0, 0, 10);
+				start.attr({stroke: 'white', strokeWidth: 5, fill: bg});
+				this.el.add(start);
+				
+				end = s.circle(0, 0, 10);
+				end.attr({stroke: 'white', strokeWidth: 5, fill: bg});
+				end.animate({cx: this.dur * 200}, 200);
+				this.el.add(end);
+								
+				this.update = function () {
+					var pos = (this.tween.time() / this.tween.duration()) * (this.dur * 200);
+					this.playhead.transform('translate(' + pos + ', 0)');
+				}
+				
+				this.setLength = function (d) {
+					this.dur = d;
+					end.animate({cx: this.dur * 200}, 200);
+					path.animate({x2: this.dur * 200}, 200);
+					this.tween.duration(this.dur);
+				}
+				
+				this.hide = function () {
+					this.playhead.animate({opacity: 0}, 200);
+					start.animate({opacity: 0}, 200);
+					end.animate({cx: 0, opacity: 0}, 200);
+					path.animate({x2: 0, opacity: 0}, 200);
+				}
+				
+				this.tween = TweenMax.to(globe, this.dur, {snap: props, ease: ease, onUpdate: this.update.bind(this)});
+			}
+			
+			window.step = 0;
+			window.stepcount = 9;
+			
+			window.trigger = function (cb) {
+				
+				window.step += 1;
+				
+				switch (window.step) {
+					case 1:
+						tw2 = new Twn({ty: '-=100'}, 1, Bounce.easeIn);
+						group.add(tw2.el);
+						tl.add(tw2.tween, 0);
+						tw2.el.transform('translate(0, 50)');
+
+						tw3 = new Twn({rotation: "+=180"}, 1, Quad.easeInOut);
+						group.add(tw3.el);
+						tl.add(tw3.tween, 0);
+						tw3.el.transform('translate(0, 100)');
+					break;
+					case 2:
+						group.animate({transform: 'translate(312, 500)'}, 100);
+						tw2.setLength(2);
+
+						tw4 = new Twn({rotation: "-=90"}, 1, Sine.easeIn);
+						group.add(tw4.el);
+						tl.add(tw4.tween, 1);
+						tw4.el.transform('translate(200, 100)');
+					break;
+					case 3:
+						group.animate({transform: 'translate(212, 500)'}, 100);
+						
+						tw5 = new Twn({tx: "+=100", ty: "+=100"}, 1, Back.easeOut);
+						group.add(tw5.el);
+						tl.add(tw5.tween, 2);
+						tw5.el.transform('translate(400, 50)');
+						
+					break;
+					case 4:
+						tl.tweenTo(1, {ease: Back.easeIn});
+					break;
+					case 5:
+						tl.tweenTo(2, {ease: Bounce.easeOut});
+					break;
+					case 6:
+						tl.timeScale(3);
+						tl.play();
+					break;
+					case 7:
+						tl.timeScale(0.3);
+					break;
+					case 8:
+						tw.hide();
+						tw2.hide();
+						tw3.hide();
+						tw4.hide();
+						tw5.hide();
+						globe.animate({opacity: 0}, 200, cb);
+					break;
+				}
+			};
+			
+		</script>
+	</body>
+</html>

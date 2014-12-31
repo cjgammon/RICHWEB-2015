@@ -137,6 +137,9 @@ blockquote{
 
 em{
 	font-weight: bold;
+	font-style: italic;
+	font-size: 0.5em;
+	letter-spacing: 0.1em;
 }
 
 code{
@@ -151,13 +154,8 @@ code{
 	font-family: 'source code pro', courier, monospace;
 	white-space: pre;
 	
-	em{
-		color: #cc0000;
-	}
-	
 	span{
-		font-weight: bold;
-		color: #660066;
+		color: #cc0000;
 	}
 }
 
@@ -241,7 +239,7 @@ code{
 	}
 }
 
-
+/*
 @-webkit-keyframes opacity{
 	0%{
 		opacity: 1;
@@ -283,7 +281,7 @@ code{
 #hw-filter-anim{
 	-webkit-animation: blur 2s infinite alternate;
 }
-
+*/
 
 #resources{
 	font-size: 1rem;

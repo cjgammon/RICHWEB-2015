@@ -104,7 +104,7 @@
 		
 		function init() {
 			timeline = new TimelineMax({paused: true});
-			timeline.to(circle, 0.5, {r: 10});
+			timeline.to(circle, 1, {r: 10});
 			timeline.addLabel('show');
 			timeline.to(pixels, 1, {x: '-=300', y: '+=200', ease: Quad.easeInOut});
 			timeline.to(road, 1, {y: 0, ease: Quad.easeOut}, '-=1');
@@ -120,11 +120,11 @@
 			timeline.addLabel('race');
 			timeline.add(race);
 			timeline.to(road, 1, {y: 500, ease: Quad.easeIn}, '+=0.1');
-			timeline.add(stop);
-			timeline.to(circle, 0.5, {r: 0});
-			timeline.to(photo, 1, {x: (canvas.width / 2) - (textureImg.width / 2 * scale), y: (canvas.height / 2) - (textureImg.height / 2 * scale)});
+			timeline.add(stop, '-=1');
+			timeline.to(circle, 0.5, {r: 0}, '-=1');
+			timeline.to(photo, 1, {x: (canvas.width / 2) - (textureImg.width / 2 * scale), y: (canvas.height / 2) - (textureImg.height / 2 * scale)}, '-=1');
 			timeline.addLabel('winner');
-			timeline.to(circle3, 0.5, {r: 0});
+			timeline.to(circle3, 1, {r: 0});
 			timeline.addLabel('end');
 			
 			

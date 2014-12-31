@@ -869,9 +869,12 @@ blockquote {
 /* line 138, ../sass/screen.scss */
 em {
   font-weight: bold;
+  font-style: italic;
+  font-size: 0.5em;
+  letter-spacing: 0.1em;
 }
 
-/* line 142, ../sass/screen.scss */
+/* line 145, ../sass/screen.scss */
 code {
   display: block;
   background: white;
@@ -884,38 +887,33 @@ code {
   font-family: 'source code pro', courier, monospace;
   white-space: pre;
 }
-/* line 154, ../sass/screen.scss */
-code em {
+/* line 157, ../sass/screen.scss */
+code span {
   color: #cc0000;
 }
-/* line 158, ../sass/screen.scss */
-code span {
-  font-weight: bold;
-  color: #660066;
-}
 
-/* line 164, ../sass/screen.scss */
+/* line 162, ../sass/screen.scss */
 .slide {
   -webkit-box-sizing: border-box;
   padding: 1rem;
 }
 
-/* line 169, ../sass/screen.scss */
+/* line 167, ../sass/screen.scss */
 .slide--black {
   color: white;
   background: #333;
 }
 
-/* line 175, ../sass/screen.scss */
+/* line 173, ../sass/screen.scss */
 .slide--video video {
   position: absolute;
 }
 
-/* line 180, ../sass/screen.scss */
+/* line 178, ../sass/screen.scss */
 .slide--iframe {
   background: transparent;
 }
-/* line 183, ../sass/screen.scss */
+/* line 181, ../sass/screen.scss */
 .slide--iframe h2 {
   position: absolute;
   top: 0;
@@ -927,24 +925,24 @@ code span {
   color: white;
   z-index: 2;
 }
-/* line 195, ../sass/screen.scss */
+/* line 193, ../sass/screen.scss */
 .slide--iframe header {
   color: black;
 }
-/* line 199, ../sass/screen.scss */
+/* line 197, ../sass/screen.scss */
 .slide--iframe a {
   color: #00a4ae;
 }
-/* line 201, ../sass/screen.scss */
+/* line 199, ../sass/screen.scss */
 .slide--iframe a:hover {
   color: black;
 }
 
-/* line 207, ../sass/screen.scss */
+/* line 205, ../sass/screen.scss */
 .slide--full {
   padding: 0;
 }
-/* line 210, ../sass/screen.scss */
+/* line 208, ../sass/screen.scss */
 .slide--full iframe {
   width: 100vw;
   height: 100vh;
@@ -952,7 +950,7 @@ code span {
   background-color: transparent;
 }
 
-/* line 218, ../sass/screen.scss */
+/* line 216, ../sass/screen.scss */
 .slide--namecard.visible {
   justify-content: flex-end;
   -webkit-justify-content: flex-end;
@@ -961,12 +959,12 @@ code span {
   font-weight: bold;
   text-transform: uppercase;
 }
-/* line 226, ../sass/screen.scss */
+/* line 224, ../sass/screen.scss */
 .slide--namecard.visible .name, .slide--namecard.visible .handle {
   text-transform: none;
 }
 
-/* line 231, ../sass/screen.scss */
+/* line 229, ../sass/screen.scss */
 #fixed a {
   font-family: 'avenir', serif;
   font-weight: 100;
@@ -974,81 +972,73 @@ code span {
   text-transform: lowercase;
 }
 
-/* line 239, ../sass/screen.scss */
+/* line 237, ../sass/screen.scss */
 #cover h2 {
   font-weight: 100;
 }
 
-@-webkit-keyframes opacity {
-  /* line 246, ../sass/screen.scss */
-  0% {
-    opacity: 1;
-  }
-
-  /* line 250, ../sass/screen.scss */
-  100% {
-    opacity: 0.2;
-  }
+/*
+@-webkit-keyframes opacity{
+	0%{
+		opacity: 1;
+	}
+	
+	100%{
+		opacity: 0.2;
+	}
 }
 
-/* line 255, ../sass/screen.scss */
-#hw-opacity-anim {
-  -webkit-animation: opacity 2s infinite alternate;
+#hw-opacity-anim{
+	-webkit-animation: opacity 2s infinite alternate;
 }
 
-@-webkit-keyframes transform {
-  /* line 260, ../sass/screen.scss */
-  0% {
-    -webkit-transform: rotateX(0deg);
-  }
-
-  /* line 264, ../sass/screen.scss */
-  100% {
-    -webkit-transform: rotateX(0deg) rotateZ(20deg) scale(0.2);
-  }
+@-webkit-keyframes transform{
+	0%{
+		-webkit-transform: rotateX(0deg);
+	}
+	
+	100%{
+		-webkit-transform: rotateX(0deg) rotateZ(20deg) scale(0.2);
+	}
 }
 
-/* line 269, ../sass/screen.scss */
-#hw-transform-anim {
-  -webkit-animation: transform 2s infinite alternate;
+#hw-transform-anim{
+	-webkit-animation: transform 2s infinite alternate;
 }
 
-@-webkit-keyframes blur {
-  /* line 274, ../sass/screen.scss */
-  0% {
-    -webkit-filter: blur(0px);
-  }
-
-  /* line 278, ../sass/screen.scss */
-  100% {
-    -webkit-filter: blur(5px);
-  }
+@-webkit-keyframes blur{
+	0%{
+		-webkit-filter: blur(0px);
+	}
+	
+	100%{
+		-webkit-filter: blur(5px);
+	}
 }
 
-/* line 283, ../sass/screen.scss */
-#hw-filter-anim {
-  -webkit-animation: blur 2s infinite alternate;
+#hw-filter-anim{
+	-webkit-animation: blur 2s infinite alternate;
 }
-
-/* line 288, ../sass/screen.scss */
+*/
+/* line 286, ../sass/screen.scss */
 #resources {
   font-size: 1rem;
 }
-/* line 291, ../sass/screen.scss */
+/* line 289, ../sass/screen.scss */
 #resources h2 {
   font-size: 3rem;
 }
-/* line 295, ../sass/screen.scss */
+/* line 293, ../sass/screen.scss */
 #resources h3 {
   font-size: 2rem;
 }
 
-/* line 300, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 #warning {
   display: none;
 }
 
-/* line 305, ../sass/screen.scss */
+/* line 303, ../sass/screen.scss */
 .no-flexbox #warning {
   position: absolute;
   display: block;
@@ -1061,7 +1051,7 @@ code span {
   text-align: center;
   z-index: 10000;
 }
-/* line 317, ../sass/screen.scss */
+/* line 315, ../sass/screen.scss */
 .no-flexbox #warning p {
   display: block;
   margin: 100px auto;
@@ -1069,17 +1059,17 @@ code span {
   line-height: 1.5;
 }
 
-/* line 327, ../sass/screen.scss */
+/* line 325, ../sass/screen.scss */
 .touch #preloader {
   display: none;
 }
-/* line 331, ../sass/screen.scss */
+/* line 329, ../sass/screen.scss */
 .touch #deck {
   position: static;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* line 337, ../sass/screen.scss */
+/* line 335, ../sass/screen.scss */
 .touch .slide {
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -1099,13 +1089,13 @@ code span {
   opacity: 1;
   pointer-events: auto;
 }
-/* line 346, ../sass/screen.scss */
+/* line 344, ../sass/screen.scss */
 .touch .slide--iframe {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 353, ../sass/screen.scss */
+  /* line 351, ../sass/screen.scss */
   html {
     font-size: .3em;
   }
