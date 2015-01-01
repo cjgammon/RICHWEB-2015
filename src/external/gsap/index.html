@@ -29,61 +29,69 @@
 				color = 0xffffff,
 				_w = 1024 * 2,
 				_h = 768 * 2,
-				_tl = new TimelineMax({yoyo: true, repeat: -1}),
+				_tl,
 				circles = [],
 				count = 19,
 				i;
 			
-			_tl.timeScale(2);
-			
-			stage = new PIXI.Stage(bg);
-		    renderer = PIXI.autoDetectRenderer(_w, _h, {transparent:true});
-		
-		    document.body.appendChild(renderer.view);
-		
-			container = new PIXI.DisplayObjectContainer();
-			container.x = _w / 2;
-			container.y = _h / 2;
-			stage.addChild(container);
-			
-			bigcircle = new PIXI.Graphics();
-		    bigcircle.beginFill(color);
-		    bigcircle.arc(0, 0, 225, 0, 2 * Math.PI, false);
-			bigcircle.alpha = 0;
-			container.addChild(bigcircle);
-			
-			bigcirclestroke = new PIXI.Graphics();
-		    bigcirclestroke.lineStyle(10, color, 1);
-		    bigcirclestroke.arc(0, 0, 250, 0, 2 * Math.PI, false);
-			bigcirclestroke.scale = new PIXI.Point(0, 0);
-			container.addChild(bigcirclestroke);
-			
-			for (i = 0; i < count; i += 1) {
-				circle = new PIXI.Graphics();
-			    circle.beginFill(color);
-			    circle.arc(0, 0, 10, 0, 2 * Math.PI, false);
-				
-				_tl.to(circle, 1, {x: Math.cos(i) * 100, y: Math.sin(i) * 100}, i / 10);
-				_tl.to(circle.scale, 0.4, {x: 0.5, y: 0.5, yoyo: true, repeat: 1}, 1 + (i / 10));
-				_tl.to(circle.scale, 0.4, {x: 2, y: 2}, 2 + (i / 10));
-				_tl.to(circle, 1, {x: Math.cos(i) * 200, y: Math.sin(i) * 200}, '-=1');
-				
-				circles.push(circle);
-			    container.addChild(circle);
+			function init() {
+				_tl = new TimelineMax({yoyo: true, repeat: -1});
+				_tl.timeScale(2);
+
+				stage = new PIXI.Stage(bg);
+			    renderer = PIXI.autoDetectRenderer(_w, _h, {transparent:true});
+
+			    document.body.appendChild(renderer.view);
+
+				container = new PIXI.DisplayObjectContainer();
+				container.x = _w / 2;
+				container.y = _h / 2;
+				stage.addChild(container);
+
+				bigcircle = new PIXI.Graphics();
+			    bigcircle.beginFill(color);
+			    bigcircle.arc(0, 0, 225, 0, 2 * Math.PI, false);
+				bigcircle.alpha = 0;
+				container.addChild(bigcircle);
+
+				bigcirclestroke = new PIXI.Graphics();
+			    bigcirclestroke.lineStyle(10, color, 1);
+			    bigcirclestroke.arc(0, 0, 250, 0, 2 * Math.PI, false);
+				bigcirclestroke.scale = new PIXI.Point(0, 0);
+				container.addChild(bigcirclestroke);
+
+				for (i = 0; i < count; i += 1) {
+					circle = new PIXI.Graphics();
+				    circle.beginFill(color);
+				    circle.arc(0, 0, 10, 0, 2 * Math.PI, false);
+
+					_tl.to(circle, 1, {x: Math.cos(i) * 100, y: Math.sin(i) * 100}, i / 10);
+					_tl.to(circle.scale, 0.4, {x: 0.5, y: 0.5, yoyo: true, repeat: 1}, 1 + (i / 10));
+					_tl.to(circle.scale, 0.4, {x: 2, y: 2}, 2 + (i / 10));
+					_tl.to(circle, 1, {x: Math.cos(i) * 200, y: Math.sin(i) * 200}, '-=1');
+
+					circles.push(circle);
+				    container.addChild(circle);
+				}
+
+				_tl.to(container, 2.5, {rotation: Math.PI * 2, ease: Back.easeInOut}, '-=1');
+				_tl.to(bigcircle, 0.4, {alpha: 1, ease: Quad.easeOut}, '-=1');
+				_tl.to(container.scale, 2, {x: 1.5, y: 1.5, ease: Back.easeOut}, '-=1');
+				_tl.to(bigcirclestroke.scale, 1, {x: 1, y: 1, ease: Quad.easeInOut}, '-=2');    
+
+				requestAnimationFrame(animate);
 			}
-    		
-			_tl.to(container, 2.5, {rotation: Math.PI * 2, ease: Back.easeInOut}, '-=1');
-			_tl.to(bigcircle, 0.4, {alpha: 1, ease: Quad.easeOut}, '-=1');
-			_tl.to(container.scale, 2, {x: 1.5, y: 1.5, ease: Back.easeOut}, '-=1');
-			_tl.to(bigcirclestroke.scale, 1, {x: 1, y: 1, ease: Quad.easeInOut}, '-=2');    
 			
-			requestAnimationFrame(animate);
+			window.animIn = function () {
+				setTimeout(init, 500);
+			}
+			
+			window.animOut = function (cb) {
+				cb();
+			}
 			
 			function animate() {
-				
-				
 		        renderer.render(stage);
-				
 				requestAnimationFrame(animate);
 			}
 		</script>
