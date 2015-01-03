@@ -1,0 +1,59 @@
+
+<html>
+
+	<head>
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				display: flex;
+			}
+			
+			canvas{
+				margin: auto;
+			}
+		</style>
+	</head>
+
+	<body>
+	    <canvas id="mycanvas" style="border: none;" width="500" height="500"></canvas>
+	
+		<script src="three.js"></script>
+		<script>
+
+function init() {
+	canvas = document.getElementById('mycanvas');
+	renderer = new THREE.WebGLRenderer({canvas: canvas});
+	scene = new THREE.Scene();
+	camera = new THREE.PerspectiveCamera(45, 500 / 500, 1, 1000);
+	light = new THREE.PointLight(0xffffff);
+	scene.add(light);
+
+	geometry = new THREE.CubeGeometry(1, 1, 1);
+	material = new THREE.MeshLambertMaterial();
+	cube = new THREE.Mesh(geometry, material);
+	cube.position.z = -5;
+	scene.add(cube);
+
+	requestAnimationFrame(animate);
+}
+			
+function animate() {
+	cube.rotation.y += 0.01;
+	cube.rotation.x += 0.01;
+				
+	renderer.render(scene, camera);
+	requestAnimationFrame(animate);
+}
+
+window.animIn = function () {
+	setTimeout(init, 500);
+}
+
+window.animOut = function (cb) {
+	cb();
+}
+
+		</script>
+	</body>
+</html>

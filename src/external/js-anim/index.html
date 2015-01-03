@@ -49,16 +49,19 @@
 				bg = '#D62B58';
 			
 			globe.transform('translate(512, 300)');
-			globe.animate({opacity: 1}, 200);
+
 			
 			group = s.g();
 			group.transform('translate(412, 500)');
 			
-			tl = new TimelineMax({yoyo: true, repeat: -1});
 			
-			tw = new Twn({scale: 0.5}, 1);
-			group.add(tw.el);
-			tl.add(tw.tween);
+			TweenMax.to(globe, 0.2, {snap: {opacity: 1}, delay: 0.2, onComplete: function () {
+				tl = new TimelineMax({yoyo: true, repeat: -1});
+
+				tw = new Twn({scale: 0.5}, 1);
+				group.add(tw.el);
+				tl.add(tw.tween);
+			}});
 			
 			function Twn(props, dur, ease) {
 				var start,
@@ -117,7 +120,7 @@
 				
 				window.step += 1;
 				
-				tl.time(0);
+				//tl.time(0);
 				
 				switch (window.step) {
 					case 1:
@@ -163,12 +166,14 @@
 						tl.timeScale(0.3);
 					break;
 					case 8:
+						tl.pause();
 						tw.hide();
 						tw2.hide();
 						tw3.hide();
 						tw4.hide();
 						tw5.hide();
-						globe.animate({opacity: 0}, 200, cb);
+						
+						TweenMax.to(globe, 0.2, {snap: {opacity: 0}, onComplete: cb});
 					break;
 				}
 			};

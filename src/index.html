@@ -396,40 +396,7 @@
 			<section id="gpu-demo" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/gpu/index.html" data-color="#D62B58">
 			</section>
 			
-			<section id="hw-properties" class="slide" data-class="basic" data-color="#B22651">
-				<svg width="100%" height="100%" viewBox="0 0 1024 768">
-					<g id="prop-trans" transform="translate(221, 390)">
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-45" y1="-0.5" x2="46" y2="-0.5"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-0.5" y1="-46" x2="-0.5" y2="45"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="0" y1="-46.1" x2="14.2" y2="-31.9"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-0.2" y1="-46.1" x2="-14.4" y2="-31.9"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-0.2" y1="45.7" x2="-14.4" y2="31.5"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="0" y1="45.7" x2="14.2" y2="31.5"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-46" y1="-0.3" x2="-31.8" y2="-14.5"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-46" y1="-0.1" x2="-31.8" y2="14.1"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="45.7" y1="-0.1" x2="31.6" y2="14.1"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="45.7" y1="-0.3" x2="31.6" y2="-14.5"/>
-					</g>
-					<g id="prop-opacity" transform="translate(502, 400)">
-						<circle fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" cx="0" cy="1" r="28"/>
-						<path fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" d="M62.3,1
-							c0,0-25.4,28-62.3,28S-62.3,1-62.3,1S-42.6-27,0-27S62.3,1,62.3,1z"/>
-						<circle fill="#FFFFFF" cx="0" cy="1" r="9.2"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10" x1="-38.6" y1="-22" x2="-50.8" y2="-49"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10" x1="-19.3" y1="-26.5" x2="-25.4" y2="-54"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10" x1="0" y1="-31" x2="0" y2="-59"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10" x1="20.5" y1="-26" x2="29" y2="-53.5"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10" x1="41" y1="-21" x2="58" y2="-48"/>
-					</g>
-					<g id="prop-filter" transform="translate(780, 400)">
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-45.5" y1="-54" x2="-45.5" y2="53"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="-0.5" y1="-54" x2="-0.5" y2="53"/>
-						<line fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10" x1="50.5" y1="-54" x2="50.5" y2="53"/>
-						<circle fill="#D62B58" stroke="#FFFFFF" stroke-width="7" stroke-miterlimit="10" cx="0.5" cy="-14.7" r="10.9"/>
-						<circle fill="#D62B58" stroke="#FFFFFF" stroke-width="7" stroke-miterlimit="10" cx="51.4" cy="19.3" r="10.9"/>
-						<circle fill="#D62B58" stroke="#FFFFFF" stroke-width="7" stroke-miterlimit="10" cx="-45.4" cy="2.3" r="10.9"/>
-					</g>
-				</svg>
+			<section id="hw-properties" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/hw-properties/index.html" data-color="#B22651">
 			</section>
 			
 			<section id="translate-z-hack" class="slide" data-class="basic" data-color="#D62B58">
@@ -468,7 +435,7 @@ function render(time) {
 			</section>
 
 			<section id="gsap" class="slide" data-class="basic" data-color="#D62B58">
-				<h2>greensock animation platform</h2>
+				<h2>greensock</h2>
 				<h4><a href="https://greensock.com/">greensock.com</a></h4>
 			</section>
 			
@@ -476,18 +443,21 @@ function render(time) {
 			</section>
 			
 			<section id="gsap-code" class="slide" data-class="basic" data-color="#D62B58">
-				<code><pre>TweenMax.to(circle, 1, {x: 100});</pre></code>
+				<svg id="gsap-code-svg" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid meet" >
+					<circle id="gsap-code-circle" r="50" fill="white" opacity="0"></circle>
+				</svg>
+				<code><pre>TweenMax.to(circle, 1, {x: <span id="gsap-code-x">100</span>, y: <span id="gsap-code-y">100</span>});</pre></code>
 			</section>
 			
-			<section id="graphics" class="slide" data-class="basic" data-color="#05E288">
+			<section id="graphics" class="slide" data-class="basic" data-color="#41D8B4">
 				<h2>graphics</h2>
 			</section>
 			
-			<section id="webgl" class="slide" data-class="basic" data-color="#05E288">
-				<h2>webgl demo</h2>
+			<section id="webgl" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/webgl/index.html" data-color="#36AD8E">
+				<h2>webgl</h2>
 			</section>
 			
-			<section id="webgl-code" class="slide" data-class="basic" data-color="#05E288">
+			<section id="webgl-code" class="slide" data-class="basic" data-color="#41D8B4">
 				<code><pre>var gl;
 
 function initGL(canvas) {
@@ -495,11 +465,7 @@ function initGL(canvas) {
 		gl = canvas.getContext("experimental-webgl");
 		gl.viewportWidth = canvas.width;
 		gl.viewportHeight = canvas.height;
-	} catch (e) {
-	}
-	if (!gl) {
-		alert("Could not initialise WebGL, sorry :-(");
-	}
+	} catch (e) {}
 }
 
 function getShader(gl, id) {
@@ -554,7 +520,8 @@ function initShaders() {
 
 	gl.useProgram(shaderProgram);
 
-	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, 
+		"aVertexPosition");
 	gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
 
 	shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
@@ -595,13 +562,14 @@ function drawScene() {
 
 	mat4.translate(mvMatrix, [0.0, 0.0, -7.0]);
 	gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
-	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, 
+		squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
 }
 
 function webGLStart() {
-	var canvas = document.getElementById("lesson01-canvas");
+	var canvas = document.getElementById("mycanvas");
 	initGL(canvas);
 	initShaders();
 	initBuffers();
@@ -613,14 +581,31 @@ function webGLStart() {
 }</pre></code>
 			</section>
 			
-			<section id="threejs" class="slide" data-class="basic" data-color="#05E288">
-				<h2 class="long-shadow">three.js</h2>
+			<section id="webgl-square" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/webgl-square/index.html" data-color="#36AD8E">
 			</section>
 			
-			<section id="threejs-code" class="slide" data-class="basic" data-color="#05E288">
-				<code><pre>var SquareGeometry = new THREE.SquareGeometry(10, 10);
-var SquareMaterial = new THREE.MeshBasicMaterial();
-var mesh = new THREE.Mesh(SquareGeometry, SquareMaterial);</pre></code>
+			<section id="threejs" class="slide" data-class="basic" data-color="#41D8B4">
+				<h2>three.js</h2>
+			</section>
+			
+			<section id="threejs-code" class="slide" data-class="basic" data-color="#36AD8E">
+				<code><pre>canvas = document.getElementById('mycanvas');
+renderer = new THREE.WebGLRenderer({canvas: canvas});
+scene = new THREE.Scene();
+camera = new THREE.PerspectiveCamera(45, 500 / 500, 1, 1000);
+light = new THREE.PointLight(0xffffff);
+scene.add(light);
+
+geometry = new THREE.CubeGeometry(1, 1, 1);
+material = new THREE.MeshLambertMaterial();
+cube = new THREE.Mesh(geometry, material);
+cube.position.z = -7;
+scene.add(cube);
+				
+renderer.render(scene, camera);</pre></code>
+			</section>
+			
+			<section id="webgl-cube" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/webgl-cube/index.html" data-color="#41D8B4">
 			</section>
 			
 			<section id="webisnative" class="slide" data-class="basic" data-color="#55acee">

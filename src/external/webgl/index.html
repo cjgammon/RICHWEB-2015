@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		
+		<script src="three.js"></script>
+		<script src="pixi.js"></script>
+		<script src="gsap/TweenMax.js"></script>
+		<script>
+			var canvas = document.getElementById('mycanvas'),
+				tl,
+				texture,
+				renderer,
+				camera,
+				scene,
+				pcanvas,
+				light,
+				pointlight,
+				delta = 0,
+				cubes = [],
+				pyramids = [],
+				textures = [],
+				_w,
+				_h;
+		
+			function init() {
+				tl = new TimelineMax({onUpdate: render, repeat: -1, yoyo: true});
+				
+				renderer = new THREE.WebGLRenderer({canvas: canvas, alpha: true});
+				renderer.shadowMapEnabled = true;
+				renderer.shadowMapCullFace = THREE.CullFaceFront;
+				renderer.shadowMapType = THREE.PCFSoftShadowMap;
+				
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2(0x36AD8E, 0.0004);
+				
+				resize();
+				
+				light = new THREE.AmbientLight(0xcccccc);
+				scene.add(light);
+				
+				pointlight = new THREE.DirectionalLight(0xFFAA88);
+				pointlight.intensity = 1;
+				pointlight.position.set(0, 600, 1000);
+				pointlight.target.position.set(0, 0, 0);
+				pointlight.shadowCameraNear	= 0.01;	
+				pointlight.shadowCameraFar = 10000;
+				pointlight.shadowCameraFov = 200;
+				pointlight.shadowMapWidth = 512;
+				pointlight.shadowMapHeight = 512;
+				pointlight.castShadow = true;
+				pointlight.shadowDarkness = 0.2;
+				//pointlight.shadowCameraVisible = true;
+				scene.add(pointlight);
+				
+				addGround();
+				addCubes();
+				addPyramids();			
+				tl.add(pcanvas.tl, 0);
+				
+				camera.position.y = 2000;
+				camera.rotation.x = 45 * Math.PI / 180;
+				
+				render();
+
+				tl.to(camera.position, 1, {y: 100, ease: Circ.easeOut}, 0);
+				tl.to(camera.rotation, 0.2, {x: 0, ease: Quad.easeOut}, 0);
+				
+				tl.to(camera.position, 12, {z: -7000, ease: Sine.easeInOut}, 1);
+				tl.to(pointlight.position, 12, {z: -6000, ease: Sine.easeInOut}, 1);
+				tl.to(pointlight.target.position, 12, {z: -7000, ease: Sine.easeInOut}, 1);
+				
+				tl.to(camera.position, 0.75, {x: 1200}, 8);
+				tl.to(camera.rotation, 1, {y: 90 * Math.PI / 180}, 8);
+				
+				for (i = 0; i < cubes.length; i += 1) {
+					tl.to(cubes[i].position, 1, {y: (cubes[i].geometry.height / 2) - 70}, 1 + (i / 4));
+				}
+				
+				for (i = 0; i < pyramids.length; i += 1) {
+					tl.to(pyramids[i].material, 1, {opacity: 1}, (i / 4));
+				}
+			}
+			
+			function addGround() {
+				geometry = new THREE.PlaneGeometry(10000, 30000);
+				material = new THREE.MeshBasicMaterial({color: 0x41D8B4, ambient: 0x41D8B4});
+				ground = new THREE.Mesh(geometry, material);
+				ground.position.z = -100;
+				ground.rotation.x = -90 * Math.PI / 180;
+				ground.castShadow = false;
+				ground.receiveShadow = true;
+				scene.add(ground);
+			}
+			
+			function addPyramids() {
+				for (i = 0; i < 50; i += 1) {
+					geometry = new THREE.OctahedronGeometry(5 + Math.random() * 15, 0);
+					material = new THREE.MeshLambertMaterial({color: 0xAA37A2, ambient: 0xAA37A2, shading: THREE.FlatShading, transparent: true, opacity: 0});
+					cube = new THREE.Mesh(geometry, material);
+					cube.position.set(-600 + Math.random() * 1200, -30, -500 + -i * 200);
+					cube.rotation.x = -20 * Math.PI / 180;
+					cube.castShadow = true;
+					cube.receiveShadow = false;
+					scene.add(cube);
+					pyramids.push(cube);
+				}
+			}
+			
+			function addCubes() {
+				var h,
+					i,
+					t,
+					tex,
+					materialArray = [];
+				
+				pcanvas = new tCanvas();
+				
+				for (i = 0; i < 50; i += 1) {
+					h = 200 + Math.random() * 200;
+					size = 10 + Math.random() * 100;
+					k = i % 2 == 0 ? 200 + Math.random() * 400 : -200 + Math.random() * -400;
+					x = Math.sin(i / 2) * 600;
+					x = x > -200 && x < 200 ? k : x;
+					
+					t = new THREE.Texture(pcanvas.renderer.view);
+					t.offset.x = -Math.random();
+					t.offset.y = -Math.random();
+					t.wrapT = t.wrapS = THREE.MirroredRepeatWrapping;					
+					t.repeat.set(1, 1);
+					
+					geometry = new THREE.CubeGeometry(size, h, size);
+					material = new THREE.MeshLambertMaterial({map: t, color: 0x41D8B4, ambient: 0x41D8B4});
+					cube = new THREE.Mesh(geometry, material);
+					cube.position.set(x, -(h / 2) - 20, -500 + -i * 200);
+					cube.rotation.x = -20 * Math.PI / 180;
+					cube.castShadow = true;
+					cube.receiveShadow = false;
+					
+					scene.add(cube);
+					cubes.push(cube);
+				}				
+			}
+			
+			function tCanvas() {
+				this.tl = new TimelineMax();
+				
+				this.stage = new PIXI.Stage(0xffffff);
+				this.renderer = PIXI.autoDetectRenderer(256, 256);
+				this.renderer.view.style.position = "absolute";
+				this.renderer.view.style.zIndex = "1000";
+				this.renderer.view.style.top = "0px";
+				this.renderer.view.style.opacity = "0.5";
+								
+				//document.body.appendChild(this.renderer.view);
+												
+				this.draw = function () {
+					
+					lines = new PIXI.Graphics();
+					lines.lineStyle(10, 0x36AD8E, 1);
+					for (i = 0; i < 50; i += 1) {
+						lines.moveTo(0, i * 20);
+						lines.lineTo(1000, i * 20);
+					}
+					lines.rotation = 0.5;					
+					this.stage.addChild(lines);
+
+					for (i = 0; i < 4; i += 1) {
+						triangle = new PIXI.Graphics();
+						color = i % 2 == 0 ? 0xAA37A2 : 0xC187A2;
+						stroke = i % 2 == 0 ? 10 : 5;
+						triangle.lineStyle(stroke, color, 1);
+						triangle.moveTo(0, 30);
+						triangle.lineTo(55, 0);
+						triangle.lineTo(0, -30);
+						triangle.lineTo(-55, 0);
+						triangle.lineTo(0, 30);
+						this.stage.addChild(triangle);
+											
+						triangle.x = 128;
+						triangle.y = 128;
+						
+						scale = 0.5 + Math.random();
+						scale2 = Math.random() * 2;
+						
+						triangle.scale.x = triangle.scale.y = scale;
+						
+						this.tl.to(triangle.scale, 1, {x: scale2, y: scale2, ease: Quad.easeInOut, repeat: 10, yoyo: true}, 0);
+						this.tl.to(triangle, 3, {x: 64 + Math.random() * 128, y: 64 + Math.random() * 128, ease: Back.easeInOut, repeat: 2, yoyo: true}, 0);
+					}
+				
+					this.tl.to(lines, 12, {x: -100, y: -500, ease: Linear.easeNone}, 0);
+				}
+				
+				this.draw();
+			}
+			
+			function render() {
+				delta += 0.01;
+				
+				pcanvas.renderer.render(pcanvas.stage);
+				
+				for (i = 0; i < pyramids.length; i += 1) {
+					pyramids[i].position.y = 250 + Math.sin(delta + i) * 200;
+				}
+				
+				for (i = 0; i < cubes.length; i += 1) {
+					if (i % 2 == 0) {
+						offset = -0.01;
+					} else {
+						offset = 0.01;
+					}
+					
+					cubes[i].material.map.offset.x += Math.sin(i) * offset;
+					cubes[i].material.map.offset.y += Math.cos(i) * offset;
+					
+					cubes[i].material.map.needsUpdate = true;
+				}
+
+				renderer.render(scene, camera);				
+			}
+			
+			function resize() {
+				_w = window.innerWidth;
+				_h = window.innerHeight;
+				renderer.setSize(_w, _h);
+				camera = new THREE.PerspectiveCamera(45, _w / _h, 1, 10000);
+			}
+			
+			window.animIn = function () {
+				setTimeout(init, 500);
+			}
+			
+			window.animOut = function (cb) {
+				tl.tweenTo(0, {onComplete: cb});
+			}
+
+		</script>
+	</body>
+</html>

@@ -13,6 +13,7 @@ define(function (require) {
 		IframeView = require('app/views/iframe-view'),
 		IframeFullView = require('app/views/iframe-full-view'),
 		MyView = require('app/views/my-view'),
+		GSAPCodeView = require('app/views/gsap-code-view'),
         AppBase = require('pres/views/app-base');
 
     App = AppBase.extend({
@@ -24,7 +25,8 @@ define(function (require) {
 			{cl: 'video', view: VideoView},
 			{cl: 'in-out', view: InOutView},
 			{cl: 'sequence', view: SequenceView},
-			{id: 'me', view: MyView}
+			{id: 'me', view: MyView},
+			{id: 'gsap-code', view: GSAPCodeView}
 		],
 	
         initialize: function () {
