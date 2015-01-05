@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100vw;
+				height: 100vh;
+			}
+			
+			canvas{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="pixi.js"></script>
+		<script src="gsap/TweenMax.js"></script>
+		<script>
+			navigator.getUserMedia = ( navigator.getUserMedia ||
+			                       navigator.webkitGetUserMedia ||
+			                       navigator.mozGetUserMedia ||
+			                       navigator.msGetUserMedia);
+			
+			var video,
+				stage,
+				renderer,
+				g,
+				canvas,
+				ctx,
+				mcanvas,
+				mctx,
+				raf,
+				circles = [],
+				scale = 0.1,
+				_w = window.innerWidth,
+				_h = window.innerHeight;
+			
+			function init() {
+				if (navigator.getUserMedia) {
+					navigator.getUserMedia({video: true}, handle_usermedia_SUCCESS, handle_usermedia_FAIL);
+				}
+			}
+			
+			function createTmpCanvas() {
+				canvas = document.createElement('canvas');
+				canvas.width = video.width * scale;
+				canvas.height = video.height * scale;
+				ctx = canvas.getContext('2d');
+			}
+			
+			function createPixiCanvas(){
+				var _x,
+					_y,
+					circle;
+				
+				mcanvas = document.createElement('canvas');
+				mcanvas.width = (video.width * scale) * 25;
+				mcanvas.height = (video.height * scale) * 25;
+				mctx = mcanvas.getContext('2d');
+
+				_x = 10;
+				_y = 15;
+				
+				for (i = 0; i < canvas.height; i += 1) {
+					
+					for (j = 0; j < canvas.width; j += 1) {
+						circle = {x: mcanvas.width / 2, y: mcanvas.height / 2, gx: _x, gy: _y, opacity: 0};
+						circles.push(circle);
+						_x += 25;
+					}
+					
+					_y += 25;
+					_x = 10;
+				}
+				
+				for (i = 0; i < circles.length; i += 1) {
+					TweenMax.to(circles[i], 1, {x: circles[i].gx, y: circles[i].gy, opacity: 1, delay: 2, ease: Back.easeOut});
+				}
+
+			    document.body.appendChild(mcanvas);
+			};
+
+			function handle_usermedia_SUCCESS(stream) {
+				video = document.createElement('video');
+				video.src = window.URL.createObjectURL(stream);
+				video.width = 640;
+				video.height = 480;
+				video.play();
+
+				createTmpCanvas();
+				createPixiCanvas();
+				animate();
+			}
+
+			function handle_usermedia_FAIL(err) {
+				
+			}
+			
+			function drawTmpCanvas() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+			}
+			
+			function drawPixiCanvas() {
+				if (mctx) {
+					
+					var imgd,
+						pix,
+						i,
+						j,
+						k = 0,
+						_x = 10,
+						_y = 15;
+					
+					imgd = ctx.getImageData(0, 0, canvas.width, canvas.height);
+					pix = imgd.data;
+					
+					mctx.clearRect(0, 0, mcanvas.width, mcanvas.height);
+					
+					for (i = 0; i < circles.length; i += 1) {
+						mctx.beginPath();
+						mctx.fillStyle = 'rgba(' +  pix[k] + ', ' + pix[k+1] + ', ' + pix[k+2] + ', ' + circles[i].opacity + ')';
+						mctx.arc(circles[i].x, circles[i].y, 10, 0, 2 * Math.PI, false);
+						mctx.fill();
+						mctx.closePath();
+						k += 4;
+					}
+				}
+			}
+			
+			function draw() {
+				if (video.isPlaying !== false) {
+					drawTmpCanvas();
+				}
+				drawPixiCanvas();
+			}
+			
+			function animate() {
+				draw();
+				raf = requestAnimationFrame(animate);
+			}
+
+			window.animIn = function () {
+				init();
+			}
+
+			window.animOut = function (cb) {
+				video.pause();
+				video.src = null;
+				webkitCancelRequestAnimationFrame(raf);
+				
+				var tl = new TimelineMax({onUpdate: draw, onComplete: cb});
+				
+				for (i = 0; i < circles.length; i += 1) {
+					tl.to(circles[i], 0.2, {opacity: 0}, 0);
+				}
+			}
+
+		</script>
+	</body>
+</html>

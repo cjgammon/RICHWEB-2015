@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		<script src="greensock/TweenMax.js"></script>
+		
+		<script src="three.js"></script>
+		<script>
+			var controller,
+				s,
+				GamepadController,
+				Scene3d;
+			
+			GamepadController = function () {
+				var interval = setInterval(pollGamepads.bind(this), 500);
+				
+				this.gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []),
+				
+				window.addEventListener("gamepadconnected", handle_add_gamepad);
+				window.addEventListener("gamepaddisconnected", handle_remove_gamepad);
+				
+				function handle_add_gamepad() {
+					console.log('+gamepad');
+				}
+
+				function handle_remove_gamepad() {
+					console.log('-gamepad');
+				}
+				
+				function pollGamepads() {
+					var i,
+						gp;
+
+					this.gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+
+					for (i = 0; i < this.gamepads.length; i++) {
+						gp = this.gamepads[i];
+						if (gp) {
+					  		console.log(gp);
+					  		clearInterval(interval);
+							setInterval(loop, 1000 / 60);
+						}
+					}
+				}
+				
+				function pressed(index, n, v) {
+					
+					//0 = A
+					//1 = B
+					//2 = X
+					//3 = Y
+					//4 = L
+					//5 = R
+					//6 = LT
+					//7 = RT
+					//8 = BACK
+					//9 = START
+					//10 = L JOYSTICK
+					//ll = R JOYSTICK
+					//12 = UP
+					//13 = DOWN
+					//14 = LEFT
+					//15 = RIGHT
+					//16 = MIDDLE BUTTON
+				}
+
+				function joystick(index, n, v) {
+					
+					//0 = 1 : LR
+					//1 = 1 : UD
+					//2 = 2 : LR
+					//3 = 2 : UD
+				}
+				
+				function loop() {
+					var i, j, k;
+					
+					this.gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+
+					if (!this.gamepads) {
+						return;
+					}
+
+					for (i = 0; i < this.gamepads.length; i += 1) {
+						pad = this.gamepads[i];
+
+						if (typeof(pad) !== 'undefined') {
+							for (j = 0; j < pad.buttons.length; j += 1) {
+								
+								button = pad.buttons[j];
+								if (button.pressed) {
+									s.press(j, button.value);
+								} else {
+									s.release(j);
+								}
+
+							}
+
+							for (k = 0; k < pad.axes.length; k += 1) {
+								s.joystick(k, pad.axes[k]);
+							}
+						}
+					}
+				}
+			
+			}
+			
+			Scene3d = function () {
+				var instance = this,
+					renderer,
+					scene,
+					camera,
+					delta = 0,
+					_w,
+					_h,
+					lights = [];
+				
+				this.press = function (n, v) {
+					if (lights[n]) {
+						lights[n].intensity = v * 2;
+					}
+				}
+				
+				this.release = function (n) {
+					if (lights[n]) {
+						lights[n].intensity = 0;
+					}
+				}
+				
+				this.joystick = function (n, v) {
+					var l;
+					
+					if (n == 0 || n == 1) {
+						l = lights[10];
+						l.intensity = l.intensity < 2 ? 1: l.intensity;
+						
+						if (n == 0) {
+							l.position.z = 1.1 - (v / 4);
+						} else {
+							l.position.y = 0.8 - (v / 4);
+						}
+					}
+					
+					if (n == 2 || n == 3) {
+						l = lights[11];
+						l.intensity = l.intensity < 2 ? 1: l.intensity;
+						
+						if (n == 2) {
+							l.position.z = -0.5 - (v / 4);
+						} else {
+							l.position.y = 0.2 - (v / 4);
+						}
+					}
+				}
+					
+				function init() {
+					var c = document.getElementById('mycanvas'),
+						loader;
+
+					renderer = new THREE.WebGLRenderer({canvas: c, alpha: true});
+					scene = new THREE.Scene();
+
+					resize();
+
+					light = new THREE.AmbientLight(0xefefef);
+					scene.add(light);
+
+					light = new THREE.PointLight(0xefefef);
+					scene.add(light);
+
+					loader = new THREE.JSONLoader();
+					loader.load('controller.json', handle_loader_LOAD);
+					
+					animate();
+				}
+				
+				function handle_loader_LOAD(geometry, materials) {
+					var mat,
+						mesh;
+
+					mat = new THREE.MeshFaceMaterial(materials);
+					mat.materials[0] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
+					mat.materials[1] = new THREE.MeshLambertMaterial({ambient: 0x111100, color: 0xcccc33});
+					mat.materials[2] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x999999});
+					mat.materials[3] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
+					mat.materials[4] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x666666});
+					mat.materials[5] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x666666});
+					mat.materials[6] = new THREE.MeshLambertMaterial({ambient: 0x001100, color: 0x33cc33});
+					mat.materials[7] = new THREE.MeshLambertMaterial({ambient: 0x000011, color: 0x3333cc});
+					mat.materials[8] = new THREE.MeshLambertMaterial({ambient: 0x110000, color: 0xcc3333});
+					mat.materials[9] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0xcccccc});
+					mat.materials[10] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
+					mat.materials[11] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
+					mat.materials[12] = new THREE.MeshBasicMaterial({ambient: 0x000000, color: 0x111111});
+					mat.materials[13] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
+					mat.materials[14] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
+
+					instance.group = new THREE.Object3D();
+					instance.group.position.set(0, 0, -5);
+					instance.group.rotation.set(0, -90 * Math.PI / 180, 0);
+					instance.group.scale.set(0, 0, 0);
+					scene.add(instance.group);
+
+					mesh = new THREE.Mesh(geometry, mat);
+					instance.group.add(mesh);
+
+					addLights(instance.group);
+					
+					TweenMax.to(instance.group.scale, 0.5, {
+						x: 1, 
+						y: 1, 
+						z: 1, 
+						delay: 0.2, 
+						ease: Back.easeOut
+					});
+				}
+				
+				function addLights(g) {
+					var l, i, pos = [
+							{x: -1.05, y: 0.5, z: 0.5, color: 0x33cc33},
+							{x: -1.3, y: 0.8, z: 0.5, color: 0xcc3333},
+							{x: -0.8, y: 0.8, z: 0.5, color: 0x3333cc},
+							{x: -1.1, y: 1.0, z: 0.5, color: 0xcccc33},
+							{x: 1.3, y: 1.7, z: 0.3, color: 0xffffff},
+							{x: -1.3, y: 1.7, z: 0.3, color: 0xffffff},
+							{x: 1.3, y: 1.8, z: 0.3, color: 0xffffff},
+							{x: -1.3, y: 1.8, z: 0.3, color: 0xffffff},
+							{x: 0.34, y: 1, z: 0.4, color: 0xffffff},
+							{x: -0.3, y: 1, z: 0.4, color: 0xffffff},
+							{x: 1.1, y: 0.8, z: 0.6, color: 0xffffff},
+							{x: -0.5, y: 0.2, z: 0.5, color: 0xffffff},
+							{x: 0.6, y: 0.5, z: 0.4, color: 0xffffff},
+							{x: 0.6, y: -0.1, z: 0.4, color: 0xffffff},
+							{x: 0.8, y: 0.25, z: 0.4, color: 0xffffff},
+							{x: 0.4, y: 0.25, z: 0.4, color: 0xffffff},
+							{x: 0, y: 0.8, z: 0.4, color: 0xffffff}
+						];
+					
+					for (i = 0; i < pos.length; i += 1) {
+						l = new THREE.PointLight(pos[i].color, 0, 1);
+						l.position.set(pos[i].z, pos[i].y, pos[i].x);
+						g.add(l);
+						
+						lights.push(l);
+					}
+						
+				}
+				
+				function resize() {
+					_w = window.innerWidth;
+					_h = window.innerHeight;
+					renderer.setSize(_w, _h);
+					camera = new THREE.PerspectiveCamera(45, _w / _h, 1, 10000);
+				}
+				
+				function animate() {
+					delta += 0.01;
+					
+					if (instance.group){
+						instance.group.rotation.y = (-90 * Math.PI / 180) + Math.sin(delta) * (20 * Math.PI / 180);
+					}
+					
+					renderer.render(scene, camera);
+					requestAnimationFrame(animate);
+				}
+				
+				init();
+			}
+			
+			window.animIn = function () {
+				
+				setTimeout(function () {
+					controller = new GamepadController();
+					s = new Scene3d();
+				}, 500);
+			}
+			
+			window.animOut = function (cb) {
+				TweenMax.to(s.group.scale, 0.5, {x: 0, y: 0, z: 0, onComplete: cb, ease: Back.easeIn});
+			}
+
+		</script>
+	</body>
+</html>

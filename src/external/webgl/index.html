@@ -75,18 +75,18 @@
 				
 				render();
 
-				tl.to(camera.position, 1, {y: 100, ease: Circ.easeOut}, 0);
-				tl.to(camera.rotation, 0.2, {x: 0, ease: Quad.easeOut}, 0);
+				TweenMax.to(camera.rotation, 0.2, {x: 0, ease: Quad.easeOut});
+				TweenMax.to(camera.position, 1, {y: 100, ease: Circ.easeOut});
 				
-				tl.to(camera.position, 12, {z: -7000, ease: Sine.easeInOut}, 1);
-				tl.to(pointlight.position, 12, {z: -6000, ease: Sine.easeInOut}, 1);
-				tl.to(pointlight.target.position, 12, {z: -7000, ease: Sine.easeInOut}, 1);
+				tl.to(camera.position, 12, {z: -7000, ease: Sine.easeInOut}, 0);
+				tl.to(pointlight.position, 12, {z: -6000, ease: Sine.easeInOut}, 0);
+				tl.to(pointlight.target.position, 12, {z: -7000, ease: Sine.easeInOut}, 0);
 				
-				tl.to(camera.position, 0.75, {x: 1200}, 8);
-				tl.to(camera.rotation, 1, {y: 90 * Math.PI / 180}, 8);
+				tl.to(camera.position, 0.75, {x: 1200}, 7);
+				tl.to(camera.rotation, 1, {y: 90 * Math.PI / 180}, 7);
 				
 				for (i = 0; i < cubes.length; i += 1) {
-					tl.to(cubes[i].position, 1, {y: (cubes[i].geometry.height / 2) - 70}, 1 + (i / 4));
+					tl.to(cubes[i].position, 1, {y: (cubes[i].geometry.height / 2) - 70}, (i / 4));
 				}
 				
 				for (i = 0; i < pyramids.length; i += 1) {
@@ -244,6 +244,7 @@
 			}
 			
 			window.animOut = function (cb) {
+				tl.timeScale(2 + (tl.time() / tl.duration()));
 				tl.tweenTo(0, {onComplete: cb});
 			}
 

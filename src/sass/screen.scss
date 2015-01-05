@@ -105,8 +105,9 @@ header{
 	text-align: center;
 	text-transform: uppercase;	
 	font-weight: 700;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	line-height: 1.5;
+	z-index: 2;
 	
 	small{
 		font-size: .8rem;
@@ -189,10 +190,6 @@ code{
 		color: white;
 		z-index: 2;
 	}
-	
-	header{
-        color: black;
-    }
 
 	a{
 		color: $teal;
