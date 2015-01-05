@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			svg{
+				width: 100vw;
+				height: 100vh;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<svg id="mysvg" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid slice">
+			<defs>
+				<clipPath id="clip">
+					<circle id="circle" cx="520", cy="250" r="0"></cricle>
+				</clipPath>
+                <pattern id="line-bg" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
+                    <rect x="0" y="0" width="50" height="50" fill="#F2B817"/>
+                    <line x1="0" y1="0" x2="50" y2="50" stroke="#EFC660" stroke-width="15"/>
+                    <line x1="45" y1="-5" x2="55" y2="5" stroke="#EFC660" stroke-width="15"/>
+                    <line x1="-5" y1="45" x2="5" y2="55" stroke="#EFC660" stroke-width="15"/>
+                </pattern>
+				<path id="beacon" fill="#FFFFFF" d="M0-76.8c-15.6,0-28.2,12.6-28.2,28.2S0,0,0,0s28.2-33,28.2-48.6S15.6-76.8,0-76.8z M0-39.3c-5.1,0-9.3-4.2-9.3-9.3s4.2-9.3,9.3-9.3s9.3,4.2,9.3,9.3S5.1-39.3,0-39.3z"/>
+			</defs>
+			
+			<g id="globe" clip-path="url(#clip)" transform="translate(0, 120)">
+				<g id="world">
+					<rect fill="url(#line-bg)" x="0" y="0" width="1040" height="500"></rect>
+				</g>
+			</g>
+		</svg>
+
+		<script src="greensock/TweenMax.js"></script>
+		<script src="greensock/plugins/SnapPlugin.js"></script>
+		<script src="snap.svg.js"></script>
+		<script>
+			var s = Snap('#mysvg'),
+				circle = s.select('#circle'),
+				pattern = s.select('#line-bg'),
+				world = s.select('#world'),
+				globe = s.select('#globe');
+
+			function init() {
+				Snap.load("map.svg", handle_LOAD);
+			}
+
+			function handle_LOAD(f) {
+				world.append(f);
+				TweenMax.to(pattern, 1, {snap: {x: 50}, ease: Linear.easeNone, repeat: -1});
+				TweenMax.to(circle, 1, {snap: {r: 1000}, delay: 0.2});
+				
+				if ("geolocation" in navigator) {
+					navigator.geolocation.getCurrentPosition(handle_position_SUCCESS, handle_position_ERR, {enableHighAccuracy: true});
+				} else {
+					/* geolocation IS NOT available */
+				}
+			}
+
+			function handle_position_SUCCESS(position) {
+				var center = {x: 500, y: 300},
+					scaleX = 1040 / 390,
+					scaleY = 1040 / 315,
+					b,
+					beacon,
+					martix,
+					goalX,
+					_x = position.coords.longitude, //-97.7500
+					_y = position.coords.latitude; //30.2500
+				
+				matrix = new Snap.Matrix();
+				matrix.translate(center.x, center.y);
+				matrix.translate(_x * scaleX, -_y * scaleY);
+				matrix.scale(0);
+				
+				b = s.select('#beacon');
+				beacon = b.clone();
+				beacon.transform(matrix.toTransformString());
+				world.append(beacon);
+				
+				goalX = center.x + (_x * scaleX); //250 padding
+				goalX = goalX > 1040 / 4 ? 1040 / 4 : goalX;
+				goalX = goalX < -1040 / 4 ? -1040 / 4 : goalX;
+				
+				TweenMax.killTweensOf(circle);
+				
+				tl = new TimelineMax();
+				tl.to(circle, 0.4, {snap: {r: 250}});
+				tl.to(world, 1, {snap: {tx: goalX}, ease: Quad.easeOut});
+				tl.to(beacon, 0.2, {snap: {scaleX: 0.5, scaleY: 0.5}, ease: Back.easeOut});
+			}
+
+			function handle_position_ERR() {
+				//err
+			}
+
+			window.animIn = function () {
+				setTimeout(init, 1000);
+			}
+
+			window.animOut = function (cb) {
+				TweenMax.killTweensOf(circle);
+				TweenMax.to(circle, 1, {snap: {r: 0}, ease: Quad.easeIn, onComplete: cb});
+			}
+
+		</script>
+	</body>
+</html>
