@@ -55,12 +55,13 @@
 			function handle_LOAD(f) {
 				world.append(f);
 				TweenMax.to(pattern, 1, {snap: {x: 50}, ease: Linear.easeNone, repeat: -1});
-				TweenMax.to(circle, 1, {snap: {r: 1000}, delay: 0.2});
+				TweenMax.to(circle, 1, {snap: {r: 1000}});
 				
 				if ("geolocation" in navigator) {
 					navigator.geolocation.getCurrentPosition(handle_position_SUCCESS, handle_position_ERR, {enableHighAccuracy: true});
 				} else {
 					/* geolocation IS NOT available */
+					handle_position_SUCCESS({coords: {longitude: -97.7500, latitude: 30.2500}});
 				}
 			}
 
@@ -72,6 +73,7 @@
 					beacon,
 					martix,
 					goalX,
+					tl,
 					_x = position.coords.longitude, //-97.7500
 					_y = position.coords.latitude; //30.2500
 				
@@ -85,20 +87,20 @@
 				beacon.transform(matrix.toTransformString());
 				world.append(beacon);
 				
-				goalX = center.x + (_x * scaleX); //250 padding
+				goalX = center.x + (_x * scaleX);
 				goalX = goalX > 1040 / 4 ? 1040 / 4 : goalX;
 				goalX = goalX < -1040 / 4 ? -1040 / 4 : goalX;
 				
 				TweenMax.killTweensOf(circle);
 				
 				tl = new TimelineMax();
-				tl.to(circle, 0.4, {snap: {r: 250}});
+				tl.to(circle, 1, {snap: {r: 250}});
 				tl.to(world, 1, {snap: {tx: goalX}, ease: Quad.easeOut});
 				tl.to(beacon, 0.2, {snap: {scaleX: 0.5, scaleY: 0.5}, ease: Back.easeOut});
 			}
 
 			function handle_position_ERR() {
-				//err
+				handle_position_SUCCESS({coords: {longitude: -97.7500, latitude: 30.2500}});
 			}
 
 			window.animIn = function () {

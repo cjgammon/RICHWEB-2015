@@ -39,7 +39,7 @@
 				mctx,
 				raf,
 				circles = [],
-				scale = 0.1,
+				scale = 0.08,
 				_w = window.innerWidth,
 				_h = window.innerHeight;
 			
@@ -116,9 +116,7 @@
 						pix,
 						i,
 						j,
-						k = 0,
-						_x = 10,
-						_y = 15;
+						k = 0;
 					
 					imgd = ctx.getImageData(0, 0, canvas.width, canvas.height);
 					pix = imgd.data;
@@ -154,13 +152,12 @@
 
 			window.animOut = function (cb) {
 				video.pause();
-				video.src = null;
 				webkitCancelRequestAnimationFrame(raf);
 				
 				var tl = new TimelineMax({onUpdate: draw, onComplete: cb});
 				
 				for (i = 0; i < circles.length; i += 1) {
-					tl.to(circles[i], 0.2, {opacity: 0}, 0);
+					tl.to(circles[i], 1, {x: mcanvas.width / 2, y: mcanvas.height / 2, opacity: 0}, 0);
 				}
 			}
 

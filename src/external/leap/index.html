@@ -18,9 +18,27 @@
 		
 		<script src="three.js"></script>
 		<script>
+			var c = document.getElementById('mycanvas'),
+				renderer,
+				scene,
+				camera,
+				_w,
+				_h;
+				
+			function init() {	
+				_w = window.innerWidth;
+				_h = window.innerHeight;
+				
+				renderer = new THREE.WebGLRenderer({canvas: c});
+				renderer.setSize(_w, _h);
+				
+				scene = new THREE.Scene();
+				
+				camera = new THREE.PerspectiveCamera(45, _w / _h, 1, 10000);
+			}
 			
 			window.animIn = function () {
-
+				init();
 			}
 			
 			window.animOut = function (cb) {
