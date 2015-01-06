@@ -22,19 +22,250 @@
 				renderer,
 				scene,
 				camera,
+				delta = 0,
+				leap,
+				automating = true,
+				hands = [],
+				boneMap = [
+					[0, 1, 2],
+					[3, 4, 5, 6],
+					[7, 8, 9, 10],
+					[11, 12, 13, 14],
+					[15, 16, 17, 18]
+				],
 				_w,
 				_h;
 				
 			function init() {	
 				_w = window.innerWidth;
 				_h = window.innerHeight;
-				
-				renderer = new THREE.WebGLRenderer({canvas: c});
+
+				renderer = new THREE.WebGLRenderer({canvas: c, alpha: true});
 				renderer.setSize(_w, _h);
-				
+
 				scene = new THREE.Scene();
+
+				ambientLight = new THREE.AmbientLight(0x333333);
+				scene.add(ambientLight);
+
+				pointLight = new THREE.PointLight(0xffffff);
+				scene.add(pointLight);
+				
+				addHand(-100, "hand.js");
+				addHand(100, "hand_r.js");
 				
 				camera = new THREE.PerspectiveCamera(45, _w / _h, 1, 10000);
+				render();
+				
+				createLeap();
+			}
+			
+			function createLeap() {
+				leap = new Leap.Controller({supressAnimationLoop: true});
+				leap.use('handEntry');
+
+				leap.on('handFound', handFound);
+				leap.on('handLost', handLost);
+
+				leap.connect();
+			}
+			
+			function handFound(h) {
+				automating = false;
+			}
+
+			function handLost(h) {
+				var frame = leap.frame();
+
+				if (frame.hands.length === 0) {
+					automating = true;	
+				}
+
+				frame = null;
+			}
+			
+			function addHand(x, file) {
+				loader = new THREE.JSONLoader();
+				loader.load(file, function (geometry, material) {
+					
+					material = new THREE.MeshBasicMaterial({
+						shading: THREE.FlatShading,
+						skinning: true,
+						ambient: 0xc36410, 
+						color: 0xedb305
+					});
+					
+					handMask = new THREE.SkinnedMesh(geometry, material);
+					//handMask.scale.set(100, 100, 100);
+					handMask.position.set(x, 0, -600);
+					hands.push(handMask);
+					scene.add(handMask);
+					
+					TweenMax.to(handMask.scale, 1, {x: 100, y: 100, z: 100});
+				})
+			}
+			
+			function render() {
+				delta += 1;
+				
+				if (hands.length == 2) {
+					//choose to use leap or automate
+					if (automating !== false) {
+						automate(delta);	
+					} else {
+						leapUpdate(leap);
+					}
+				}
+				
+				renderer.render(scene, camera);
+				requestAnimationFrame(render);
+			}
+			
+			function distance(p1, p2) {
+				var dx,
+					dy,
+					dz,
+					rx,
+					ry,
+					rz;
+
+				dx = p1[0] - p2[0];
+				dy = p1[1] - p2[1];
+				dz = p1[2] - p2[2];
+
+				rx = Math.atan2(dy, dz);
+				rz = Math.atan2(dy, dx);
+				ry = Math.atan2(dx, dz);
+
+				return {x: rx, y: ry, z: rz};
+			}
+			
+			function leapUpdate(leap) {
+				var frame = leap.frame(),
+					hand,
+					finger,
+					bone,
+					handMesh,
+					i,
+					k,
+					a,
+					j,
+					baseBoneRotation = (new THREE.Quaternion).setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0));
+
+				k = 0;
+
+				for (a = 0; a < frame.hands.length; a += 1) {
+					hand = frame.hands[a];
+
+					handMesh = hand.type == 'left' ? this.hands[0] : this.hands[1];
+					handMesh.position.set(hand.palmPosition[0], -200 + hand.palmPosition[1], -600 + hand.palmPosition[2]);
+					handMesh.rotation.set(hand.pitch(), -hand.yaw(), hand.roll());
+
+					for (i = 0; i < hand.fingers.length; i += 1) {
+						finger = hand.fingers[i];
+
+						this.fingerUpdate(finger, handMesh, hand.type);
+					}
+				}
+			}
+
+			function fingerUpdate(finger, handMesh, handType) {
+				var j,
+					r,
+	                _y,
+					prev,
+					next,
+					bone,
+					boneMesh,
+	                meshBoneNum,
+					handSkeleton = handMesh.skeleton,
+					dir = finger.direction,
+					arr = this.boneMap[finger.type];
+
+				for (j = 0; j < arr.length; j += 1) {	
+					bone = finger.bones[j];	
+
+					meshBoneNum = arr[j];
+					boneMesh = handSkeleton.bones[meshBoneNum];					
+
+					prev = bone.prevJoint;
+					next = bone.nextJoint;
+
+					r = this.distance(prev, next);
+
+					r.x = Math.min(r.x, 1);
+					r.x = Math.max(r.x, 0);	
+
+					boneMesh.rotation.set(-r.x / 10, 0, 0);
+
+					if (j === 0) {
+						_y = -dir[0];
+						boneMesh.rotation.y = _y;
+
+						if (finger.type === 0) {
+							boneMesh.rotation.z = handType == 'left' ? dir[2] : -dir[2];
+						}
+					}
+				}
+			}
+			
+			function automate(d) {
+				var angle = d / 100,
+					x,
+					y,
+					z,
+					rx,
+					ry,
+					rz;
+
+				x = -150 + Math.sin(angle) * 70;
+				y = -50 - Math.cos(angle) * 50;
+				z = -600 + Math.sin(angle / 2) * 50;
+				rx = 80 * (Math.PI / 180) + Math.sin(angle) * 0.2;
+				ry = -0.1 + Math.sin(angle) * 0.2;
+				rz = 0;
+
+				hands[0].position.set(x, y, z);
+				hands[0].rotation.set(rx, ry, rz);
+
+				hands[1].position.set(-x, y, z - 100);
+				hands[1].rotation.set(rx, ry, rz);
+
+				automateFingers(d, 0);
+				automateFingers(d / 2, 1);
+			}
+
+			function automateFingers(d, num) {
+				var i,
+					j,
+					mesh = hands[num].skeleton,
+					bones = mesh.bones,
+					bone;
+
+				for (i = 0; i < boneMap.length; i += 1) {
+					bone = bones[boneMap[i][0]];
+
+					if (i === 0) { //thumb
+						bone.rotation.y = -0.2 + Math.sin(d / 20) * 0.4;
+						bone.rotation.y = num !== 0 ? bone.rotation.y * -1 : bone.rotation.y; //if right hand switch
+						bone.rotation.x = -0.2 + Math.sin(d / 10) * 0.2;
+					} else {
+						bone.rotation.x = -0.1 * i + Math.sin(d / 10) * 0.1 * i;
+						bone.rotation.y = Math.sin(d / 100) * 0.1;
+
+						for (j = 1; j < boneMap[i].length; j += 1) {
+							bone = bones[boneMap[i][j]];
+							bone.rotation.x = (-0.02 * j) + Math.sin(d / 10) * (0.02 * j);
+							bone.rotation.y = 0;
+						}
+					}
+				}
+
+				i = null;
+				j = null;
+				mesh = null;
+				bones = null;
+				bone = null;
 			}
 			
 			window.animIn = function () {
@@ -42,7 +273,11 @@
 			}
 			
 			window.animOut = function (cb) {
-
+				var tl = new TimelineMax({onComplete: cb});
+				
+				for (i = 0; i < hands.length; i += 1) {
+					tl.to(hands[i].scale, 1, {x: 0, y: 0, z: 0}, 0);
+				}
 			}
 
 		</script>
