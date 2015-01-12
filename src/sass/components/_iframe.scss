@@ -1,13 +1,10 @@
+
 iframe{
-	width: 90vw;
-	height: 90vh;
+	width: 100vw;
+	height: 100vh;
+    pointer-events: none;
+    background-color: transparent;
 	z-index: 0;
-	background: white;
-	outline: 100px solid rgba(255, 255, 255, 0.3);
-	
-	&.focus{
-		outline: 100px solid rgba(0, 0, 0, .75);
-	};
 }
 
 .iframe-clickarea{
@@ -21,5 +18,22 @@ iframe{
 	&.focus{
 		pointer-events: none;
 		cursor: auto;
+	}
+}
+
+.slide--iframe-interactive{
+	iframe{
+		position: absolute;
+		top: 5vh;
+		left: 5vw;
+		width: 90vw;
+		height: 90vh;
+		z-index: 0;
+		pointer-events: auto;
+		outline: 100px solid rgba(255, 255, 255, 0.3);
+
+		&.focus{
+			outline: 100px solid rgba(0, 0, 0, .75);
+		};
 	}
 }

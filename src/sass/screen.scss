@@ -149,6 +149,7 @@ code{
 	padding: 1em;
 	margin-top: 1em;
 	max-width: 100%;
+	max-height: 75vh;
 	color: black;
 	line-height: 1.5;
 	font-size: 1.3rem;
@@ -179,12 +180,13 @@ code{
 .slide--iframe{
 	background: transparent;
 	
-	h2{
+	h2, h4, h5{
 		position: absolute;
 		top: 0;
 		left: 0;
 		bottom: 0;
 		right: 0;
+		text-align: center;
 		margin: auto;
 		height: 100px;
 		color: white;
@@ -201,13 +203,6 @@ code{
 
 .slide--full{
 	padding: 0;
-    
-	iframe{
-		width: 100vw;
-		height: 100vh;
-        pointer-events: none;
-        background-color: transparent;
-	}
 }
 
 .slide--namecard.visible{

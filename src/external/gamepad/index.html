@@ -54,7 +54,6 @@
 				}
 				
 				function pressed(index, n, v) {
-					
 					//0 = A
 					//1 = B
 					//2 = X
@@ -75,7 +74,6 @@
 				}
 
 				function joystick(index, n, v) {
-					
 					//0 = 1 : LR
 					//1 = 1 : UD
 					//2 = 2 : LR
@@ -179,7 +177,7 @@
 					scene.add(light);
 
 					loader = new THREE.JSONLoader();
-					loader.load('controller.json', handle_loader_LOAD);
+					loader.load('controller2.json', handle_loader_LOAD);
 					
 					animate();
 				}
@@ -189,21 +187,22 @@
 						mesh;
 
 					mat = new THREE.MeshFaceMaterial(materials);
-					mat.materials[0] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
-					mat.materials[1] = new THREE.MeshLambertMaterial({ambient: 0x111100, color: 0xcccc33});
-					mat.materials[2] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x999999});
-					mat.materials[3] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
-					mat.materials[4] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x666666});
-					mat.materials[5] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x666666});
-					mat.materials[6] = new THREE.MeshLambertMaterial({ambient: 0x001100, color: 0x33cc33});
-					mat.materials[7] = new THREE.MeshLambertMaterial({ambient: 0x000011, color: 0x3333cc});
-					mat.materials[8] = new THREE.MeshLambertMaterial({ambient: 0x110000, color: 0xcc3333});
-					mat.materials[9] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0xcccccc});
-					mat.materials[10] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
-					mat.materials[11] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
-					mat.materials[12] = new THREE.MeshBasicMaterial({ambient: 0x000000, color: 0x111111});
-					mat.materials[13] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
-					mat.materials[14] = new THREE.MeshLambertMaterial({ambient: 0x000000, color: 0x333333});
+					mat.materials[0] = new THREE.MeshBasicMaterial({color: 0x333333});
+					mat.materials[1] = new THREE.MeshBasicMaterial({color: 0x333333});
+					mat.materials[2] = new THREE.MeshBasicMaterial({color: 0xffff00});
+					mat.materials[3] = new THREE.MeshBasicMaterial({color: 0x333333});
+					mat.materials[4] = new THREE.MeshBasicMaterial({color: 0x666666});
+					mat.materials[5] = new THREE.MeshBasicMaterial({color: 0x666666});
+					mat.materials[6] = new THREE.MeshBasicMaterial({color: 0x00ff00});
+					mat.materials[7] = new THREE.MeshBasicMaterial({color: 0x0000ff});
+					mat.materials[8] = new THREE.MeshBasicMaterial({color: 0xff0000});
+					mat.materials[9] = new THREE.MeshBasicMaterial({color: 0xcccccc});
+					mat.materials[10] = new THREE.MeshBasicMaterial({color: 0x333333});
+					mat.materials[11] = new THREE.MeshBasicMaterial({color: 0x333333});
+					mat.materials[12] = new THREE.MeshBasicMaterial({color: 0x111111});
+					mat.materials[13] = new THREE.MeshBasicMaterial({color: 0x333333});
+					mat.materials[14] = new THREE.MeshBasicMaterial({color: 0x333333});
+					mat.materials[15] = new THREE.MeshBasicMaterial({color: 0xffffff});
 
 					instance.group = new THREE.Object3D();
 					instance.group.position.set(0, 0, -5);
@@ -214,7 +213,7 @@
 					mesh = new THREE.Mesh(geometry, mat);
 					instance.group.add(mesh);
 
-					addLights(instance.group);
+					//addLights(instance.group);
 					
 					TweenMax.to(instance.group.scale, 0.5, {
 						x: 1, 

@@ -440,7 +440,7 @@ function render(time) {
 				<code><pre>TweenMax.to(circle, 1, {x: <span id="gsap-code-x">100</span>, y: <span id="gsap-code-y">100</span>});</pre></code>
 			</section>
 			
-			<section id="graphics" class="slide" data-class="basic" data-color="#41D8B4">
+			<section id="graphics" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/graphics/index.html" data-color="#41D8B4">
 				<h2>graphics</h2>
 			</section>
 			
@@ -448,7 +448,12 @@ function render(time) {
 				<h2>webgl</h2>
 			</section>
 			
+			<section id="complexity" class="slide" data-class="basic" data-color="#55acee">
+				<blockquote>with great power comes great complexity</blockquote>
+			</section>
+			
 			<section id="webgl-code" class="slide" data-class="basic" data-color="#41D8B4">
+				<header>webgl</header>
 				<code><pre>var gl;
 
 function initGL(canvas) {
@@ -575,11 +580,8 @@ function webGLStart() {
 			<section id="webgl-square" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/webgl-square/index.html" data-color="#36AD8E">
 			</section>
 			
-			<section id="threejs" class="slide" data-class="basic" data-color="#41D8B4">
-				<h2>three.js</h2>
-			</section>
-			
 			<section id="threejs-code" class="slide" data-class="basic" data-color="#36AD8E">
+				<header>three.js</header>
 				<code><pre>canvas = document.getElementById('mycanvas');
 renderer = new THREE.WebGLRenderer({canvas: canvas});
 scene = new THREE.Scene();
@@ -599,8 +601,11 @@ renderer.render(scene, camera);</pre></code>
 			<section id="webgl-cube" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/webgl-cube/index.html" data-color="#41D8B4">
 			</section>
 			
-			<section id="webisnative" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>the web doesn't have to exclude native capabilities</blockquote>
+			<section id="webgl-libraries" class="slide" data-class="basic" data-color="#41D8B4">
+				<header>webgl</header>
+				<h3>three.js</h3>
+				<h3>babylon.js</h3>
+				<h3>pixi.js</h3>
 			</section>
 			
 			<section id="peripherals" class="slide" data-class="basic" data-color="#DD3EAC">
@@ -627,60 +632,89 @@ renderer.render(scene, camera);</pre></code>
 				<h2>streaming</h2>
 			</section>
 			
-			<section id="sockets" class="slide" data-class="basic" data-color="orange">
-				<h2>sockets</h2>
+			<section id="sockets" class="slide slide--iframe slide--iframe-interactive" data-class="iframe" data-src="https://mysocketdemo.herokuapp.com/#game/Gdu7u" data-color="#FF6600">
+				<header>web sockets</header>
+				<h4>http://bit.ly/sockettest</h4>
 			</section>	
 			
-			<section id="webrtc" class="slide" data-class="basic" data-color="orange">
-				<h2>webrtc</h2>
+			<section id="sockets-libraries" class="slide" data-class="basic" data-color="orange">
+				<header>web sockets</header>
+				<h3>socket.io</h3>
+				<h3>websocket-node</h3>
 			</section>
 			
-			<section id="wearable" class="slide" data-class="basic" data-color="orange">
+			<section id="webrtc" class="slide" data-class="basic" data-color="#FF6600">
+				<header>webrtc</header>
+			</section>
+			
+			<section id="webrtc-libraries" class="slide" data-class="basic" data-color="orange">
+				<header>webrtc</header>
+				<h3>simple webrtc</h3>
+			</section>
+			
+			<section id="wearable" class="slide" data-class="basic" data-color="#FF6600">
 				<h2>wearable</h2>
 			</section>
 
-			<section id="occulus" class="slide" data-class="basic">
+			<section id="occulus" class="slide" data-class="basic" data-color="orange">
 				<h2>occulus rift</h2>
 			</section>
 
-			<section id="culture" class="slide" data-class="basic">
-				<h2>cultural adoption</h2>
-			</section>
-
-			<section id="complexity" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>with great power comes great complexity</blockquote>
+			<section id="hybrids" class="slide" data-class="basic" data-color="#FF6600">
+				<h2>hybrids</h2>
 			</section>
 			
-			<section id="newton" class="slide" data-class="basic" data-color="#ff5454">
+			<section id="eitheror" class="slide" data-class="basic" data-color="#55acee">
+				<blockquote>web and native aren't exclusive</blockquote>
+			</section>
+			
+			<section id="drones" class="slide" data-class="basic" data-color="orange">
+				<h2>google maps, vr, drone</h2>
+			</section>				
+
+			<section id="culture" class="slide" data-class="basic" data-color="#FF6600">
+				<h2>cultural adoption</h2>
+			</section>
+			
+			<section id="newton" class="slide" data-class="basic" data-color="#5e7f70">
 				<blockquote>If I have seen further it is only by standing on the shoulders of giants.</blockquote>
 				<p>–Isaac Newton</p>
 			</section>
 			
 			<section id="simplification" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>tools and libraries simplify the powerful &amp; complex</blockquote>
+				<blockquote>tools can simplify the powerful &amp; complex</blockquote>
 			</section>
 			
-			<section id="libraries" class="slide" data-class="basic">
-				<h2>libraries</h2>
-			</section>
-			
-			<section id="tools" class="slide" data-class="basic">
+			<section id="tools" class="slide" data-class="basic" data-color="#70468E">
 				<h2>tools</h2>
 			</section>
 
-			<section id="hybrids" class="slide" data-class="basic">
-				<h2>hybrids</h2>
+			<section id="generator" class="slide" data-class="basic" data-color="#5B3C77">
+				<h2>Photoshop</h2>
+				<h4>generator</h4>
+			</section>
+
+			<section id="word-girl-demo" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/d-generator/index.html" data-color="#70468E">
 			</section>
 			
-			<section id="eitheror" class="slide" data-class="basic">
-				<blockquote>web and native aren't exclusive</blockquote>
+			<section id="word-girl" class="slide" data-class="basic" data-color="#5B3C77">
+				<h2><a href="http://wordgirl.site" target="_blank">word girl</a></h2>
+			</section>		
+
+			<section id="flash-custom" class="slide" data-class="basic" data-color="#70468E">
+				<h2>Flash<h2>
+				<h4>Custom Platforms</h4>
 			</section>
 			
-			<section id="tech" class="slide" data-class="basic">
+			<section id="flash-custom-demo" class="slide" data-class="basic" data-color="#5B3C77">
+				DEMO TIME
+			</section>
+			
+			<section id="tech" class="slide" data-class="basic" data-color="#55acee">
 				<blockquote>technology is a tool</blockquote>
 			</section>
 			
-			<section id="thanks" class="slide" data-class="basic">
+			<section id="thanks" class="slide" data-class="basic" data-color="#5e7f70">
 				<h2>thanks</h2>
 				<h4><a href="http://bit.ly/#" target="_blank">http://bit.ly/#</a></h4>
 				<h4><a href="http://www.twitter.com/cjgammon" target="_blank">@cjgammon</a></h4>

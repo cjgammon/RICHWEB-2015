@@ -52,7 +52,9 @@
 				scene.add(pointLight);
 				
 				addHand(-100, "hand.js");
-				addHand(100, "hand_r.js");
+				setTimeout(function () {
+					addHand(100, "hand_r.js");
+				}, 10);
 				
 				camera = new THREE.PerspectiveCamera(45, _w / _h, 1, 10000);
 				render();
@@ -88,7 +90,7 @@
 				loader = new THREE.JSONLoader();
 				loader.load(file, function (geometry, material) {
 					
-					material = new THREE.MeshBasicMaterial({
+					material = new THREE.MeshPhongMaterial({
 						shading: THREE.FlatShading,
 						skinning: true,
 						ambient: 0xc36410, 
@@ -96,8 +98,8 @@
 					});
 					
 					handMask = new THREE.SkinnedMesh(geometry, material);
-					//handMask.scale.set(100, 100, 100);
 					handMask.position.set(x, 0, -600);
+					
 					hands.push(handMask);
 					scene.add(handMask);
 					
@@ -109,7 +111,6 @@
 				delta += 1;
 				
 				if (hands.length == 2) {
-					//choose to use leap or automate
 					if (automating !== false) {
 						automate(delta);	
 					} else {
@@ -276,7 +277,7 @@
 				var tl = new TimelineMax({onComplete: cb});
 				
 				for (i = 0; i < hands.length; i += 1) {
-					tl.to(hands[i].scale, 1, {x: 0, y: 0, z: 0}, 0);
+					tl.to(hands[i].scale, 0.5, {x: 0, y: 0, z: 0}, 0);
 				}
 			}
 
