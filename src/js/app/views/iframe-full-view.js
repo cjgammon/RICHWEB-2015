@@ -17,9 +17,13 @@ define(function (require) {
 			if (view == this) {	
 				this.active = true;
 				this.iframe = $('<iframe>');
+				this.iframe.css('opacity', '0');
 				view.$el.append(this.iframe);
 				this.iframe.attr('src', view.$el.data('src'));
-
+				this.iframe.load(function () {
+					this.iframe.css('opacity', '1');
+				}.bind(this));
+				
 				AppEvent.trigger('stopanimation');
 			}
 		},

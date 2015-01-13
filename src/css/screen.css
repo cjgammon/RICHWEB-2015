@@ -1000,13 +1000,17 @@ code span {
 #resources h3 {
   font-size: 2rem;
 }
+/* line 250, ../sass/screen.scss */
+#resources a {
+  margin: 0.5em;
+}
 
-/* line 251, ../sass/screen.scss */
+/* line 255, ../sass/screen.scss */
 #warning {
   display: none;
 }
 
-/* line 256, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .no-flexbox #warning {
   position: absolute;
   display: block;
@@ -1019,7 +1023,7 @@ code span {
   text-align: center;
   z-index: 10000;
 }
-/* line 268, ../sass/screen.scss */
+/* line 272, ../sass/screen.scss */
 .no-flexbox #warning p {
   display: block;
   margin: 100px auto;
@@ -1027,17 +1031,17 @@ code span {
   line-height: 1.5;
 }
 
-/* line 278, ../sass/screen.scss */
+/* line 282, ../sass/screen.scss */
 .touch #preloader {
   display: none;
 }
-/* line 282, ../sass/screen.scss */
+/* line 286, ../sass/screen.scss */
 .touch #deck {
   position: static;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* line 288, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 .touch .slide {
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -1057,13 +1061,13 @@ code span {
   opacity: 1;
   pointer-events: auto;
 }
-/* line 297, ../sass/screen.scss */
+/* line 301, ../sass/screen.scss */
 .touch .slide--iframe {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 304, ../sass/screen.scss */
+  /* line 308, ../sass/screen.scss */
   html {
     font-size: .3em;
   }
