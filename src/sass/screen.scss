@@ -54,10 +54,6 @@ b, h2, h3, h4{
 	text-align: center;
 	letter-spacing: .1em;
 	margin-bottom: 1rem;
-
-    a{
-        font-weight: 100;
-    }
 }
 
 em{
@@ -79,7 +75,6 @@ h4{
 a{
 	color: #efefef;
 	text-decoration: none;
-	font-weight: 500;
 	
 	&:hover{
 		color: white;
