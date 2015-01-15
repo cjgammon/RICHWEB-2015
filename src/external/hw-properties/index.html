@@ -48,6 +48,7 @@
 			
 			#prop-trans.animate{
 				-webkit-animation: transform 2s infinite;
+				will-change: -webkit-transform;
 			}
 			
 			@-webkit-keyframes opacity{
@@ -66,6 +67,7 @@
 			
 			#prop-opacity.animate{
 				-webkit-animation: opacity 2s infinite;
+				will-change: opacity, -webkit-transform;
 			}
 			
 			@-webkit-keyframes blur{
@@ -84,6 +86,7 @@
 			
 			#prop-filter.animate{
 				-webkit-animation: blur 2s infinite;
+				will-change: -webkit-filter, -webkit-transform;
 			}
 		</style>
 	</head>
