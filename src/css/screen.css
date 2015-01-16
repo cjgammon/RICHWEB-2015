@@ -756,7 +756,7 @@ iframe {
   left: 5vw;
   width: 90vw;
   height: 90vh;
-  z-index: 0;
+  z-index: 1;
   pointer-events: auto;
   outline: 100px solid rgba(255, 255, 255, 0.3);
 }

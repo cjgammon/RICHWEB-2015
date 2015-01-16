@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+			<style>
+				body{
+					height: 100vh;
+					width: 100vw;
+					margin: 0;
+					text-align: center;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					overflow: hidden;
+				}
+				#mysvg{
+					width: 100%;
+					height: 100%;
+					margin: auto;
+					
+				}
+			</style>
+        </head> 
+        <body> 
+			<svg id="mysvg" width="1024" height="768" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid slice"></svg>
+            <script type="text/javascript"> 
+                var fps = 60,
+                    width = 1024,
+                    height = 768,
+					tl;
+
+					window.step = 0;
+					window.stepcount = 2;
+
+					start();
+
+					window.trigger = function (cb) {
+
+						if (tl.isActive) {
+							return;
+						}
+
+						window.step += 1;
+
+						switch (window.step) {
+							case 1:
+								cb();
+							break;
+						}
+					}
+
+					function start() {
+						if (typeof(comp) !== 'undefined') {
+							tl = comp.timeline();
+							tl.repeat(-1);
+							tl.addLabel('one', tl.duration());
+
+							tl.play();
+						} else {
+							setTimeout(start, 200);
+						}
+					}
+
+            </script>
+            <script src="./js/vendor/requirejs/require.js" data-main="js/main"></script> 
+        </body>
+        </html>

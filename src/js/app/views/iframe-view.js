@@ -47,6 +47,8 @@ define(function (require) {
 		},
 		
 		handle_el_CLICK: function (e) {
+			e.stopPropagation();
+			
 			this.clickarea.removeClass('focus');
 			this.iframe.removeClass('focus');
 			
