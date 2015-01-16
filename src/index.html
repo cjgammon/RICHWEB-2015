@@ -34,7 +34,7 @@
 		<canvas id="bg"></canvas>
 
 		<div id="deck">
-			<section id="cover" class="cover slide" data-class="basic">
+			<section id="cover" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/cover/index.html">
 				<h2>THE EVOLUTION OF THE WEB</h2>
 				<header>
 					<div>March, 2015 &mdash; SXSW INTERACTIVE &mdash; Austin, TX., U.S.A.</div>
@@ -427,16 +427,14 @@ function render(time) {
 	requestAnimationFrame(render);
 }</pre></code>
 			</section>
-
-			<section id="gsap" class="slide" data-class="basic" data-color="#B22651">
-				<h2>greensock</h2>
-				<h4><a href="https://greensock.com/">greensock.com</a></h4>
-			</section>
 			
 			<section id="gsap-example" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/gsap/index.html" data-color="#D62B58">
+				<header>greensock</header>
+				<h2><a href="https://greensock.com/" target="_blank">greensock.com</a></h2>
 			</section>
 			
 			<section id="gsap-code" class="slide" data-class="basic" data-color="#B22651">
+				<header>greensock</header>
 				<svg id="gsap-code-svg" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid meet" >
 					<circle id="gsap-code-circle" r="50" fill="white" opacity="0"></circle>
 				</svg>

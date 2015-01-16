@@ -175,24 +175,23 @@ code{
 .slide--iframe{
 	background: transparent;
 	
-	h2, h4, h5{
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		text-align: center;
-		margin: auto;
-		height: 100px;
-		color: white;
-		z-index: 2;
+	iframe{
+		z-index: -1;
 	}
 
 	a{
-		color: $teal;
+		color: black;
 		&:hover{
-			color: black;
+			color: white;
 		};
+	}
+}
+
+.slide--iframe.slide--full{
+	iframe{
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 }
 
@@ -221,8 +220,13 @@ code{
 }
 
 #cover{
+	flex-direction: row;
+	justify-content: flex-start;
+	
 	h2{
+		font-size: 4rem;
 		font-weight: 100;
+		width: 50%;
 	}
 }
 

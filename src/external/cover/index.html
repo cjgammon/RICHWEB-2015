@@ -21,7 +21,7 @@
 			</style>
         </head> 
         <body> 
-			<svg id="mysvg" width="1024" height="768" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid slice"></svg>
+			<svg id="mysvg" width="1024" height="768" viewBox="0 0 1024 768" preserveAspectRatio="xMaxYMid slice"></svg>
             <script type="text/javascript"> 
                 var fps = 60,
                     width = 1024,
@@ -29,7 +29,7 @@
 					tl;
 
 				window.step = 0;
-				window.stepcount = 3;
+				window.stepcount = 2;
 
 				start();
 
@@ -43,10 +43,7 @@
 
 					switch (window.step) {
 						case 1:
-							tl.tweenTo('two');
-						break;
-						case 2:
-							tl.tweenTo('three', {onComplete: cb});
+							cb();
 						break;
 					}
 				}
@@ -54,12 +51,10 @@
 				function start() {
 					if (typeof(comp) !== 'undefined') {
 						tl = comp.timeline();
-						tl.addLabel('one', 25);
-						tl.addLabel('two', 45);
-						tl.addLabel('three', tl.duration());
+						tl.repeat(-1);
+						tl.addLabel('one', tl.duration());
 
 						tl.play();
-						tl.tweenTo('one');
 					} else {
 						setTimeout(start, 200);
 					}
