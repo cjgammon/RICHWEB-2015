@@ -85,7 +85,7 @@ aside{
 }
 
 #preloader{
-	@include flexbox;
+	@include myflexbox;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -127,7 +127,7 @@ aside{
 	opacity: 0;
 	
 	&.visible{
-		@include flexbox;
+		@include myflexbox;
 		opacity: 1;	
 		pointer-events: auto;	
 	}
@@ -212,7 +212,7 @@ aside{
 	}
 	
 	.slide{
-		@include flexbox;
+		@include myflexbox;
 		left: 0;
 		top: 0;
 		position: relative;

@@ -16,7 +16,7 @@ $progress-bar-color: #444;
 $hud-bg-color: #222;
 $spinner-color: $teal;
 
-@mixin flexbox{
+@mixin myflexbox{
 	display: -webkit-flex;
 	-webkit-flex-direction: column;
 	-webkit-align-items: center;
@@ -224,6 +224,8 @@ code{
 	justify-content: flex-start;
 	
 	h2{
+		box-sizing: border-box;
+		padding: 0.5em;
 		font-size: 4rem;
 		font-weight: 100;
 		width: 50%;
@@ -294,7 +296,7 @@ code{
 	}
 	
 	.slide{
-		@include flexbox;
+		@include myflexbox;
 		left: 0;
 		top: 0;
 		position: relative;

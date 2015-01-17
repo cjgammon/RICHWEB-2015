@@ -1,6 +1,6 @@
 /* customize ui variables */
 /* import base css */
-/* line 17, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,73 +22,65 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+/* line 116, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
 @-moz-keyframes rotate {
-  /* line 3, ../sass/pres/_pres.scss */
   from {
     -moz-transform: rotate(0deg);
   }
-
-  /* line 6, ../sass/pres/_pres.scss */
   to {
     -moz-transform: rotate(360deg);
   }
 }
-
 @-webkit-keyframes rotate {
-  /* line 12, ../sass/pres/_pres.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
-
-  /* line 15, ../sass/pres/_pres.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
-
 /* line 20, ../sass/pres/_pres.scss */
 html, body {
   height: 100%;
@@ -99,15 +91,11 @@ html, body {
 /* line 26, ../sass/pres/_pres.scss */
 body {
   position: relative;
-  -webkit-perspective-origin: center center;
   -moz-perspective-origin: center center;
-  -ms-perspective-origin: center center;
-  -o-perspective-origin: center center;
+  -webkit-perspective-origin: center center;
   perspective-origin: center center;
-  -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
@@ -169,7 +157,7 @@ aside {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: #222222;
+  background-color: #222;
   z-index: 100;
 }
 
@@ -210,7 +198,7 @@ aside {
   bottom: 0;
   left: 0;
   height: 5px;
-  background: #444444;
+  background: #444;
 }
 
 /* line 113, ../sass/pres/_pres.scss */
@@ -265,10 +253,9 @@ aside {
 }
 /* line 152, ../sass/pres/_pres.scss */
 .hud-input.in {
-  -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 
@@ -289,31 +276,28 @@ aside {
   font-weight: 100;
   color: white;
   background-color: #001415;
-  -webkit-transform: scale(0.9);
   -moz-transform: scale(0.9);
   -ms-transform: scale(0.9);
-  -o-transform: scale(0.9);
+  -webkit-transform: scale(0.9);
   transform: scale(0.9);
-  -webkit-transition: -webkit-transform 0.2s linear, -webkit-transform 0.2s linear, background-color 0.2s linear;
   -moz-transition: -moz-transform 0.2s linear, -webkit-transform 0.2s linear, background-color 0.2s linear;
   -o-transition: -o-transform 0.2s linear, -webkit-transform 0.2s linear, background-color 0.2s linear;
+  -webkit-transition: -webkit-transform 0.2s linear, -webkit-transform 0.2s linear, background-color 0.2s linear;
   transition: transform 0.2s linear, -webkit-transform 0.2s linear, background-color 0.2s linear;
   z-index: 1;
 }
 /* line 178, ../sass/pres/_pres.scss */
 .hud-list-item.prev {
-  -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
-  -o-transform: scale(1);
+  -webkit-transform: scale(1);
   transform: scale(1);
 }
 /* line 182, ../sass/pres/_pres.scss */
 .hud-list-item.next {
-  -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
-  -o-transform: scale(1);
+  -webkit-transform: scale(1);
   transform: scale(1);
 }
 /* line 186, ../sass/pres/_pres.scss */
@@ -323,10 +307,9 @@ aside {
 }
 /* line 191, ../sass/pres/_pres.scss */
 .hud-list-item.selected {
-  -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
   background-color: #00a4ae;
   z-index: 10;
@@ -388,10 +371,8 @@ aside {
   width: 200px;
   height: 200px;
   cursor: pointer;
-  -webkit-perspective: 1000;
   -moz-perspective: 1000;
-  -ms-perspective: 1000;
-  -o-perspective: 1000;
+  -webkit-perspective: 1000;
   perspective: 1000;
 }
 /* line 20, ../sass/components/_buttons.scss */
@@ -420,36 +401,32 @@ aside {
 #ui-button-css .ui-button-css-front {
   background: white;
   color: black;
-  -webkit-transform: rotateX(0deg);
   -moz-transform: rotateX(0deg);
   -ms-transform: rotateX(0deg);
-  -o-transform: rotateX(0deg);
+  -webkit-transform: rotateX(0deg);
   transform: rotateX(0deg);
 }
 /* line 48, ../sass/components/_buttons.scss */
 #ui-button-css .ui-button-css-back {
   background: black;
   color: white;
-  -webkit-transform: rotateX(-180deg);
   -moz-transform: rotateX(-180deg);
   -ms-transform: rotateX(-180deg);
-  -o-transform: rotateX(-180deg);
+  -webkit-transform: rotateX(-180deg);
   transform: rotateX(-180deg);
 }
 /* line 55, ../sass/components/_buttons.scss */
 #ui-button-css:hover .ui-button-css-front {
-  -webkit-transform: rotateX(180deg);
   -moz-transform: rotateX(180deg);
   -ms-transform: rotateX(180deg);
-  -o-transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
   transform: rotateX(180deg);
 }
 /* line 59, ../sass/components/_buttons.scss */
 #ui-button-css:hover .ui-button-css-back {
-  -webkit-transform: rotateX(0deg);
   -moz-transform: rotateX(0deg);
   -ms-transform: rotateX(0deg);
-  -o-transform: rotateX(0deg);
+  -webkit-transform: rotateX(0deg);
   transform: rotateX(0deg);
 }
 
@@ -466,10 +443,9 @@ aside {
   -webkit-transition: -webkit-transform .7s ease-in-out, outline .2s ease-out, background-position 1s, background-size 1s, -webkit-filter 1s;
   -moz-transition: -moz-transform .7s ease-in-out, outline .2s ease-out, background-position 1s, background-size 1s;
   transition: transform .7s ease-in-out, outline .2s ease-out, background-position 1s, background-size 1s, filter 1s;
-  -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 /* line 79, ../sass/components/_buttons.scss */
@@ -489,9 +465,9 @@ aside {
   background-blend-mode: hard-light;
   border-radius: 100px;
   cursor: pointer;
-  -webkit-transition: background-color 1s, background-position 1s;
   -moz-transition: background-color 1s, background-position 1s;
   -o-transition: background-color 1s, background-position 1s;
+  -webkit-transition: background-color 1s, background-position 1s;
   transition: background-color 1s, background-position 1s;
 }
 /* line 97, ../sass/components/_buttons.scss */
@@ -509,33 +485,31 @@ aside {
 }
 /* line 109, ../sass/components/_buttons.scss */
 #ui-button-svg .ui-button-svg-bg {
-  -webkit-transition: fill 0.6s;
   -moz-transition: fill 0.6s;
   -o-transition: fill 0.6s;
+  -webkit-transition: fill 0.6s;
   transition: fill 0.6s;
 }
 /* line 113, ../sass/components/_buttons.scss */
 #ui-button-svg .ui-button-svg-stroke {
-  -webkit-transition: stroke 0.4s, stroke-width 0.4s;
   -moz-transition: stroke 0.4s, stroke-width 0.4s;
   -o-transition: stroke 0.4s, stroke-width 0.4s;
+  -webkit-transition: stroke 0.4s, stroke-width 0.4s;
   transition: stroke 0.4s, stroke-width 0.4s;
 }
 /* line 117, ../sass/components/_buttons.scss */
 #ui-button-svg .ui-button-svg-icon {
-  -webkit-transition: fill 0.2s, -webkit-transform 0.2s ease-in;
   -moz-transition: fill 0.2s, -webkit-transform 0.2s ease-in;
   -o-transition: fill 0.2s, -webkit-transform 0.2s ease-in;
+  -webkit-transition: fill 0.2s, -webkit-transform 0.2s ease-in;
   transition: fill 0.2s, -webkit-transform 0.2s ease-in;
-  -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
-  -o-transform: scale(1);
+  -webkit-transform: scale(1);
   transform: scale(1);
-  -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
-  -o-transform-origin: center center;
+  -webkit-transform-origin: center center;
   transform-origin: center center;
 }
 /* line 124, ../sass/components/_buttons.scss */
@@ -550,25 +524,20 @@ aside {
 /* line 133, ../sass/components/_buttons.scss */
 #ui-button-svg:hover .ui-button-svg-icon {
   fill: white;
-  -webkit-transform: scale(0.5);
   -moz-transform: scale(0.5);
   -ms-transform: scale(0.5);
-  -o-transform: scale(0.5);
+  -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
 
 @-webkit-keyframes rotate {
-  /* line 141, ../sass/components/_buttons.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
-
-  /* line 145, ../sass/components/_buttons.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
-
 /* line 150, ../sass/components/_buttons.scss */
 #ui-button-svg-1 {
   display: none;
@@ -578,36 +547,34 @@ aside {
 }
 /* line 156, ../sass/components/_buttons.scss */
 #ui-button-svg-1 .ui-button-svg-bg {
-  -webkit-transition: fill 2s;
   -moz-transition: fill 2s;
   -o-transition: fill 2s;
+  -webkit-transition: fill 2s;
   transition: fill 2s;
 }
 /* line 160, ../sass/components/_buttons.scss */
 #ui-button-svg-1 .ui-button-svg-stroke {
-  -webkit-transition: stroke 0.4s, stroke-width 0.4s;
   -moz-transition: stroke 0.4s, stroke-width 0.4s;
   -o-transition: stroke 0.4s, stroke-width 0.4s;
+  -webkit-transition: stroke 0.4s, stroke-width 0.4s;
   transition: stroke 0.4s, stroke-width 0.4s;
 }
 /* line 164, ../sass/components/_buttons.scss */
 #ui-button-svg-1 .ui-button-svg-icon {
-  -webkit-transition: fill 0.2s;
   -moz-transition: fill 0.2s;
   -o-transition: fill 0.2s;
+  -webkit-transition: fill 0.2s;
   transition: fill 0.2s;
-  -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
-  -o-transform-origin: center center;
+  -webkit-transform-origin: center center;
   transform-origin: center center;
 }
 /* line 169, ../sass/components/_buttons.scss */
 #ui-button-svg-1 .ui-button-svg-group {
-  -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   -ms-transform-origin: center center;
-  -o-transform-origin: center center;
+  -webkit-transform-origin: center center;
   transform-origin: center center;
 }
 /* line 174, ../sass/components/_buttons.scss */
@@ -636,9 +603,9 @@ aside {
 }
 /* line 202, ../sass/components/_buttons.scss */
 #ui-button-svg-2 circle:nth-child(3) {
-  -webkit-transition: fill 1s;
   -moz-transition: fill 1s;
   -o-transition: fill 1s;
+  -webkit-transition: fill 1s;
   transition: fill 1s;
 }
 /* line 207, ../sass/components/_buttons.scss */
@@ -976,46 +943,48 @@ code span {
 }
 /* line 226, ../sass/screen.scss */
 #cover h2 {
+  box-sizing: border-box;
+  padding: 0.5em;
   font-size: 4rem;
   font-weight: 100;
   width: 50%;
 }
 
-/* line 233, ../sass/screen.scss */
+/* line 235, ../sass/screen.scss */
 #gsap-code code {
   position: relative;
 }
 
-/* line 237, ../sass/screen.scss */
+/* line 239, ../sass/screen.scss */
 #webgl-code code {
   font-size: 12px;
   font-weight: bold;
   overflow-y: scroll;
 }
 
-/* line 243, ../sass/screen.scss */
+/* line 245, ../sass/screen.scss */
 #resources {
   font-size: 1rem;
 }
-/* line 246, ../sass/screen.scss */
+/* line 248, ../sass/screen.scss */
 #resources h2 {
   font-size: 3rem;
 }
-/* line 250, ../sass/screen.scss */
+/* line 252, ../sass/screen.scss */
 #resources h3 {
   font-size: 2rem;
 }
-/* line 254, ../sass/screen.scss */
+/* line 256, ../sass/screen.scss */
 #resources a {
   margin: 0.5em;
 }
 
-/* line 259, ../sass/screen.scss */
+/* line 261, ../sass/screen.scss */
 #warning {
   display: none;
 }
 
-/* line 264, ../sass/screen.scss */
+/* line 266, ../sass/screen.scss */
 .no-flexbox #warning {
   position: absolute;
   display: block;
@@ -1028,7 +997,7 @@ code span {
   text-align: center;
   z-index: 10000;
 }
-/* line 276, ../sass/screen.scss */
+/* line 278, ../sass/screen.scss */
 .no-flexbox #warning p {
   display: block;
   margin: 100px auto;
@@ -1036,17 +1005,17 @@ code span {
   line-height: 1.5;
 }
 
-/* line 286, ../sass/screen.scss */
+/* line 288, ../sass/screen.scss */
 .touch #preloader {
   display: none;
 }
-/* line 290, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 .touch #deck {
   position: static;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* line 296, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 .touch .slide {
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -1066,13 +1035,13 @@ code span {
   opacity: 1;
   pointer-events: auto;
 }
-/* line 305, ../sass/screen.scss */
+/* line 307, ../sass/screen.scss */
 .touch .slide--iframe {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 312, ../sass/screen.scss */
+  /* line 314, ../sass/screen.scss */
   html {
     font-size: .3em;
   }
