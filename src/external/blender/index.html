@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		
+		<script src="gsap/TweenMax.js"></script>
+		<script src="three.js"></script>
+		<script>
+			var Bot = function () {
+				this.initialize = function () {
+					this._delta = 0;
+
+					this.positionX = 0;
+					this.positionY = 0;
+					this.positionZ = 0;
+
+					this.rotationX = 0;
+					this.rotationY = 0;
+					this.rotationZ = 0;
+
+					this._container = new THREE.Object3D();
+
+					this.torusCollection = [];
+				}
+
+				this.initialize();
+
+				this.render = function () {
+					if (this._mesh) {
+						this._delta += 0.05;
+						this._mesh.updateAnimation(2);
+
+						this._mesh.position.y = this.positionY;	
+						this._mesh.position.x = this.positionX;
+						this._mesh.position.z = this.positionZ;
+
+						this._mesh.rotation.y = this.rotationY;	
+						this._mesh.rotation.x = this.rotationX;
+						this._mesh.rotation.z = this.rotationZ;	
+					}
+				}
+
+				this.load = function (scene) {
+					this._scene = scene;
+
+					var loader = new THREE.JSONLoader();
+					loader.load('buildbot.js', this.handle_asset_LOADED.bind(this));	
+				}
+
+				this.handle_asset_LOADED = function (geometry, materials) {
+					var j = 0,
+						material = new THREE.MeshFaceMaterial(materials);
+
+					for (j = 0; j < materials.length; j += 1) {
+						materials[j].morphTargets = true;
+						materials[j].shading = THREE.FlatShading;
+					}
+
+					this._mesh = new THREE.MorphAnimMesh(geometry, material);
+					this.positionX = 2;
+					this.positionY = 10;
+					this.positionZ = 2;
+					this.rotationX = 0;
+					this._container.add(this._mesh);
+					this._scene.add(this._container);
+
+					setInterval(this.addTorus.bind(this), 100);  //start adding smoke
+
+					//new TweenMax.to(this, 3, {positionX: -2, positionY: -2, positionZ: -5, rotationY: 2, delay: 1, onComplete: });
+					setTimeout(this.startAnimation.bind(this), 1000);
+				}
+
+				this.addTorus = function () {
+					var torus = new THREE.Mesh(new THREE.TorusGeometry(.3, .05, 20, 20), new THREE.MeshPhongMaterial({transparent: true, opacity: 1, blending: THREE.AdditiveBlending}));
+					torus.position.set(this._container.position.x + this._mesh.position.x, this._container.position.y + this._mesh.position.y - 0.8, this._container.position.z + this._mesh.position.z);
+					torus.rotation.set(this.rotationX - 1.5, this.rotationZ, 0);
+					this._scene.add(torus);
+
+					new TweenMax.to([torus.position, torus.material], 1, {y: '-=1', opacity: 0, onComplete: remove.bind(this)});
+
+					function remove() {
+						this._scene.remove(torus);
+					}
+				}
+
+				this.startAnimation = function () {			
+					var p1 = [
+							{positionX: -5, positionY: 3, positionZ: -20, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: 1, positionY: 2, positionZ: -15, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: 2, positionY: 2, positionZ: -10, rotationY: -1, rotationZ: 0, rotationX: 0}, 
+							{positionX: 2, positionY: 2, positionZ: -10, rotationY: -1.5, rotationZ: 0, rotationX: 0}
+						],
+						p2 = [
+							{positionX: 4, positionY: -2, positionZ: -10, rotationY: -1.5, rotationZ: 0, rotationX: 0}, 
+							{positionX: 4, positionY: -1, positionZ: -20, rotationY: -4, rotationZ: 0, rotationX: 0}, 
+							{positionX: -3, positionY: -1, positionZ: -50, rotationY: -1.5, rotationZ: 0, rotationX: 0}, 
+							{positionX: -4, positionY: -2, positionZ: -10, rotationY: -1.5, rotationZ: 0, rotationX: 0}
+						],
+						p3 = [
+							{positionX: -10, positionY: 2.5, positionZ: -10, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: -7, positionY: 2.5, positionZ: -10, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: 7, positionY: 2.5, positionZ: -10, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: 10, positionY: 2.5, positionZ: -10, rotationY: 0, rotationZ: 0, rotationX: 0}
+						],
+						p4 = [
+							{positionX: 0, positionY: 2, positionZ: -60, rotationY: -1.5, rotationZ: 0, rotationX: 0}, 
+							{positionX: 0, positionY: -2, positionZ: -20, rotationY: -1.5, rotationZ: 0, rotationX: 0}, 
+							{positionX: 0, positionY: -4, positionZ: -10, rotationY: -1.5, rotationZ: 0, rotationX: 0}, 
+							{positionX: 0, positionY: 2, positionZ: -7, rotationY: -1.5, rotationZ: 0, rotationX: 0}
+						],	
+						p5 = [
+							{positionX: -2, positionY: 2, positionZ: -5, rotationY: 1.5, rotationZ: 0, rotationX: 0}, 
+							{positionX: -1, positionY: 1, positionZ: -20, rotationY: .5, rotationZ: 0, rotationX: 0}, 
+							{positionX: 1, positionY: 5, positionZ: -30, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: 2, positionY: -2, positionZ: -5, rotationY: -2.5, rotationZ: 0, rotationX: 0}
+						],
+						p6 = [
+							{positionX: -2, positionY: 2, positionZ: -5, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: -2, positionY: 5, positionZ: -30, rotationY: 0, rotationZ: 2, rotationX: -1}, 
+							{positionX: 0, positionY: 7, positionZ: -30, rotationY: 0, rotationZ: 15, rotationX: -2}, 
+							{positionX: 1, positionY: 5, positionZ: -30, rotationY: 0, rotationZ: 2, rotationX: -1},
+							{positionX: -2, positionY: 3, positionZ: -15, rotationY: -1.5, rotationZ: 0, rotationX: 0},
+						],
+						p7 = [
+							{positionX: -3, positionY: -1, positionZ: -10, rotationY: 0, rotationZ: 0, rotationX: 0}, 
+							{positionX: -2, positionY: -1, positionZ: -10, rotationY: 10, rotationZ: 0, rotationX: 0}, 
+							{positionX: 0, positionY: -3, positionZ: -30, rotationY: -50, rotationZ: 0, rotationX: 0}, 
+							{positionX: 2, positionY: -1, positionZ: -10, rotationY: 10, rotationZ: 0, rotationX: 0},
+							{positionX: 3, positionY: -1, positionZ: -10, rotationY: -1.3, rotationZ: 0, rotationX: 0},
+						],
+						p8 = [
+							{positionX: 0, positionY: -1, positionZ: -10, rotationY: -1.5, rotationZ: 0, rotationX: 0}, 
+							{positionX: -3, positionY: -1, positionZ: -10, rotationY: 0, rotationZ: -1.5, rotationX: -1.5}, 
+							{positionX: -2, positionY: 0, positionZ: -5, rotationY: 0, rotationZ: -1.5, rotationX: -1.5}, 
+							{positionX: -2, positionY: 0, positionZ: -5, rotationY: 0, rotationZ: -1.5, rotationX: -1.5},
+						],
+						curves = [p1, p2, p3, p4, p5, p6, p7, p8];
+
+					new TweenMax.to(this, 3, {
+						bezier: curves[0], 
+						ease: Quad.easeInOut, 
+						onComplete: randomTween.bind(this)
+					});
+
+					function randomTween() {
+						var speed = 10 + (Math.random() * 2),
+							random = Math.round(Math.random() * (curves.length - 1));
+
+						new TweenMax.to(this, speed, {
+							bezier: curves[random], 
+							ease: Quad.easeInOut, 
+							delay: Math.random() * 2,
+							onComplete: randomTween.bind(this)
+						});
+					}
+				}
+
+				this.tweenTo = function (target) {
+					var slides = Vars.get('slides'),
+						targetSlide = Vars.get('slides').get(target - 1).get('view').$el;
+
+					if (target == 1 || target == slides.length - 1) {
+						new TweenMax.set(this._container.position, {
+							x: targetSlide.data('x'), 
+							y: targetSlide.data('y'), 
+							z: targetSlide.data('z'),
+							ease: Quad.easeInOut
+						});
+					}
+				}
+			}
+			
+			renderer = new THREE.WebGLRenderer({canvas: document.getElementById('mycanvas'), antialias: true});
+			renderer.setClearColor(0x111111, 1);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			
+			scene = new THREE.Scene();
+			scene.fog = new THREE.Fog(0x111111, 0.00025);
+			
+			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+			
+			ambientLight = new THREE.AmbientLight(0x333333);
+			scene.add(ambientLight);
+			
+			target = new THREE.Object3D();
+			target.position.z = -100000;
+			scene.add(target);
+			
+			light = new THREE.SpotLight(0xffffff);
+			light.target = target;
+			light.intensity = 2;
+			light.distance = 50;
+			light.angle = 1.5;
+			light.exponent = 1;
+			scene.add(light);
+			
+			bot = new Bot();
+			bot.load(scene);
+			
+			function render() {
+				bot.render();
+				renderer.render(scene, camera);
+				requestAnimationFrame(render);
+			}
+			
+			render();
+		</script>
+	</body>
+</html>
