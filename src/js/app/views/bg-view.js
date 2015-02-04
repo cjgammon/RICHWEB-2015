@@ -65,7 +65,7 @@ define(function (require) {
 			if (transition) {
 				return BG_ARRAY[parseInt(transition)];
 			} else if (slide.get('view').$el.data('color')) {
-				return BG_ARRAY[0];
+				return BG_ARRAY[Math.floor(Math.random() * BG_ARRAY.length)];
 			}
 		},
 

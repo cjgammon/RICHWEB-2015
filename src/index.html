@@ -42,7 +42,7 @@
 			</section>
 
 			<section id="tomorrow" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>what if the web of tomorrow looks very different from the web we know today?</blockquote>
+				<blockquote>what if the web looks different tomorrow?</blockquote>
 			</section>
 
 			<section id="me" class="slide" data-class="basic" data-color="#5e7f70">
@@ -375,6 +375,10 @@
 			<section id="everyone" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/everyone_dots/index.html" data-trans="1" data-color="#ffc571">
 			</section>
 			
+			<section id="how-much" class="slide" data-class="basic" data-color="#55acee">
+				<blockquote>how powerful should the web be?</blockquote>
+			</section>
+			
 			<section id="web-native" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/versus/versus.html" data-color="#D62B58">
 			</section>
 			
@@ -382,14 +386,18 @@
 				<h2><a href="http://www.caniuse.com" target="_blank">caniuse.com</a></h2>
 			</section>
 			
-			<section id="design-more" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>design is more than just how it looks</blockquote>
-			</section>
-			
 			<section id="performance-demo" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/performance/performance.html" data-color="#D62B58">
 				<header>performance</header>
 			</section>
 			
+			<section id="design-more" class="slide" data-class="basic" data-color="#55acee">
+				<blockquote>design is more than just how it looks</blockquote>
+			</section>
+
+			<section id="gpu-cpu" class="slide" data-class="basic" data-color="#D62B58">
+				<h2>CPU <em>vs</em> GPU</h2>
+			</section>
+
 			<section id="gpu-demo" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/gpu/index.html" data-color="#B22651">
 				<header>CPU <em>vs</em> GPU</header>
 			</section>
@@ -413,7 +421,7 @@
 			</section>
 			
 			<section id="settimeout-code" class="slide" data-class="basic" data-color="#B22651">
-				<h3>timeout animation</h3>
+				<header>timeout animation</header>
 					<code><pre>setTimeout(render, 1000 / 60);
 
 function render() {
@@ -423,7 +431,7 @@ function render() {
 			</section>
 			
 			<section id="requestanim-code" class="slide" data-class="basic" data-color="#D62B58">
-				<h3>request animation</h3>
+				<header>request animation</header>
 				<code><pre>requestAnimationFrame(render);
 
 function render(time) {
@@ -434,7 +442,6 @@ function render(time) {
 			
 			<section id="gsap-example" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/gsap/index.html" data-color="#B22651">
 				<header>greensock</header>
-				<h2><a href="https://greensock.com/" target="_blank">greensock.com</a></h2>
 			</section>
 			
 			<section id="gsap-code" class="slide" data-class="basic" data-color="#D62B58">
@@ -442,22 +449,45 @@ function render(time) {
 				<svg id="gsap-code-svg" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;" viewBox="0 0 1024 768" preserveAspectRatio="xMidYMid meet" >
 					<circle id="gsap-code-circle" r="50" fill="white" opacity="0"></circle>
 				</svg>
-				<code><pre>TweenMax.to(circle, 1, {x: <span id="gsap-code-x">100</span>, y: <span id="gsap-code-y">100</span>});</pre></code>
+				<code><pre>TweenMax.to(c, 1, {x: <span id="gsap-code-x">100</span>, y: <span id="gsap-code-y">100</span>});</pre></code>
 			</section>
 			
+			<section id="gsap-timeline" class="slide" data-class="basic" data-color="#B22651">
+				<header>greensock</header>
+				<code><pre>var tl = new TimelineMax();
+tl.to(c, 1, {x: 100});
+tl.to(c, 0.5, {x: 400});
+tl.to(c, 0.2, {x: 0, y: 100});
+</pre></code>
+			</section>
+
 			<section id="graphics" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/graphics/index.html" data-color="#41D8B4">
 				<h2>graphics</h2>
 			</section>
 			
+			<section id="graphics-core" class="slide" data-class="basic" data-color="#36AD8E">
+				<h4>Core Graphics</h4>
+				<h2>2d Canvas</h2>
+			</section>
+
+			<section id="graphics-opengl" class="slide" data-class="basic" data-color="#247662">
+				<h4>OpenGL</h4>
+				<h2>WebGL</h2>
+			</section>
+
 			<section id="webgl" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/webgl/index.html" data-color="#36AD8E">
 				<h2>webgl</h2>
+			</section>
+			
+			<section id="webgl-2" class="slide slide--iframe slide--full" data-class="in-out" data-src="http://www.clicktorelease.com/code/cruciform/index.html#dof=true&post=true&scale=false&select=true" data-color="#36AD8E">
+				<header>webgl</header>
 			</section>
 			
 			<section id="complexity" class="slide" data-class="basic" data-color="#55acee">
 				<blockquote>with great power comes great complexity</blockquote>
 			</section>
 			
-			<section id="webgl-code" class="slide" data-class="basic" data-color="#41D8B4">
+			<section id="webgl-code" class="slide" data-class="basic" data-color="#247662">
 				<header>webgl</header>
 				<code><pre>var gl;
 
@@ -586,7 +616,7 @@ function webGLStart() {
 				<header>webgl</header>
 			</section>
 			
-			<section id="threejs-code" class="slide" data-class="basic" data-color="#41D8B4">
+			<section id="threejs-code" class="slide" data-class="basic" data-color="#247662">
 				<header>three.js</header>
 				<code><pre>canvas = document.getElementById('mycanvas');
 renderer = new THREE.WebGLRenderer({canvas: canvas});
@@ -608,15 +638,16 @@ renderer.render(scene, camera);</pre></code>
 				<header>three.js</header>
 			</section>
 			
-			<section id="webgl-libraries" class="slide" data-class="basic" data-color="#41D8B4">
+			<section id="webgl-libraries" class="slide" data-class="basic" data-color="#247662">
 				<header>webgl</header>
 				<h3>three.js</h3>
 				<h3>babylon.js</h3>
 				<h3>pixi.js</h3>
+				<h4>and more!</h4>
 			</section>
 			
-			<section id="masking" class="slide" data-class="basic" data-color="#36AD8E">
-				<h2><a href="http://mask.site" target="_blank">MASKING ARTICLE</a></h2>
+			<section id="webgl-how-to" class="slide" data-class="basic" data-color="#36AD8E">
+				<h2><a href="http://threejs.org/examples/" target="_blank">how to three.js?</a></h2>
 			</section>
 			
 			<section id="peripherals" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/peripherals/index.html" data-color="#DD3EAC">
@@ -639,71 +670,119 @@ renderer.render(scene, camera);</pre></code>
 				<header>leap motion</header>
 			</section>
 
-			<section id="streaming" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/streaming/index.html" data-color="orange">
-				<header>streaming</header>
+			<section id="vr" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/vr/index.html" data-color="#FF6600">
+				<h2>virtual reality</h2>
 			</section>
 			
-			<section id="sockets" class="slide slide--iframe slide--iframe-interactive" data-class="iframe" data-src="https://mysocketdemo.herokuapp.com/#game/Gdu7u" data-color="#FF6600">
-				<header>web sockets</header>
-				<h4>http://bit.ly/sockettest</h4>
-			</section>	
-			
-			<section id="sockets-libraries" class="slide" data-class="basic" data-color="orange">
-				<header>web sockets</header>
-				<h3>socket.io</h3>
-				<h3>websocket-node</h3>
-			</section>
-			
-			<section id="webrtc" class="slide" data-class="basic" data-color="#FF6600">
-				<header>webrtc</header>
-			</section>
-			
-			<section id="webrtc-libraries" class="slide" data-class="basic" data-color="orange">
-				<header>webrtc</header>
-				<h3>simple webrtc</h3>
-			</section>
-			
-			<section id="wearable" class="slide" data-class="basic" data-color="#FF6600">
-				<header>web everywhere</header>
+			<section id="vr-stereo" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/stereo/index.html" data-color="orange">
+				<header>virtual reality</header>
+				<h2>stereoscopic</h2>
 			</section>
 
-			<section id="vr" class="slide" data-class="basic" data-color="orange">
+			<section id="vr-libraries" class="slide" data-class="basic" data-color="#FF6600">
 				<header>virtual reality</header>
+				<h2>webVR API</h2>
+				<h3><a href="http://threejs.org/examples/#webgl_effects_vr" target="_blank">three.js</a></h3>
+				<h3><a href="http://mozvr.com/" target="_blank">mozvr</a></h3>
 			</section>
 			
-			<section id="vr-libraries" class="slide" data-class="basic" data-color="orange">
-				<header>virtual reality</header>
-				<h3><a href="http://threejs.org/examples/#webgl_effects_vr" target="_blank">three.js renderer</a></h3>
-				<h3><a href="http://mozvr.com/" target="_blank">mozilla initiative</a></h3>
+			<section id="ar" class="slide" data-class="basic" data-color="orange">
+				<h2>augmented reality</h2>
+			</section>
+			
+			<section id="ar-jsartoolkit" class="slide" data-class="basic" data-color="#FF6600">
+				<header>augmented reality</header>
+				<h2>JSARToolkit</h2>
+			</section>
+			
+			<section id="vr-opportunities" class="slide" data-class="basic" data-color="orange">
+				<header>vr/ar</header>
+				<h3>virtual gaming</h3>
+				<h3>virtual films</h3>
+				<h3>virtual worlds</h3>
+				<h4>and more!</h4>
+			</section>
+			
+			<section id="vr-challenges" class="slide" data-class="basic" data-color="#FF6600">
+				<header>vr/ar</header>
+				<h2>challenges</h2>
+				<h4>interfaces</h4>
+				<h4>interaction</h4>
 			</section>
 
-			<section id="eitheror" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>web and native are dependent on each other</blockquote>
+			<section id="future" class="slide" data-class="basic" data-color="orange">
+				<h2>future?</h2>
+			</section>
+			
+			<section id="sreet-view" class="slide slide--iframe" data-class="iframe" data-src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sen!2sus!4v1422913829782!6m8!1m7!1sopafEvz6lAOtR0VK1u8R3g!2m2!1d43.074996!2d-89.382457!3f293.96746544333945!4f-15.313075627099437!5f0.7820865974627469" data-color="#FF6600">
+				<header>google street view</header>
+			</section>
+			
+			<section id="street-view-tomorrow" class="slide" data-class="basic" data-color="orange">
+				<header>google street view</header>
+				<h2>drone demo</h2>
+			</section>
+
+			<section id="surrogates" class="slide" data-class="basic" data-color="#FF6600">
+				<header>surrogates</header>
+			</section>
+
+			<section id="street-view-today" class="slide" data-class="basic" data-color="orange">
+				<header>google street view</header>
+				<h2>VR on android</h2>
+				<h4>with google cardboard</h4>
+			</section>
+
+			<section id="culture" class="slide" data-class="basic" data-color="#FF6600">
+				<h2>cultural adoption</h2>
+			</section>
+			
+			<section id="tesla" class="slide" data-class="basic" data-color="orange">
+				<h2>nikola tesla</h2>
+			</section>
+			
+			<section id="context" class="slide" data-class="basic" data-color="#55acee">
+				<blockquote>technology does not exist in a vacuum</blockquote>
 			</section>
 
 			<section id="hybrids" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/hybrids/index.html" data-color="#FF6600">
 				<header>hybrids</header>
 			</section>
 			
-			<section id="newton" class="slide" data-class="basic" data-color="#5e7f70">
-				<blockquote>If I have seen further it is only by standing on the shoulders of giants.</blockquote>
-				<p>–Isaac Newton</p>
+			<section id="eitheror" class="slide" data-class="basic" data-color="#55acee">
+				<blockquote>web &amp; native work best together</blockquote>
 			</section>
 			
-			<section id="drones" class="slide" data-class="basic" data-color="orange">
-				<header>google maps, vr, drone</header>
-			</section>				
-
-			<section id="culture" class="slide" data-class="basic" data-color="#FF6600">
-				<h2>cultural adoption</h2>
+			<section id="review" class="slide" data-class="basic" data-color="#FF6600">
+				<header>review</header>
+				<h2>animation, graphics<br/> &amp; inputs</h2>
 			</section>
 			
-			<section id="simplification" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>tools can simplify the powerful &amp; complex</blockquote>
+			<section id="review-libraries" class="slide" data-class="basic" data-color="orange">
+				<header>review</header>
+				<h2>libraries</h2>
 			</section>
 			
 			<section id="tools" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/tools/index.html" data-color="#70468E">
 				<header>tools</header>
+			</section>
+
+			<section id="custom-tools" class="slide" data-class="basic" data-color="#5B3C77">
+				<header>custom tools</header>
+				<h2>pixar</h2>
+			</section>
+
+			<section id="custom-tools-example" class="slide" data-class="basic" data-color="#70468E">
+				<header>custom tools</header>
+				<h2><a href="https://cjgammon.github.io/three.js-camera-path-tool/" target="_blank">bit.ly/cameratool</a></h2>
+			</section>
+
+			<section id="blender" class="slide" data-class="basic" data-color="#5B3C77">
+				<h2>blender</h2>
+				<h4>export 3d</h4>
+			</section>
+
+			<section id="blender-export" class="slide slide--iframe slide--full" data-class="iframe" data-src="http://threejs.org/examples/webgl_loader_json_blender.html" data-color="#70468E">
 			</section>
 
 			<section id="generator" class="slide" data-class="basic" data-color="#5B3C77">
@@ -727,8 +806,8 @@ renderer.render(scene, camera);</pre></code>
 				DEMO TIME
 			</section>
 			
-			<section id="tech" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>technology is a tool</blockquote>
+			<section id="simplification" class="slide" data-class="basic" data-color="#55acee">
+				<blockquote>tools can simplify the powerful &amp; complex</blockquote>
 			</section>
 			
 			<section id="thanks" class="slide" data-class="basic" data-color="#5e7f70">

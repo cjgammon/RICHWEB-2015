@@ -140,19 +140,17 @@ em{
 
 code{
 	display: block;
-	background: white;
-	padding: 1em;
-	margin-top: 1em;
 	max-width: 100%;
 	max-height: 75vh;
-	color: black;
-	line-height: 1.5;
-	font-size: 1.3rem;
+	color: white;
+	line-height: 1.3em;
 	font-family: 'source code pro', courier, monospace;
+	font-weight: bold;
+	font-size: 3rem;
 	white-space: pre;
 	
 	span{
-		color: #cc0000;
+		color: #a9ff9b;
 	}
 }
 
@@ -172,31 +170,27 @@ code{
 	}
 }
 
+
 .slide--iframe{
 	background: transparent;
 	
-	iframe{
-		z-index: -1;
-	}
-
-	a{
-		color: black;
-		&:hover{
-			color: white;
-		};
-	}
-}
-
-.slide--iframe.slide--full{
-	iframe{
-		position: absolute;
-		top: 0;
-		left: 0;
+	h2{
+		height: 100px;
+		z-index: 2;
 	}
 }
 
 .slide--full{
 	padding: 0;
+	
+	iframe{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+        pointer-events: none;
+	}
 }
 
 .slide--namecard.visible{
@@ -240,6 +234,15 @@ code{
 	font-size: 12px;
 	font-weight: bold;
 	overflow-y: scroll;
+}
+
+#threejs-code code{
+	font-size: 2rem;
+}
+
+#surrogates{
+	background-image: url(../assets/images/surrogates.jpg);
+	background-size: cover;
 }
 
 #resources{

@@ -31,15 +31,16 @@ define(function (require) {
 				this.active = true;
 				clearInterval(this.interval);
 				
-				this.x = window.innerWidth / 2;
-				this.y = window.innerHeight / 4;
+				this.x = Math.round(window.innerWidth / 2);
+				this.y = Math.round(window.innerHeight / 4);
 				
 				this.circle.transform('translate(' + this.x + ', ' + this.y + ')');
-				TweenMax.to(this.circle, 1, {snap: {opacity: 0.7}});
 				this.xstring.text(this.x);
 				this.ystring.text(this.y);
 				
-				this.interval = setInterval(this.update.bind(this), 2000);
+				TweenMax.to(this.circle, 0.5, {snap: {opacity: 0.7}, onComplete: function () {
+					this.interval = setInterval(this.update.bind(this), 2000);
+				}.bind(this)});
 			}
 		},
 
