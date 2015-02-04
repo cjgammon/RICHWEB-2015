@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			canvas{
+				width: 100vw;
+				height: 100vh;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		<script src="three.js"></script>
+		<script src="Mirror.js"></script>
+		<script src="WaterShader.js"></script>
+		
+		<script>
+			var canvas = document.getElementById('mycanvas'),
+				camerapath,
+				renderer,
+				camera,
+				scene,
+				water,
+				waterNormals,
+				lights = [],
+				colors = [0xeeeeee, 0xe9e9e9, 0xf8f8f8],
+				materialObjs = [],
+				blenderModel,
+				cloudModel,
+				path = {"vertices": [
+				{"x": -37, "y": 80, "z": 370},
+				{"x": 76, "y": 41, "z": 274},
+				{"x": 195, "y": 35, "z": 164},
+				{"x": 97, "y": 41, "z": 156},
+				{"x": -3, "y": 55, "z": 245},
+				{"x": -218, "y": 37, "z": 176},
+				{"x": -228, "y": 33, "z": 58},
+				{"x": 3, "y": 12, "z": -29},
+				{"x": 81, "y": 46, "z": -220},
+				{"x": 272, "y": 30, "z": -347},
+				{"x": 349, "y": 33, "z": -270},
+				{"x": 251, "y": 38, "z": -209},
+				{"x": 76, "y": 31, "z": -274},
+				{"x": -127, "y": 48, "z": -355},
+				{"x": -320, "y": 80, "z": -359},
+				{"x": -373, "y": 94, "z": -458},
+				{"x": -305, "y": 91, "z": -550},
+				{"x": -202, "y": 74, "z": -480},
+				{"x": -258, "y": 65, "z": -298},
+				{"x": -294, "y": 65, "z": -173},
+				{"x": -309, "y": 72, "z": 48},
+				{"x": -386, "y": 90, "z": 330},
+				{"x": -286, "y": 86, "z": 465},
+				{"x": -158, "y": 81, "z": 382},
+				{"x": -134, "y": 70, "z": 107},
+				{"x": -39, "y": 54, "z": 3}
+				]};
+			
+			var CameraPath = function () {
+				var geometry,
+					instance = this;
+				
+				this.delta = 0;
+				
+				function create () {
+					var splineVectors = [],
+						i,
+						vertices,
+						spline;
+
+					vertices = path.vertices;
+					path = new THREE.CurvePath();
+
+					for (i = 0; i < vertices.length; i += 1) {
+						splineVectors.push(vertices[i]);
+					}
+
+					spline = new THREE.SplineCurve3(splineVectors);
+					path.add(spline);
+
+					geometry = new THREE.TubeGeometry(path, vertices.length * 20, 1, 1, false, false);
+					tube = geometry;
+				};
+				
+				create();
+				
+				this.position = function (camera) {
+					var t, 
+						lookAt, 
+						position, 
+						dir, 
+						normal,
+						binormal,
+						segments,
+						pickt,
+						pick,
+						pickNext,
+						pathLength;
+
+					t = instance.delta;
+					position = geometry.path.getPointAt(t);
+					dir = geometry.path.getTangentAt(t);					
+					normal = new THREE.Vector3();
+					binormal = new THREE.Vector3();
+					segments = geometry.tangents.length;
+					pickt = t * segments;
+					pick = Math.floor(pickt);
+					pickNext = (pick + 1) % segments;
+
+					binormal.subVectors(geometry.binormals[pickNext], geometry.binormals[pick]);
+					binormal.multiplyScalar(pickt - pick).add(geometry.binormals[pick]);
+					normal.copy(binormal).cross(dir).multiplyScalar(-1);
+
+					camera.position = position;
+					pathLength = geometry.path.getLength();
+
+					lookAt = geometry.path.getPointAt((t / pathLength) % 1);
+					lookAt.copy(position).add(dir);
+
+					camera.matrix.lookAt(camera.position, lookAt, normal);
+					camera.rotation.setFromRotationMatrix(camera.matrix, camera.rotation.order);
+				}
+			}
+			
+			function init() {
+				renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 11000);
+				addScene();
+				camerapath = new CameraPath();
+			}
+			
+			init();
+			//setTimeout(init, 1100);
+						
+			function addScene() {
+				var light,
+					directionalLight;
+
+				scene = new THREE.Scene();
+
+				//LIGHTS				
+				directionalLight = new THREE.DirectionalLight(0xff9966);
+				directionalLight.position.set(1, 0, 1);
+				scene.add(directionalLight);
+				lights.push(directionalLight);
+
+				light = new THREE.DirectionalLight(0xcc9966);
+				light.position.set(1, 0, -1);
+				scene.add(light);
+				lights.push(light);
+
+				light = new THREE.SpotLight(0xcc6633);
+				light.position.set(1000, 0, 1000);
+				scene.add(light);
+				lights.push(light);
+
+				light = new THREE.SpotLight(0x336699);
+				light.position.set(-1000, 0, -1000);
+				scene.add(light);
+				lights.push(light);
+
+				light = new THREE.SpotLight(0xcc9966);
+				light.position.set(-1000, 0, 1000);
+				scene.add(light);
+				lights.push(light);
+
+				light = new THREE.AmbientLight(0x333333);
+				scene.add(light);
+				lights.push(light);
+
+				addSky();
+				addModel();
+	            addWater();
+				addClouds();
+			}
+			
+			function addModel() {
+				loader = new THREE.JSONLoader();
+				loader.load('data/island1.js', function (model, materials) {
+					
+					for (i = 0; i < materials.length; i += 1) {
+						materials[i].shading = THREE.FlatShading;
+						materials[i].side = THREE.DoubleSide;
+					}
+
+					model = new THREE.Mesh(model, new THREE.MeshFaceMaterial(materials));
+					model.scale.set(40, 40, 40);
+					scene.add(model);
+					materialObjs.push(model);
+
+					terrain = model;
+					
+					requestAnimationFrame(render);
+					setInterval(update, 1000 / 60);
+				});
+			}
+			
+			function addSky() {
+				var sky,
+					geo,
+					mat,
+					i,
+					v;
+
+				geo = new THREE.SphereGeometry(8000, 20, 20);
+				THREE.GeometryUtils.triangulateQuads(geo);
+
+				for (i = 0; i < geo.faces.length; i += 1) {
+					face = geo.faces[i];
+					face.color.setHex(colors[Math.floor(Math.random() * colors.length)]);
+				}
+
+				mat = new THREE.MeshBasicMaterial({
+	                color: 0x3377ff, 
+					side: THREE.BackSide,
+					shading: THREE.FlatShading,
+					vertexColors: THREE.FaceColors
+				});
+
+				sky = new THREE.Mesh(geo, mat);
+				sky.rotation.x = 0.7;
+				scene.add(sky);
+				materialObjs.push(sky);
+			}
+			
+			function addWater() {
+				 var i,
+						waterGeometry,
+						mirrorMesh,
+		                parameters = {
+		                    width: 7000,
+		                    height: 7000,
+		                    widthSegments: 250,
+		                    heightSegments: 250,
+		                    depth: 1500,
+		                    param: 4,
+		                    filterparam: 1
+		                };
+
+					waterNormals = new THREE.ImageUtils.loadTexture('waternormals.jpg');
+
+		            waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
+		            waterGeometry = new THREE.PlaneGeometry(parameters.width * 500, parameters.height * 500, 50, 50);
+		            water = new THREE.Mirror(renderer, camera, {
+		                textureWidth: 512, 
+		                textureHeight: 512,
+		                color: 0x3399cc
+		            });
+
+		            mirrorMesh = new THREE.Mesh(
+		                waterGeometry,
+		                water.material
+		            );
+
+		            mirrorMesh.add(water);
+		            mirrorMesh.position.y = 7;
+		            mirrorMesh.rotation.x = - Math.PI * 0.5;
+
+		            scene.add(mirrorMesh);
+					materialObjs.push(mirrorMesh);
+
+					waterGeometry = null;
+					parameters = null;
+					mirrorMesh = null;
+			}
+			
+			function addClouds() {
+					var content,
+						loader,
+						model,
+						mesh,
+						scale,
+						rotation,
+						i;
+
+					loader = new THREE.JSONLoader();
+					loader.load('data/cloud1.js', function (geometry, materials) {
+
+						for (i = 0; i < materials.length; i += 1) {
+							materials[i].shading = THREE.FlatShading;
+						}
+
+						for (i = 0; i < 50; i += 1) {
+							scale = 10 + Math.random() * 50;
+							rotation = Math.random() * 180;
+							mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+							mesh.scale.set(scale, scale, scale);
+							mesh.rotation.set(0, rotation, 0);
+							mesh.position.set(-3500 + Math.random() * 7000, 200 + Math.random() * 200, -3500 + Math.random() * 7000);
+							scene.add(mesh);
+							materialObjs.push(mesh);
+						}
+					});
+	
+			}
+			
+			function render () {
+	            water.render();
+				renderer.render(scene, camera);
+				requestAnimationFrame(render);		
+			};
+			
+			function update () {
+				camerapath.delta = camerapath.delta + 0.0003 < 1 ? camerapath.delta + 0.0003 : 0;
+				camerapath.position(camera);
+			}
+			
+		</script>
+	</body>
+</html>
