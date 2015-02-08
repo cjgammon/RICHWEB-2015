@@ -12,8 +12,8 @@
 			}
 			
 			#svgcanvas{
-				height: 100%;
-				width: 100%;
+				height: 100vh;
+				width: 100vw;
 			}
 		</style>
 	</head>
@@ -49,11 +49,9 @@
 				bg = '#D62B58';
 			
 			globe.transform('translate(512, 300)');
-
 			
 			group = s.g();
 			group.transform('translate(412, 500)');
-			
 			
 			TweenMax.to(globe, 0.2, {snap: {opacity: 1}, delay: 0.2, onComplete: function () {
 				tl = new TimelineMax({yoyo: true, repeat: -1});

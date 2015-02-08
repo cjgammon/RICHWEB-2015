@@ -5,9 +5,10 @@ define(function (require) {
 		Vars = require('pres/models/vars'),
 		UserEvent = require('pres/events/user-event'),
 		AppEvent = require('pres/events/app-event'),
+		CutBg = require('app/views/bg/trans-cut-bg'),
 		CircleBg = require('app/views/bg/trans-circle-bg'),
 		ArcBg = require('app/views/bg/trans-arc-bg'),
-		BG_ARRAY = [CircleBg, ArcBg],
+		BG_ARRAY = [CutBg, CircleBg, ArcBg],
 		currentSlide,
 		currentBg,
 		BgView;
@@ -65,7 +66,7 @@ define(function (require) {
 			if (transition) {
 				return BG_ARRAY[parseInt(transition)];
 			} else if (slide.get('view').$el.data('color')) {
-				return BG_ARRAY[Math.floor(Math.random() * BG_ARRAY.length)];
+				return BG_ARRAY[0];
 			}
 		},
 
