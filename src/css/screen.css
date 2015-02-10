@@ -945,39 +945,51 @@ code span {
 }
 
 /* line 239, ../sass/screen.scss */
-#threejs-code code {
+.threejs-code code {
   font-size: 2rem;
 }
 
 /* line 243, ../sass/screen.scss */
+code.highlight {
+  color: rgba(255, 255, 255, 0.25);
+}
+/* line 246, ../sass/screen.scss */
+code.highlight em {
+  color: white;
+  font-size: inherit;
+  font-style: inherit;
+  letter-spacing: inherit;
+}
+
+/* line 254, ../sass/screen.scss */
 #surrogates {
   background-image: url(../assets/images/surrogates.jpg);
   background-size: cover;
 }
 
-/* line 248, ../sass/screen.scss */
+/* line 259, ../sass/screen.scss */
 #resources {
   font-size: 1rem;
 }
-/* line 251, ../sass/screen.scss */
+/* line 262, ../sass/screen.scss */
 #resources h2 {
   font-size: 3rem;
 }
-/* line 255, ../sass/screen.scss */
+/* line 266, ../sass/screen.scss */
 #resources h3 {
   font-size: 2rem;
 }
-/* line 259, ../sass/screen.scss */
+/* line 270, ../sass/screen.scss */
 #resources a {
   margin: 0.5em;
 }
 
-/* line 264, ../sass/screen.scss */
+/* line 275, ../sass/screen.scss */
 #warning {
   display: none;
 }
 
-/* line 269, ../sass/screen.scss */
+/* line 280, ../sass/screen.scss */
 .no-flexbox #warning {
   position: absolute;
   display: block;
@@ -990,7 +1002,7 @@ code span {
   text-align: center;
   z-index: 10000;
 }
-/* line 281, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 .no-flexbox #warning p {
   display: block;
   margin: 100px auto;
@@ -998,17 +1010,17 @@ code span {
   line-height: 1.5;
 }
 
-/* line 291, ../sass/screen.scss */
+/* line 302, ../sass/screen.scss */
 .touch #preloader {
   display: none;
 }
-/* line 295, ../sass/screen.scss */
+/* line 306, ../sass/screen.scss */
 .touch #deck {
   position: static;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* line 301, ../sass/screen.scss */
+/* line 312, ../sass/screen.scss */
 .touch .slide {
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -1028,13 +1040,13 @@ code span {
   opacity: 1;
   pointer-events: auto;
 }
-/* line 310, ../sass/screen.scss */
+/* line 321, ../sass/screen.scss */
 .touch .slide--iframe {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 317, ../sass/screen.scss */
+  /* line 328, ../sass/screen.scss */
   html {
     font-size: .3em;
   }

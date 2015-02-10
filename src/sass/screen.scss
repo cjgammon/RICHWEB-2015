@@ -236,8 +236,19 @@ code{
 	overflow-y: scroll;
 }
 
-#threejs-code code{
+.threejs-code code{
 	font-size: 2rem;
+}
+
+code.highlight{
+	color: rgba(255, 255, 255, 0.25);
+	
+	em{
+		color: white;
+		font-size: inherit;
+		font-style: inherit;
+		letter-spacing: inherit;
+	}
 }
 
 #surrogates{
