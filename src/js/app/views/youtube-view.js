@@ -22,6 +22,8 @@ define(function (require) {
 				this.container.id = "youtube-" + view.$el.attr('id');
 				view.$el.append(this.container);
 				
+				this.t = view.$el.data('start') || 0;
+				
 				this.player = new YT.Player(this.container.id, {
 					height: '315',
 					width: '100%',
@@ -30,7 +32,7 @@ define(function (require) {
 						autohide: 1,
 						modestbranding: 1,
 						autoplay: 1,
-						start: 18
+						start: this.t
 					}
 				});
 				
