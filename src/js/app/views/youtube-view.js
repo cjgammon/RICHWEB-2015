@@ -44,7 +44,10 @@ define(function (require) {
 			if (this.active) {
 				this.active = false;
 			
-				this.player.stopVideo();
+				try{
+					this.player.stopVideo();
+				} catch (e) {};
+				
 				this.player.destroy();
 				this.container.remove();
 			
