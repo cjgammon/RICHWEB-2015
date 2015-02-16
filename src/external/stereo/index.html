@@ -313,7 +313,8 @@
 	}
 
     function update(dt) {
-		camerapath.delta = camerapath.delta + 0.0005 < 1 ? camerapath.delta + 0.0005 : 0;		
+		//camerapath.delta = 0.4;
+		camerapath.delta = camerapath.delta + 0.0001 < 1 ? camerapath.delta + 0.0001 : 0;		
 		camerapath.position(camera);
 		camera.updateProjectionMatrix();
     }

@@ -37,20 +37,21 @@ define(function (require) {
 				this.circle.transform('translate(' + this.x + ', ' + this.y + ')');
 				this.xstring.text(this.x);
 				this.ystring.text(this.y);
-				
+								
 				TweenMax.to(this.circle, 0.5, {snap: {opacity: 0.7}, onComplete: function () {
+					this.update();
 					this.interval = setInterval(this.update.bind(this), 2000);
 				}.bind(this)});
 			}
 		},
 
-		update: function () {	
-			TweenMax.to(this.circle, 1, {snap: {tx: this.x, ty: this.y}});
-			this.xstring.text(this.x);
-			this.ystring.text(this.y);
-			
+		update: function () {
 			this.x = Math.round(100 + Math.random() * (1024 - 200));
 			this.y = Math.round(100 + Math.random() * (768 - 200));
+			
+			this.xstring.text(this.x);
+			this.ystring.text(this.y);
+			TweenMax.to(this.circle, 1, {snap: {tx: this.x, ty: this.y}});
 		},
 
 		desolve: function () {

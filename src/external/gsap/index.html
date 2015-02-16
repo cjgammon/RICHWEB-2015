@@ -165,33 +165,45 @@
 				_tl.to(rect2, 0.2, {alpha: 1}, '-=1');
 				_tl.to(rect2.scale, 0.2, {x: 1, y: 1}, '-=1');
 			
-				_tl.to(rectPoints[0], 0.2, {x: -100, y: -400, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quad.easeOut});
-				_tl.to(rectPoints[1], 0.2, {x: 400, y: -200, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quad.easeOut});
-				_tl.to(rectPoints[2], 0.2, {x: 200, y: 100, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quad.easeOut});
-				_tl.to(rectPoints[3], 0.2, {x: -500, y: 300, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quad.easeOut});
+				_tl2 = new TimelineMax({onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect]});
+				_tl2.to(rectPoints[0], 0.2, {x: -100, y: -400, ease: Quad.easeOut});
+				_tl2.to(rectPoints[1], 0.2, {x: 400, y: -200, ease: Quad.easeOut});
+				_tl2.to(rectPoints[2], 0.2, {x: 200, y: 100, ease: Quad.easeOut});
+				_tl2.to(rectPoints[3], 0.2, {x: -500, y: 300, ease: Quad.easeOut});
+				_tl.add(_tl2);
+				
 				_tl.to(rect, 1, {rotation: 180 * Math.PI / 180});
-				_tl.to(rectPoints[0], 0.5, {x: -400, y: -600, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
-				_tl.to(rectPoints[1], 0.5, {x: 500, y: -300, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
-				_tl.to(rectPoints[2], 0.5, {x: 600, y: 400, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
-				_tl.to(rectPoints[3], 0.5, {x: -400, y: 700, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
 				
-				_tl.to(rectPoints2[0], 1, {x: -200, y: -300, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Elastic.easeOut}, '-=1');
-				_tl.to(rectPoints2[1], 1, {x: 150, y: -400, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Elastic.easeOut}, '-=1');
-				_tl.to(rectPoints2[2], 1, {x: 300, y: 100, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Elastic.easeOut}, '-=1');
-				_tl.to(rectPoints2[3], 1, {x: -250, y: 200, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Elastic.easeOut}, '-=1');
+				_tl3 = new TimelineMax({onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect]});
+				_tl3.to(rectPoints[0], 0.5, {x: -400, y: -600, ease: Quint.easeInOut}, 0);
+				_tl3.to(rectPoints[1], 0.5, {x: 500, y: -300, ease: Quint.easeInOut}, 0);
+				_tl3.to(rectPoints[2], 0.5, {x: 600, y: 400, ease: Quint.easeInOut}, 0);
+				_tl3.to(rectPoints[3], 0.5, {x: -400, y: 700, ease: Quint.easeInOut}, 0);
+				_tl.add(_tl3, '-=1');
 				
-				_tl.to(rectPoints[0], 1, {x: 200, y: 300, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
-				_tl.to(rectPoints[1], 1, {x: -300, y: 100, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
-				_tl.to(rectPoints[2], 1, {x: -400, y: -200, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
-				_tl.to(rectPoints[3], 1, {x: 200, y: -400, onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect], ease: Quint.easeInOut}, '-=1');
+				_tl4 = new TimelineMax({onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2]});
+				_tl4.to(rectPoints2[0], 1, {x: -200, y: -300, ease: Elastic.easeOut}, 0);
+				_tl4.to(rectPoints2[1], 1, {x: 150, y: -400, ease: Elastic.easeOut}, 0);
+				_tl4.to(rectPoints2[2], 1, {x: 300, y: 100, ease: Elastic.easeOut}, 0);
+				_tl4.to(rectPoints2[3], 1, {x: -250, y: 200, ease: Elastic.easeOut}, 0);
+				_tl.add(_tl4, '-=1');
 				
-				_tl.to(rectPoints2[0], 0.1, {x: -300, y: -100, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Quad.easeOut});
-				_tl.to(rectPoints2[1], 0.1, {x: 250, y: -200, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Quad.easeOut});
-				_tl.to(rectPoints2[2], 0.1, {x: 100, y: 300, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Quad.easeOut});
-				_tl.to(rectPoints2[3], 0.1, {x: -150, y: 300, onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2], ease: Quad.easeOut});
+				_tl5 = new TimelineMax({onUpdate: drawRect, onUpdateParams: [0xFF2492, 20, rectPoints, rect]});
+				_tl5.to(rectPoints[0], 1, {x: 200, y: 300, ease: Quint.easeInOut}, 0);
+				_tl5.to(rectPoints[1], 1, {x: -300, y: 100, ease: Quint.easeInOut}, 0);
+				_tl5.to(rectPoints[2], 1, {x: -400, y: -200, ease: Quint.easeInOut}, 0);
+				_tl5.to(rectPoints[3], 1, {x: 200, y: -400, ease: Quint.easeInOut}, 0);
+				_tl.add(_tl5, '-=1');
 				
+				_tl6 = new TimelineMax({onUpdate: drawRect, onUpdateParams: [0xffffff, 10, rectPoints2, rect2]});
+				_tl6.to(rectPoints2[0], 0.1, {x: -300, y: -100, ease: Quad.easeOut});
+				_tl6.to(rectPoints2[1], 0.1, {x: 250, y: -200, ease: Quad.easeOut});
+				_tl6.to(rectPoints2[2], 0.1, {x: 100, y: 300, ease: Quad.easeOut});
+				_tl6.to(rectPoints2[3], 0.1, {x: -150, y: 300, ease: Quad.easeOut});
+				_tl.add(_tl6);
 				
-				requestAnimationFrame(animate);
+				//requestAnimationFrame(animate);
+				TweenMax.ticker.addEventListener("tick", animate);
 			}
 			
 			function drawRect(color, stroke, points, r) {
@@ -215,7 +227,7 @@
 			
 			function animate() {
 		        renderer.render(stage);
-				requestAnimationFrame(animate);
+			//	requestAnimationFrame(animate);
 			}
 		</script>
 	</body>

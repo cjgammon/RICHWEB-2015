@@ -112,7 +112,7 @@
 			}
 			
 			window.step = 0;
-			window.stepcount = 9;
+			window.stepcount = 8;
 			
 			window.trigger = function (cb) {
 				
@@ -150,20 +150,20 @@
 						tw5.el.transform('translate(400, 50)');
 						
 					break;
+					//case 4:
+					//	tl.tweenTo(1, {ease: Back.easeIn});
+					//break;
 					case 4:
-						tl.tweenTo(1, {ease: Back.easeIn});
-					break;
-					case 5:
 						tl.tweenTo(2, {ease: Bounce.easeOut});
 					break;
-					case 6:
+					case 5:
 						tl.timeScale(3);
 						tl.play();
 					break;
-					case 7:
+					case 6:
 						tl.timeScale(0.3);
 					break;
-					case 8:
+					case 7:
 						tl.pause();
 						tw.hide();
 						tw2.hide();
