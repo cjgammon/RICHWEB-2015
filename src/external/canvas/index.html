@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>no styling</title>
+		<style>
+		body{
+			margin: 0;
+			overflow: hidden;
+		}
+		
+		canvas{
+			width: 100vw;
+			height: 100vh;
+			opacity: 0.75;
+		}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		<script>
+		var canvas = document.getElementById('mycanvas'),
+			ctx = canvas.getContext('2d'),
+			colors = ['#AA37A2', '#C187A2', '#36AD8E', '#41D8B4'],
+			circles = [];
+
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		
+		for (i = 0; i < 300; i += 1) {
+			circles.push({
+				x: Math.random() * canvas.width, 
+				y: Math.random() * canvas.height, 
+				vx: Math.random() * -1,
+				vy: Math.random() * 1,
+				r: Math.random() * 100, 
+				c: colors[Math.floor(Math.random() * colors.length)]
+			});
+		}
+		
+		//setInterval(loop, 20);
+		
+		function loop() {
+			
+			for (i = 0; i < circles.length; i += 1) {
+				circles[i].x += circles[i].vx;
+				circles[i].y += circles[i].vy;
+			
+				if (circles[i].x > canvas.width + circles[i].r) {
+					circles[i].x = -circles[i].r;
+				} else if (circles[i].x < -circles[i].r) {
+					circles[i].x = canvas.width + circles[i].r;
+				}
+			
+				if (circles[i].y > canvas.height + circles[i].r) {
+					circles[i].y = -circles[i].r;
+				} else if (circles[i].y < -circles[i].r) {
+					circles[i].y = canvas.height + circles[i].r;
+				}
+			}
+		}
+		
+		function animate(timestamp) {
+			//action
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			
+			loop();
+				
+			for (i = 0; i < circles.length; i += 1) {
+				
+				ctx.fillStyle = circles[i].c;
+				ctx.globalAlpha = 0.75;
+				ctx.beginPath();
+				ctx.save();
+				ctx.translate(circles[i].x, circles[i].y);
+				ctx.rotate(45);
+		    	ctx.rect(-circles[i].r / 2, -circles[i].r / 2, circles[i].r, circles[i].r);
+		
+				ctx.restore();
+				
+				ctx.closePath();
+		  		ctx.fill();
+			}
+		
+			requestAnimationFrame(animate);	
+		}
+		
+		requestAnimationFrame(animate);
+		
+		</script>
+	</body>
+</html>
