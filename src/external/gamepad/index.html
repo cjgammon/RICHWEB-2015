@@ -46,7 +46,6 @@
 					for (i = 0; i < this.gamepads.length; i++) {
 						gp = this.gamepads[i];
 						if (gp) {
-					  		console.log(gp);
 					  		clearInterval(interval);
 							setInterval(loop, 1000 / 60);
 						}
@@ -279,7 +278,7 @@
 						];
 					
 					for (i = 0; i < pos.length; i += 1) {
-						l = new THREE.Mesh(new THREE.SphereGeometry(0.15, 20, 20), new THREE.MeshBasicMaterial({color: pos[i].color, transparent: true}));
+						l = new THREE.Mesh(new THREE.SphereGeometry(0.15, 20, 20), new THREE.MeshBasicMaterial({color: pos[i].color, transparent: true, opacity: 0}));
 						l.position.set(pos[i].z, pos[i].y, pos[i].x);
 						g.add(l);
 						

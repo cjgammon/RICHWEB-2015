@@ -67,7 +67,7 @@
 			
 			#prop-opacity.animate{
 				-webkit-animation: opacity 2s infinite;
-				will-change: opacity, -webkit-transform;
+				will-change: opacity, -webkit-transform, transform;
 			}
 			
 			@-webkit-keyframes blur{
@@ -86,7 +86,7 @@
 			
 			#prop-filter.animate{
 				-webkit-animation: blur 2s infinite;
-				will-change: -webkit-filter, -webkit-transform;
+				will-change: -webkit-filter, -webkit-transform, filter, transform;
 			}
 		</style>
 	</head>
@@ -146,7 +146,6 @@
 				trans = Snap('#prop-trans'),
 				opac = Snap('#prop-opacity'),
 				filt = Snap('#prop-filter');
-			
 			
 			window.animIn = function () {
 				TweenMax.to(transEl, 0.2, {css: {opacity: 1, scale: 1}, delay: 0.3, ease: Quint.easeOut});
