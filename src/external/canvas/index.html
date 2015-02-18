@@ -29,7 +29,7 @@
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 		
-		for (i = 0; i < 300; i += 1) {
+		for (i = 0; i < 500; i += 1) {
 			circles.push({
 				x: Math.random() * canvas.width, 
 				y: Math.random() * canvas.height, 
@@ -75,7 +75,7 @@
 				ctx.beginPath();
 				ctx.save();
 				ctx.translate(circles[i].x, circles[i].y);
-				ctx.rotate(45);
+				ctx.rotate(45 * Math.PI / 180);
 		    	ctx.rect(-circles[i].r / 2, -circles[i].r / 2, circles[i].r, circles[i].r);
 		
 				ctx.restore();

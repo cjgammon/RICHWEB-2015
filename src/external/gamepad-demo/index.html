@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>no styling</title>
+		<style>
+			body{
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			canvas{
+				width: 100vw;
+				height: 100vh;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		<script>
+			var controller,
+				delta = 100,
+				cloud = new Image(),
+				canvas = document.getElementById('mycanvas'),
+				ctx,
+				speed = 10,
+				frames = 17,
+				clouds = [],
+				squares = [],
+				mycloud,
+				_w,
+				_h,
+				GamepadController;
+			
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			ctx = canvas.getContext('2d');
+			
+			for (i = 0; i < 100; i += 1) {
+				size = Math.random() * 10;
+				squares.push({
+					x: Math.random() * canvas.width, 
+					y: Math.random() * canvas.height,
+					width: size,
+					height: size
+				});
+			}
+			
+			cloud.src = "cloud.png";
+			cloud.onload = function () {
+				_w = cloud.width / frames;
+				_h = cloud.height;
+
+				mycloud = {
+					x: (canvas.width / 2) - (_w / 2), 
+					y: (canvas.height / 2) - (_h / 2),
+					frame: Math.floor(Math.random() * frames)
+				}
+
+				requestAnimationFrame(animate);
+				setInterval(loop, 240);
+			}
+			
+			function loop() {				
+				mycloud.frame = mycloud.frame < frames-1 ? mycloud.frame + 1 : 0;
+			}
+			
+			function animate() {
+				delta += 0.05;
+				radius = 80 + Math.sin(delta) * 30;
+				
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				
+				drawBg();
+				
+				x = mycloud.x;
+				y = mycloud.y;
+				
+				ctx.drawImage(cloud, mycloud.frame * _w, 0, _w, _h, x, y, _w, _h);
+				
+				requestAnimationFrame(animate);
+			}
+			
+			function drawBg() {
+				
+				ctx.fillStyle = "#00aaff";
+				ctx.beginPath();
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+				ctx.closePath();
+				
+				for (i = 0; i < squares.length; i += 1) {
+					squares[i].x = squares[i].x > canvas.width ? 0 : squares[i].x += speed;
+					
+					ctx.fillStyle = "#00ddff";
+					ctx.beginPath();
+					ctx.fillRect(squares[i].x, squares[i].y, squares[i].width, squares[i].height);
+					ctx.closePath();
+				}
+			}
+			
+			GamepadController = function () {
+				var interval = setInterval(pollGamepads.bind(this), 500);
+				
+				this.gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []),
+				
+				window.addEventListener("gamepadconnected", handle_add_gamepad);
+				window.addEventListener("gamepaddisconnected", handle_remove_gamepad);
+				
+				function handle_add_gamepad() {
+					console.log('+gamepad');
+				}
+
+				function handle_remove_gamepad() {
+					console.log('-gamepad');
+				}
+				
+				function pollGamepads() {
+					var i,
+						gp;
+
+					this.gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+					console.log(this.gamepads);
+
+					for (i = 0; i < this.gamepads.length; i++) {
+						gp = this.gamepads[i];
+						if (gp) {
+					  		clearInterval(interval);
+							setInterval(loop, 1000 / 60);
+						}
+					}
+				}
+				
+				function pressed(index, n, v) {
+					//0 = A
+					//1 = B
+					//2 = X
+					//3 = Y
+					//4 = L
+					//5 = R
+					//6 = LT
+					//7 = RT
+					//8 = BACK
+					//9 = START
+					//10 = L JOYSTICK
+					//ll = R JOYSTICK
+					//12 = UP
+					//13 = DOWN
+					//14 = LEFT
+					//15 = RIGHT
+					//16 = MIDDLE BUTTON
+				}
+
+				function joystick(index, n, v) {
+					//0 = 1 : LR
+					//1 = 1 : UD
+					//2 = 2 : LR
+					//3 = 2 : UD
+					
+					if (index == 0) {
+						mycloud.x += Math.round(n) * 4;
+					}
+					if (index == 1) {
+						mycloud.y += Math.round(n) * 4;
+					}
+				}
+				
+				function loop() {
+					var i, j, k;
+					
+					this.gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+					
+					if (!this.gamepads) {
+						return;
+					}
+					
+					for (i = 0; i < this.gamepads.length; i += 1) {
+						pad = this.gamepads[i];
+
+						if (typeof(pad) !== 'undefined') {
+							speed = 10;
+							
+							for (j = 0; j < pad.buttons.length; j += 1) {
+								
+								button = pad.buttons[j];
+								if (button.pressed) {
+									speed = 20;
+									//s.press(j, button.value);
+								} else {
+									//s.release(j);
+								}
+							}
+
+							for (k = 0; k < pad.axes.length; k += 1) {
+								//s.joystick(k, pad.axes[k]);
+								joystick(k, pad.axes[k]);
+							}
+						}
+					}
+
+				}
+			
+			}
+			
+			window.animIn = function () {
+				setTimeout(function () {
+					controller = new GamepadController();
+				}, 500);
+			}
+			
+			window.animOut = function (cb) {
+				
+			}
+
+		</script>
+	</body>
+</html>
