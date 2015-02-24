@@ -17,13 +17,18 @@ define(function (require) {
 			
 			if (view == this) {	
 				this.active = true;
-								
+				
+				this.startTime = view.$el.data('start') || 0;
+				
 				this.video = $('<video>');
 				this.video[0].src = view.$el.data('video');
 				this.video[0].volume = 0;
 				this.video[0].loop = true;
 				this.video[0].addEventListener('loadedmetadata', function () {
 					this.resize();
+					if (this.startTime) {
+						this.video[0].currentTime = this.startTime;
+					}
 					this.video[0].play();
 				}.bind(this));
 				view.$el.prepend(this.video);
@@ -39,7 +44,6 @@ define(function (require) {
 				_width,
 				_left,
 				_top;
-			
 			
 			_height = window.innerHeight;
 			_width = this.video[0].videoWidth * (window.innerHeight / this.video[0].videoHeight);

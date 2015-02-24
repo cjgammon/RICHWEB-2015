@@ -119,7 +119,7 @@
 						gp;
 
 					this.gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-					console.log(this.gamepads);
+					console.log('gamepads?', this.gamepads);
 
 					for (i = 0; i < this.gamepads.length; i++) {
 						gp = this.gamepads[i];
@@ -172,7 +172,7 @@
 					if (!this.gamepads) {
 						return;
 					}
-					
+
 					for (i = 0; i < this.gamepads.length; i += 1) {
 						pad = this.gamepads[i];
 
@@ -182,6 +182,7 @@
 							for (j = 0; j < pad.buttons.length; j += 1) {
 								
 								button = pad.buttons[j];
+								
 								if (button.pressed) {
 									speed = 20;
 									//s.press(j, button.value);
@@ -201,15 +202,9 @@
 			
 			}
 			
-			window.animIn = function () {
-				setTimeout(function () {
-					controller = new GamepadController();
-				}, 500);
-			}
-			
-			window.animOut = function (cb) {
-				
-			}
+			setTimeout(function () {
+				controller = new GamepadController();
+			}, 500);
 
 		</script>
 	</body>

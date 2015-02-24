@@ -122,6 +122,8 @@
 				
 				switch (window.step) {
 					case 1:
+						tl.seek(0);
+					
 						tw2 = new Twn({ty: '-=100'}, 1, Bounce.easeIn);
 						group.add(tw2.el);
 						tl.add(tw2.tween, 0);
@@ -131,8 +133,11 @@
 						group.add(tw3.el);
 						tl.add(tw3.tween, 0);
 						tw3.el.transform('translate(0, 100)');
+						
 					break;
 					case 2:
+						tl.seek(0);
+					
 						group.animate({transform: 'translate(312, 500)'}, 100);
 						tw2.setLength(2);
 
@@ -140,8 +145,12 @@
 						group.add(tw4.el);
 						tl.add(tw4.tween, 1);
 						tw4.el.transform('translate(200, 100)');
+						
+						
 					break;
 					case 3:
+						tl.seek(0);
+					
 						group.animate({transform: 'translate(212, 500)'}, 100);
 						
 						tw5 = new Twn({tx: "+=100", ty: "+=100"}, 1, Back.easeOut);
@@ -149,10 +158,8 @@
 						tl.add(tw5.tween, 2);
 						tw5.el.transform('translate(400, 50)');
 						
+						
 					break;
-					//case 4:
-					//	tl.tweenTo(1, {ease: Back.easeIn});
-					//break;
 					case 4:
 						tl.tweenTo(2, {ease: Bounce.easeOut});
 					break;

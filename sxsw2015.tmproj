@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>src/external/gamepad/index.html</string>
+	<string>src/index.html</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -18,61 +18,46 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>231</integer>
+	<integer>203</integer>
 	<key>metaData</key>
 	<dict>
-		<key>src/external/gamepad/index.html</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>7</integer>
-				<key>line</key>
-				<integer>215</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>199</integer>
-		</dict>
 		<key>src/index.html</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>108</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>873</integer>
+				<integer>468</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>848</integer>
+			<integer>431</integer>
 		</dict>
 		<key>src/sass/screen.scss</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>28</integer>
+				<integer>1</integer>
 				<key>line</key>
-				<integer>271</integer>
+				<integer>300</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>209</integer>
+			<integer>278</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>src/index.html</string>
-		<string>src/external/gamepad/index.html</string>
 		<string>src/sass/screen.scss</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{838, 79}, {823, 1207}}</string>
+	<string>{{1162, 29}, {1258, 1366}}</string>
 </dict>
 </plist>

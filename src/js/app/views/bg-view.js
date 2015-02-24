@@ -8,7 +8,8 @@ define(function (require) {
 		CutBg = require('app/views/bg/trans-cut-bg'),
 		CircleBg = require('app/views/bg/trans-circle-bg'),
 		ArcBg = require('app/views/bg/trans-arc-bg'),
-		BG_ARRAY = [CutBg, CircleBg, ArcBg],
+		StripeBg = require('app/views/bg/trans-stripes-bg'),
+		BG_ARRAY = [CutBg, CircleBg, ArcBg, StripeBg],
 		currentSlide,
 		currentBg,
 		BgView;
@@ -36,7 +37,7 @@ define(function (require) {
 		
 			if (currentBg) {
 				currentBg.render();
-			}		
+			}
 		},
 		
 		handleNormalSlide: function () {

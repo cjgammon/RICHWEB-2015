@@ -384,7 +384,7 @@
 &lt;p&gt;This is a paragraph.&lt;/p&gt;</pre></code>
 			</section>			
 			
-			<section id="simplify" class="slide" data-class="basic" data-color="#55acee">
+			<section id="simplify" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
 				<blockquote>simplify the creation of more complex content</blockquote>
 			</section>
 			
@@ -398,18 +398,24 @@
 			
 			<section id="cpu" class="slide" data-class="basic" data-color="#B22651">
 				<h2>CPU</h2>
+				<h4>central processing unit</h4>
 			</section>
 			
-			<section id="e1" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>this isn’t unique<br/>to the web</blockquote>
+			<section id="native-handle-it" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
+				<blockquote>how's native handle it?</blockquote>
 			</section>
 
 			<section id="gpu" class="slide" data-class="basic" data-color="#B22651">
 				<h2>GPU</h2>
+				<h4>graphics processing unit</h4>
 			</section>
 
 			<section id="gpu-demo" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/gpu/index.html" data-color="#B22651">
 				<header>CPU <em>vs</em> GPU</header>
+			</section>
+			
+			<section id="hooks" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
+				<blockquote>CSS hooks<br/> into gpu</blockquote>
 			</section>
 			
 			<section id="hw-properties" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/hw-properties/index.html" data-color="#B22651">
@@ -419,7 +425,8 @@
 				<code>transform: translateZ(0);</code>
 			</section>
 			
-			<section id="will-change-animation" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/will-change/index.html" data-color="#B22651">
+			<section id="hack" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
+				<blockquote>hack? let's make a standard</blockquote>
 			</section>
 			
 			<section id="will-change" class="slide" data-class="basic" data-color="#B22651">
@@ -450,8 +457,8 @@ function render(time) {
 }</pre></code>
 			</section>
 			
-			<section id="e2" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>this isn’t unique<br/>to the web</blockquote>
+			<section id="simplify-2" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
+				<blockquote>let's simplify</blockquote>
 			</section>
 			
 			<section id="gsap-example" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/gsap/index.html" data-color="#B22651">
@@ -465,24 +472,6 @@ function render(time) {
 				</svg>
 				<code><pre>TweenMax.to(c, 1, {x: <span id="gsap-code-x">100</span>, y: <span id="gsap-code-y">100</span>});</pre></code>
 			</section>
-			
-			<section id="gsap-timeline" class="slide" data-class="basic" data-color="#B22651">
-				<header>greensock</header>
-				<code class="highlight"><pre><em>var tl = new TimelineMax();</em>
-
-tl.to(c, 1, {x: 100});
-tl.to(c, 0.5, {x: 400});
-</pre></code>
-			</section>
-
-			<section id="gsap-timeline-2" class="slide" data-class="basic" data-color="#B22651">
-				<header>greensock</header>
-				<code><pre>var tl = new TimelineMax();
-
-tl.to(c, 1, {x: 100});
-tl.to(c, 0.5, {x: 400});
-</pre></code>
-				</section>
 						
 			<section id="graphics" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/graphics/index.html" data-trans="2" data-color="#41D8B4">
 				<h2>graphics</h2>
@@ -497,8 +486,8 @@ tl.to(c, 0.5, {x: 400});
 				<blockquote>we need a 2d<br/> drawing API</blockquote>
 			</section>
 			
-			<section id="e3" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>this isn’t unique<br/>to the web</blockquote>
+			<section id="look-native-1" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
+				<blockquote>let's look at native</blockquote>
 			</section>
 			
 			<section id="canvas-2d" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/canvas/index.html" data-color="#36AD8E">
@@ -507,11 +496,11 @@ tl.to(c, 0.5, {x: 400});
 			</section>
 			
 			<section id="graphics-3d" class="slide" data-class="basic" data-color="#247662">
-				<blockquote>we need a lower level graphics API</blockquote>
+				<blockquote>we need a lower<br/> level graphics API</blockquote>
 			</section>
 			
-			<section id="e4" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>this isn’t unique<br/>to the web</blockquote>
+			<section id="look-native-2" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
+				<blockquote>let's look at native</blockquote>
 			</section>
 			
 			<section id="graphics-opengl" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/webgl/index.html" data-color="#36AD8E">
@@ -656,8 +645,8 @@ function webGLStart() {
 				<header>webgl</header>
 			</section>
 			
-			<section id="e5" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>this isn’t unique<br/>to the web</blockquote>
+			<section id="simplify-3" class="slide" data-class="basic" data-trans="3" data-color="#55acee">
+				<blockquote>let's simplify</blockquote>
 			</section>
 			
 			<section id="threejs-code" class="slide threejs-code" data-class="basic" data-color="#247662">
@@ -766,15 +755,11 @@ renderer.render(scene, camera);</pre></code>
 				<header>get user media</header>
 			</section>
 			
-			<section id="location" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/location/index.html" data-color="#B53594">
-				<header>geolocation api</header>				
-			</section>
-			
 			<section id="gamepad" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/gamepad/index.html" data-color="#B53594">
 				<header>gamepad api</header>
 			</section>
 			
-			<section id="gamepad-demo" class="slide slide--iframe slide--full" data-class="in-out" data-src="external/gamepad-demo/index.html" data-color="#B53594">
+			<section id="gamepad-demo" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/gamepad-demo/index.html" data-color="#B53594">
 				<header>gamepad api</header>
 			</section>
 			
@@ -790,20 +775,20 @@ renderer.render(scene, camera);</pre></code>
 				<header>hybrids</header>
 			</section>
 			
-			<section id="eitheror" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>web &amp; native work best together</blockquote>
+			<section id="eitheror" class="slide" data-class="basic" data-color="#55acee" data-trans="3">
+				<blockquote>web &amp; native work<br/> best together</blockquote>
 			</section>
 			
-			<section id="vr" class="slide slide--iframe slide--full" data-class="basic" data-src="external/vr/index.html" data-color="#FF6600">
+			<section id="vr" class="slide" data-class="basic" data-color="#FF6600">
 				<h2>virtual reality</h2>
 			</section>
 			
-			<section id="vr-stereo" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/stereo/index.html" data-color="black">
+			<section id="stereoscopic" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/stereo/index.html" data-color="black">
 				<header>virtual reality</header>
 				<h2>stereoscopic</h2>
 			</section>
 
-			<section id="vr-libraries" class="slide" data-class="basic" data-color="#FF6600">
+			<section id="webvr" class="slide" data-class="basic" data-color="#FF6600">
 				<header>virtual reality</header>
 				<h2>webVR API</h2>
 			</section>
@@ -812,21 +797,13 @@ renderer.render(scene, camera);</pre></code>
 				<h2>augmented reality</h2>
 			</section>
 			
-			<section id="ar-jsartoolkit" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/jsartoolkit/index.html" data-color="black">
+			<section id="jsartoolkit" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/jsartoolkit/index.html" data-color="black">
 				<header>augmented reality</header>
 				<h2>JSARToolkit</h2>
 			</section>
 			
-			<section id="ar-lense" class="slide slide--iframe slide--full" data-class="youtube" data-start="18" data-video="aThCr0PsyuA" data-color="black">
+			<section id="holo-lense" class="slide slide--iframe slide--full" data-class="video" data-start="18" data-video="assets/videos/MICROSOFT HOLOLENS-HD.mp4" data-color="black">
 				<header>augmented reality</header>
-			</section>
-			
-			<section id="vr-opportunities" class="slide" data-class="basic" data-color="#FF6600">
-				<header>vr/ar</header>
-				<h3>virtual gaming</h3>
-				<h3>virtual films</h3>
-				<h3>virtual worlds</h3>
-				<h4>and more!</h4>
 			</section>
 
 			<section id="future" class="slide" data-class="basic" data-color="#FF6600">
@@ -837,18 +814,12 @@ renderer.render(scene, camera);</pre></code>
 				<header>google street view</header>
 			</section>
 			
-			<section id="street-view-tomorrow" class="slide slide--iframe slide--full"  data-class="youtube" data-video="palTKZmIcn8" data-color="black">
+			<section id="drone" class="slide slide--iframe slide--full"  data-class="video" data-video="assets/videos/drone activity hawaii-HD.mp4" data-color="black">
 				<header>google street view</header>
 			</section>
 
 			<section id="surrogates" class="slide" data-class="basic" data-color="black">
 				<header>surrogates</header>
-			</section>
-			
-			<section id="ff" class="slide" data-class="basic" data-color="black">
-			</section>
-			
-			<section id="avatar" class="slide" data-class="basic" data-color="black">
 			</section>
 			
 			<section id="context" class="slide" data-class="basic" data-color="#55acee">
@@ -860,53 +831,52 @@ renderer.render(scene, camera);</pre></code>
 				<h2>animation, graphics<br/> &amp; inputs</h2>
 			</section>
 			
-			<section id="review-libraries" class="slide" data-class="basic" data-color="#FF6600">
+			<section id="libraries" class="slide" data-class="basic" data-color="#FF6600">
 				<header>review</header>
 				<h2>libraries</h2>
 			</section>
 			
 			<section id="tools" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/tools/index.html" data-color="#70468E">
-				<header>design tools</header>
+				<h2>visual tools</h2>
 			</section>
 
 			<section id="e6" class="slide" data-class="basic" data-color="#55acee">
-				<blockquote>this isn’t unique<br/>to the web</blockquote>
+				<blockquote>other technical industries</blockquote>
 			</section>
 			
-			<section id="custom-tools" class="slide" data-class="basic" data-color="black">
-				<header>custom tools</header>
+			<section id="pixar" class="slide" data-class="basic" data-color="black">
 			</section>
 
 			<section id="last-year" class="slide slide--iframe" data-class="iframe" data-src="http://slides.site/#slide/off-grid" data-class="basic" data-color="#70468E">
-				<header>custom tools</header>
+				<header>custom tools?</header>
 			</section>
 			
-			<section id="custom-tools-example" class="slide" data-class="basic" data-color="#70468E">
+			<section id="custom-tool" class="slide" data-class="basic" data-color="#70468E">
 				<header>custom tools</header>
-				<h2><a href="https://cjgammon.github.io/three.js-camera-path-tool/" target="_blank">bit.ly/cameratool</a></h2>
+				<h3><a href="https://cjgammon.github.io/three.js-camera-path-tool/" target="_blank">bit.ly/cameratool</a></h3>
 			</section>
 
 			<section id="blender" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/blender/index.html" data-color="#70468E">
 				<h2>blender</h2>
-				<h4>export 3d</h4>
+				<h4>three.js plugin</h4>
 			</section>
 
 			<section id="generator" class="slide" data-class="basic" data-color="#70468E">
 				<h2>Photoshop</h2>
 				<h4>generator</h4>
 			</section>
-
-			<section id="word-girl-demo" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/d-generator/index.html" data-color="#70468E">
+			
+			<section id="word-girl-psd" class="slide" data-class="basic" data-color="#70468E">
 			</section>
 			
 			<section id="word-girl" class="slide" data-class="basic" data-color="#70468E">
 				<h2><a href="http://wordgirldemo.site" target="_blank">word girl</a></h2>
 			</section>
 			
-			<section id="flash-homestar" class="slide slide--iframe slide--full"  data-class="youtube" data-start="10" data-video="iSLuA51XutU" data-color="black">
+			<section id="homestar" class="slide"  data-class="basic" data-color="black">
 			</section>
 			
-			<section id="flash-animation" class="slide slide--iframe slide--full"  data-class="youtube" data-video="7-oMBo2Erhk" data-color="black">
+			<section id="animation" class="slide slide--iframe slide--full"  data-class="youtube" data-start="8" data-video="dxC3jPPNyjA" data-color="black">
 			</section>
 
 			<section id="flash-custom" class="slide" data-class="basic" data-color="#70468E">
@@ -939,8 +909,12 @@ renderer.render(scene, camera);</pre></code>
 			</section>
 		</divv>
 
-		<div id="fixed">
+		<div class="fixed right">
 			<a href="http://www.twitter.com/cjgammon" target="_blank">@CJGAMMON</a>
+		</div>
+
+		<div class="fixed left">
+			<span>#adobesxsw</span>
 		</div>
 
 		<div id="instructions">

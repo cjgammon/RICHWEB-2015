@@ -150,7 +150,7 @@ code{
 	white-space: pre;
 	
 	span{
-		color: #a9ff9b;
+		color: #EDDE3E;
 	}
 }
 
@@ -210,7 +210,26 @@ code{
 	}
 }
 
-#fixed a{
+.fixed{
+	position: fixed;
+	bottom: 0;
+	padding: .5em;
+	z-index: 100;
+	
+	a{
+		color: white;
+	}
+	
+	&.right{
+		right: 0;
+	}
+	
+	&.left{
+		left: 0;
+	}
+}
+
+.fixed, .fixed a{
 	font-family: 'avenir', serif;
     font-weight: 100;
     font-size: 1.5rem;
@@ -260,20 +279,30 @@ code.highlight{
 	background-size: cover;
 }
 
-#ff{
-	background-image: url(../assets/images/digital_ff.png);
-	background-size: cover;
+#tools{
+	h2{
+		z-index: -1;
+	}
 }
 
-#avatar{
-	background-image: url(../assets/images/digital_avatar.png);
-	background-size: cover;
-}
-
-#custom-tools{
+#pixar{
 	background-image: url(../assets/images/sully.jpg);
 	background-size: cover;
 	background-position: center;
+}
+
+
+#word-girl-psd{
+	background-image:  url(../assets/images/wordgirl-psd.png);
+	background-size: contain;
+	background-position: center;
+}
+
+#homestar{
+	background-image:  url(../assets/images/homestar.gif);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 #resources{

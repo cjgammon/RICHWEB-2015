@@ -54,8 +54,11 @@
 						tl.addLabel('one', 30);
 						tl.addLabel('two', tl.duration());
 
-						tl.play();
-						tl.tweenTo('one');
+						setTimeout(function () {
+							tl.play();
+							tl.tweenTo('one');
+						}, 1000);
+		
 					} else {
 						setTimeout(start, 200);
 					}

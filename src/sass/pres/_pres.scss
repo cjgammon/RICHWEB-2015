@@ -58,23 +58,6 @@ aside{
 	text-transform: uppercase;
 }
 
-#fixed{
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	padding: .5em;
-	z-index: 100;
-	
-	a{
-		color: white;
-		font-weight: 800;	
-	}
-	
-	a:hover{
-		opacity: 0.5;
-	}
-}
-
 #hud{
 	display: none;
 	position: fixed;
