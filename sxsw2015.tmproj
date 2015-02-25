@@ -26,28 +26,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>13</integer>
+				<integer>144</integer>
 				<key>line</key>
-				<integer>468</integer>
+				<integer>877</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>431</integer>
+			<integer>847</integer>
 		</dict>
 		<key>src/sass/screen.scss</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>25</integer>
 				<key>line</key>
-				<integer>300</integer>
+				<integer>174</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>278</integer>
+			<integer>150</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -58,6 +58,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{1162, 29}, {1258, 1366}}</string>
+	<string>{{669, 19}, {687, 814}}</string>
 </dict>
 </plist>

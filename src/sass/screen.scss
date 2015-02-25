@@ -174,12 +174,7 @@ code{
 .slide--iframe{
 	background: transparent;
 	
-	h2{
-		height: 100px;
-		z-index: 2;
-	}
-	
-	h4{
+	h2, h4{
 		z-index: 2;
 	}
 }
@@ -296,13 +291,6 @@ code.highlight{
 	background-image:  url(../assets/images/wordgirl-psd.png);
 	background-size: contain;
 	background-position: center;
-}
-
-#homestar{
-	background-image:  url(../assets/images/homestar.gif);
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
 }
 
 #resources{

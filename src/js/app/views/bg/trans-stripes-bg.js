@@ -27,35 +27,40 @@ define(function (require) {
 			slide = Vars.get('slides').at(Vars.get('currentSlide'));
 			instance.color = slide.get('view').$el.data('color');
 			
-			instance.tween = TweenMax.to(instance.mask, 0.5, {
-				w: instance.width, 
-				h: instance.height, 
-				ease: Quad.easeOut,
-				onUpdate: instance.render
+			instance.tween = TweenMax.to(instance.mask, 0.6, {
+				w: instance.width * 1.4, 
+				h: instance.width * 1.4, 
+				ease: Sine.easeOut,
 			});
 			
-			/*
-			instance.tween2 = TweenMax.to(instance, 3, {
+			instance.tween2 = TweenMax.to(instance, 5, {
 				x: -instance.lineWidth * 3,
 				ease: Linear.easeNone,
 				onUpdate: instance.render,
 				repeat: -1
 			});
-			*/
+			
 		};
 		
 		instance.render = function () {
 			if (instance.alive) {
-				
+								
 				instance.ctx.save();
 				
-				instance.ctx.beginPath();
-				//instance.ctx.arc(instance.mask.x, instance.mask.y, instance.mask.r, 0, 2 * Math.PI, false);
+				////////
+				instance.ctx.save();
+			
+				instance.ctx.translate(instance.mask.x, instance.mask.y);
+				instance.ctx.rotate(45 * Math.PI / 180);	
+				instance.ctx.translate(-instance.mask.w / 2, -instance.mask.h / 2);
 				
-				instance.ctx.rect(instance.mask.x - (instance.mask.w / 2), instance.mask.y - (instance.mask.h / 2), instance.mask.w, instance.mask.h);
-				
+				instance.ctx.beginPath();				
+				instance.ctx.rect(0, 0, instance.mask.w, instance.mask.h);
 				instance.ctx.closePath();
 				
+				instance.ctx.restore();
+				//////
+					
 				instance.ctx.clip();
 				
 				instance.ctx.fillStyle = instance.color;
