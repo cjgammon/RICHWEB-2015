@@ -8,7 +8,7 @@ Presentation on how the web is changing presented at SXSW Interactive 2015
 To run you must do the following:
 
 * Ensure you have [bower](http://bower.io/) installed
-* run `bower install` from the root of the project
+* Run `bower install` from the root of the project
 * For browser security restrictions the site must be run on a server.
 
 
