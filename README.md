@@ -8,16 +8,16 @@ Presentation on how the web is changing presented at SXSW Interactive 2015
 To run you must do the following:
 
 * Ensure you have [bower](http://bower.io/) installed
-* In the command line navigate to the root of the repository and run `bower install`
-* For browser security restrictions the site must be run on a server either locally or remotely.
+* run `bower install` from the root of the project
+* For browser security restrictions the site must be run on a server.
 
 
 ###links to projects discussed
 
-* http://threejs.org/
-* http://mozvr.com/
-* https://github.com/cjgammon/three.js-camera-path-tool
-* https://github.com/adobe-webplatform/Demo-for-PBS-Kids-Word-Girl
-* https://github.com/cjgammon/Flash-Plugin-SnapPlatform
+* [three.js](http://threejs.org/)
+* [mozvr](http://mozvr.com/)
+* [custom camera path tool](https://github.com/cjgammon/three.js-camera-path-tool)
+* [photoshop generator project - word girl](https://github.com/adobe-webplatform/Demo-for-PBS-Kids-Word-Girl)
+* [flash custom platform - svg plugin](https://github.com/cjgammon/Flash-Plugin-SnapPlatform)
 
 
