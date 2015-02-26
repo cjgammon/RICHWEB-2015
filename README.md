@@ -18,6 +18,6 @@ To run you must do the following:
 * [mozvr](http://mozvr.com/)
 * [custom camera path tool](https://github.com/cjgammon/three.js-camera-path-tool)
 * [photoshop generator project - word girl](https://github.com/adobe-webplatform/Demo-for-PBS-Kids-Word-Girl)
-* [flash custom platform - svg plugin](https://github.com/cjgammon/Flash-Plugin-SnapPlatform)
+* [flash custom platform example - svg plugin](https://github.com/cjgammon/Flash-Plugin-SnapPlatform)
 
 
