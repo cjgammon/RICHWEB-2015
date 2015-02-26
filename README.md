@@ -12,7 +12,7 @@ To run you must do the following:
 * For browser security restrictions the site must be run on a server either locally or remotely.
 
 
-#links to projects discussed
+###links to projects discussed
 
 * http://threejs.org/
 * http://mozvr.com/
