@@ -29,7 +29,7 @@
 					tl;
 
 				window.step = 0;
-				window.stepcount = 3;
+				window.stepcount = 2;
 
 				start();
 
@@ -43,9 +43,6 @@
 
 					switch (window.step) {
 						case 1:
-							tl.tweenTo('two');
-						break;
-						case 2:
 							tl.tweenTo('three', {onComplete: cb});
 						break;
 					}
@@ -59,7 +56,7 @@
 						tl.addLabel('three', tl.duration());
 
 						tl.play();
-						tl.tweenTo('one');
+						tl.tweenTo('two');
 					} else {
 						setTimeout(start, 200);
 					}

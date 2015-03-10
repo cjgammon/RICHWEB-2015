@@ -26,14 +26,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>144</integer>
+				<integer>20</integer>
 				<key>line</key>
-				<integer>877</integer>
+				<integer>751</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>847</integer>
+			<integer>723</integer>
 		</dict>
 		<key>src/sass/screen.scss</key>
 		<dict>
@@ -58,6 +58,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{669, 19}, {687, 814}}</string>
+	<string>{{664, 120}, {679, 734}}</string>
 </dict>
 </plist>

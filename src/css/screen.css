@@ -985,31 +985,32 @@ code.highlight em {
   background-image: url(../assets/images/wordgirl-psd.png);
   background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* line 296, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 #resources {
   font-size: 1rem;
 }
-/* line 299, ../sass/screen.scss */
+/* line 300, ../sass/screen.scss */
 #resources h2 {
   font-size: 3rem;
 }
-/* line 303, ../sass/screen.scss */
+/* line 304, ../sass/screen.scss */
 #resources h3 {
   font-size: 2rem;
 }
-/* line 307, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 #resources a {
   margin: 0.5em;
 }
 
-/* line 312, ../sass/screen.scss */
+/* line 313, ../sass/screen.scss */
 #warning {
   display: none;
 }
 
-/* line 317, ../sass/screen.scss */
+/* line 318, ../sass/screen.scss */
 .no-flexbox #warning {
   position: absolute;
   display: block;
@@ -1022,7 +1023,7 @@ code.highlight em {
   text-align: center;
   z-index: 10000;
 }
-/* line 329, ../sass/screen.scss */
+/* line 330, ../sass/screen.scss */
 .no-flexbox #warning p {
   display: block;
   margin: 100px auto;
@@ -1030,17 +1031,17 @@ code.highlight em {
   line-height: 1.5;
 }
 
-/* line 339, ../sass/screen.scss */
+/* line 340, ../sass/screen.scss */
 .touch #preloader {
   display: none;
 }
-/* line 343, ../sass/screen.scss */
+/* line 344, ../sass/screen.scss */
 .touch #deck {
   position: static;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* line 349, ../sass/screen.scss */
+/* line 350, ../sass/screen.scss */
 .touch .slide {
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -1060,13 +1061,13 @@ code.highlight em {
   opacity: 1;
   pointer-events: auto;
 }
-/* line 358, ../sass/screen.scss */
+/* line 359, ../sass/screen.scss */
 .touch .slide--iframe {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 365, ../sass/screen.scss */
+  /* line 366, ../sass/screen.scss */
   html {
     font-size: .3em;
   }

@@ -244,8 +244,9 @@
 			}
 			
 			window.animOut = function (cb) {
-				tl.timeScale(2 + (tl.time() / tl.duration()));
-				tl.tweenTo(0, {onComplete: cb});
+				cb();
+				//tl.timeScale(2 + (tl.time() / tl.duration()));
+				//tl.tweenTo(0, {onComplete: cb});
 			}
 
 		</script>
