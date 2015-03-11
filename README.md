@@ -16,7 +16,9 @@ To run you must do the following:
 * [three.js](http://threejs.org/)
 * [mozvr](http://mozvr.com/)
 * [custom camera path tool](https://github.com/cjgammon/three.js-camera-path-tool)
-* [photoshop generator project - word girl](https://github.com/adobe-webplatform/Demo-for-PBS-Kids-Word-Girl)
-* [flash custom platform example - svg plugin](https://github.com/cjgammon/Flash-Plugin-SnapPlatform)
+* [photoshop generator - tutorial](http://tomkrcha.com/?p=3896)
+* [photoshop generator - word girl](https://github.com/adobe-webplatform/Demo-for-PBS-Kids-Word-Girl)
+* [flash custom platform - info](https://helpx.adobe.com/flash/using/custom-platform-support.html)
+* [flash custom platform - svg plugin](https://github.com/cjgammon/Flash-Plugin-SnapPlatform)
 
 
