@@ -3,7 +3,7 @@
 	from {
 		-moz-transform: rotate(0deg);
 	}
-	to { 
+	to {
 		-moz-transform: rotate(360deg);
 	}
 }
@@ -12,7 +12,7 @@
 	from {
 		-webkit-transform: rotate(0deg);
 	}
-	to { 
+	to {
 		-webkit-transform: rotate(360deg);
 	}
 }
@@ -33,7 +33,7 @@ aside{
 	display: none;
 }
 
-#bg{
+.bg{
 	position: fixed;
 	pointer-events: none;
 }
@@ -108,11 +108,11 @@ aside{
 	height: 100vh;
 	pointer-events: none;
 	opacity: 0;
-	
+
 	&.visible{
 		@include myflexbox;
-		opacity: 1;	
-		pointer-events: auto;	
+		opacity: 1;
+		pointer-events: auto;
 	}
 }
 
@@ -131,7 +131,7 @@ aside{
 	//@include transition(all .2s ease-out);
 	//@include transform(translateZ(0) rotateX(-90deg));
 	//@include transform-origin(top, center);
-	
+
 	&.in{
 		@include transform(translateZ(0));
 	}
@@ -145,32 +145,32 @@ aside{
 
 .hud-list-item{
 	position: relative;
-	
+
 	padding: 1rem;
 	text-transform: uppercase;
 	text-align: center;
 	font-size: 4rem;
 	font-weight: 100;
 	color: white;
-	
+
 	background-color: $menu-item-color;
 	@include transform(scale(.9));
 	@include transition(transform .2s linear, -webkit-transform .2s linear, background-color .2s linear);
 	z-index: 1;
-	
+
 	&.prev{
 		@include transform(scale(1));
 	}
-	
+
 	&.next{
 		@include transform(scale(1));
 	}
-	
+
 	&.primed{
 		background-color: $menu-item-primed-color;
 		z-index: 5;
 	}
-	
+
 	&.selected{
 		@include transform(scale(1.2));
 		background-color: $menu-item-selected-color;
@@ -186,14 +186,14 @@ aside{
 	#preloader{
 		display: none;
 	}
-	
+
 	#deck{
 		position: static;
 		overflow-y: scroll;
 		overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
 	}
-	
+
 	.slide{
 		@include myflexbox;
 		left: 0;

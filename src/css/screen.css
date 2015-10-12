@@ -105,7 +105,7 @@ aside {
 }
 
 /* line 36, ../sass/pres/_pres.scss */
-#bg {
+.bg {
   position: fixed;
   pointer-events: none;
 }
@@ -920,41 +920,38 @@ code span {
 }
 
 /* line 234, ../sass/screen.scss */
-#cover {
-  flex-direction: row;
-  justify-content: flex-start;
-}
-/* line 238, ../sass/screen.scss */
-#cover h2 {
-  box-sizing: border-box;
-  padding: 0.5em;
-  font-size: 4rem;
-  font-weight: 100;
-  width: 50%;
+.svg-js {
+  top: -50px;
+  left: -10px;
 }
 
-/* line 247, ../sass/screen.scss */
-#gsap-code code {
-  position: relative;
-}
-
-/* line 251, ../sass/screen.scss */
+/* line 239, ../sass/screen.scss */
 #webgl-code code {
   font-size: 12px;
   font-weight: bold;
   overflow-y: scroll;
 }
 
-/* line 257, ../sass/screen.scss */
+/* line 245, ../sass/screen.scss */
+#svg-demo {
+  padding: 0;
+}
+
+/* line 249, ../sass/screen.scss */
 .threejs-code code {
   font-size: 2rem;
 }
 
-/* line 261, ../sass/screen.scss */
+/* line 253, ../sass/screen.scss */
+.canvas-code code {
+  font-size: 2rem;
+}
+
+/* line 257, ../sass/screen.scss */
 code.highlight {
   color: rgba(255, 255, 255, 0.25);
 }
-/* line 264, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 code.highlight em {
   color: white;
   font-size: inherit;
@@ -962,25 +959,7 @@ code.highlight em {
   letter-spacing: inherit;
 }
 
-/* line 272, ../sass/screen.scss */
-#surrogates {
-  background-image: url(../assets/images/surrogates.jpg);
-  background-size: cover;
-}
-
-/* line 278, ../sass/screen.scss */
-#tools h2 {
-  z-index: -1;
-}
-
-/* line 283, ../sass/screen.scss */
-#pixar {
-  background-image: url(../assets/images/sully.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-/* line 290, ../sass/screen.scss */
+/* line 268, ../sass/screen.scss */
 #word-girl-psd {
   background-image: url(../assets/images/wordgirl-psd.png);
   background-size: contain;
@@ -988,29 +967,29 @@ code.highlight em {
   background-repeat: no-repeat;
 }
 
-/* line 297, ../sass/screen.scss */
+/* line 275, ../sass/screen.scss */
 #resources {
   font-size: 1rem;
 }
-/* line 300, ../sass/screen.scss */
+/* line 278, ../sass/screen.scss */
 #resources h2 {
   font-size: 3rem;
 }
-/* line 304, ../sass/screen.scss */
+/* line 282, ../sass/screen.scss */
 #resources h3 {
   font-size: 2rem;
 }
-/* line 308, ../sass/screen.scss */
+/* line 286, ../sass/screen.scss */
 #resources a {
   margin: 0.5em;
 }
 
-/* line 313, ../sass/screen.scss */
+/* line 291, ../sass/screen.scss */
 #warning {
   display: none;
 }
 
-/* line 318, ../sass/screen.scss */
+/* line 296, ../sass/screen.scss */
 .no-flexbox #warning {
   position: absolute;
   display: block;
@@ -1023,7 +1002,7 @@ code.highlight em {
   text-align: center;
   z-index: 10000;
 }
-/* line 330, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 .no-flexbox #warning p {
   display: block;
   margin: 100px auto;
@@ -1031,17 +1010,21 @@ code.highlight em {
   line-height: 1.5;
 }
 
-/* line 340, ../sass/screen.scss */
+/* line 319, ../sass/screen.scss */
+.touch body {
+  overflow: auto;
+}
+/* line 323, ../sass/screen.scss */
 .touch #preloader {
   display: none;
 }
-/* line 344, ../sass/screen.scss */
+/* line 327, ../sass/screen.scss */
 .touch #deck {
   position: static;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* line 350, ../sass/screen.scss */
+/* line 333, ../sass/screen.scss */
 .touch .slide {
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -1061,13 +1044,18 @@ code.highlight em {
   opacity: 1;
   pointer-events: auto;
 }
-/* line 359, ../sass/screen.scss */
+/* line 342, ../sass/screen.scss */
 .touch .slide--iframe {
   display: none;
 }
+/* line 346, ../sass/screen.scss */
+.touch #webgl-code code {
+  width: 70vw;
+  height: 50vh;
+}
 
 @media screen and (max-width: 600px) {
-  /* line 366, ../sass/screen.scss */
+  /* line 354, ../sass/screen.scss */
   html {
     font-size: .3em;
   }

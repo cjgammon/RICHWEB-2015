@@ -1,4 +1,5 @@
 .sass-cache
+.DS_Store
 node_modules
 site
 src/.sass-cache
@@ -12,3 +13,4 @@ src/js/vendor/snap.svg/
 src/js/vendor/threejs/
 src/js/vendor/underscore-amd/nderscore-amd/
 src/assets/videos/
+src/external/wtf2/wtf_greenscreen_combined.mov

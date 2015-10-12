@@ -1,10 +1,11 @@
 /*global define $ requestAnimationFrame*/
 
 define(function (require) {
-	
+
 	var App,
-		Backbone = require('backbone'), 
+		Backbone = require('backbone'),
 		BgView = require('app/views/bg-view'),
+		MaskView = require('app/views/mask-view'),
 		NotesView = require('pres/views/notes-view'),
 		SlideBasicView = require('app/views/slide-basic-view'),
 		SequenceView = require('app/views/sequence-view'),
@@ -14,59 +15,57 @@ define(function (require) {
 		IframeView = require('app/views/iframe-view'),
 		IframeFullView = require('app/views/iframe-full-view'),
 		MyView = require('app/views/my-view'),
-		GSAPCodeView = require('app/views/gsap-code-view'),
-        AppBase = require('pres/views/app-base');
+    AppBase = require('pres/views/app-base');
 
     App = AppBase.extend({
-		BASE_VIEW: SlideBasicView,
-		
-		SLIDEVIEW_LIST: [
-			{cl: 'iframe-full', view: IframeFullView},
-			{cl: 'iframe', view: IframeView},
-			{cl: 'video', view: VideoView},
-			{cl: 'youtube', view: YoutubeView},
-			{cl: 'in-out', view: InOutView},
-			{cl: 'sequence', view: SequenceView},
-			{id: 'me', view: MyView},
-			{id: 'gsap-code', view: GSAPCodeView}
-		],
-	
-        initialize: function () {
-            if (this.passTest() !== true) {
-				return;
-			}
+			BASE_VIEW: SlideBasicView,
 
-            AppBase.prototype.initialize.call(this);
+	    SLIDEVIEW_LIST: [
+				{cl: 'iframe-full', view: IframeFullView},
+				{cl: 'iframe', view: IframeView},
+				{cl: 'video', view: VideoView},
+				{cl: 'in-out', view: InOutView},
+				{cl: 'youtube', view: YoutubeView},
+				{id: 'me', view: MyView},
+				{cl: 'sequence', view: SequenceView}
+			],
 
-            this.notesView = new NotesView();
+	    initialize: function () {
+	        if (this.passTest() !== true) {
+							return;
+					}
 
-			this.bg = new BgView();
-			this.render();
-        },
+	        AppBase.prototype.initialize.call(this);
 
-		passTest: function () {	
-			if (Modernizr.flexbox !== true) {
-				return false;
-			} else if (Modernizr.touch === true) {
-				$('video').each(function () {
-					$(this).attr({
-						'src': $(this).data('src')
-					});
-				});
-				return false;
-			} else {
-				return true;
-			}
-        },
+	        this.notesView = new NotesView();
 
-        render: function () {
-            AppBase.prototype.render.call(this);
+					this.bg = new BgView();
+					this.render();
+	    },
 
-	        if (this.bg) {
-			    this.bg.render();
-            }
-        }
-    });
+			passTest: function () {
+					if (Modernizr.flexbox !== true) {
+						return false;
+					} else if (Modernizr.touch === true) {
+						$('video').each(function () {
+							$(this).attr({
+								'src': $(this).data('src')
+							});
+						});
+						return false;
+					} else {
+						return true;
+					}
+	    },
+
+	    render: function () {
+	        AppBase.prototype.render.call(this);
+
+	      	if (this.bg) {
+		    		this.bg.render();
+	        }
+	    }
+  });
 
 	return new App();
 });

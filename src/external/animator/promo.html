@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+            body{
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+            svg{
+                position: absolute;
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            #cover{
+                z-index: 100;
+            }
+        </style>
+        </head> 
+        
+        <body>
+
+            <svg id="cover" width="1024" height="768" viewBox="0 0 1024 768", preserveAspectRatio="xMidYMid meet">
+                <rect fill="white" x="-500" width="500" height="1000"></rect>
+                <rect fill="white" x="1024" width="500" height="1000"></rect>
+            </svg>
+    <script src="./SnapSVGAnimator/js/vendor/snap.svg/snap.svg.js"></script>
+    <script src="./SnapSVGAnimator/js/SnapSVGAnimator.js"></script>
+
+    <script type="text/javascript"> 
+        var jsonfile = "promo.json",
+            fps = 60,
+            width = 1024,
+            height = 768,
+            AJAX_req;
+
+    AJAX_JSON_Req(jsonfile);
+
+    function handle_AJAX_Complete() {
+        if( AJAX_req.readyState == 4 && AJAX_req.status == 200 )
+        {
+            json = JSON.parse(AJAX_req.responseText);
+            comp = new SVGAnim(
+                           json,
+                           width,
+                           height,
+                           fps
+                           );
+            
+            comp.play();
+        }
+    }
+
+    function AJAX_JSON_Req( url )
+    {
+        AJAX_req = new XMLHttpRequest();
+        AJAX_req.open("GET", url, true);
+        AJAX_req.setRequestHeader("Content-type", "application/json");
+        
+        AJAX_req.onreadystatechange = handle_AJAX_Complete;
+        AJAX_req.send();
+    }
+
+            </script>
+        </body>
+        </html>

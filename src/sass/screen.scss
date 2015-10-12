@@ -69,13 +69,13 @@ h3{
 }
 
 h4{
-	font-size: 2rem;	
+	font-size: 2rem;
 }
 
 a{
 	color: #efefef;
 	text-decoration: none;
-	
+
 	&:hover{
 		color: white;
 	};
@@ -98,12 +98,12 @@ header{
 	left: 0;
 	width: 100%;
 	text-align: center;
-	text-transform: uppercase;	
+	text-transform: uppercase;
 	font-weight: 700;
 	font-size: 1.5rem;
 	line-height: 1.5;
 	z-index: 2;
-	
+
 	small{
 		font-size: .8rem;
 	}
@@ -115,7 +115,7 @@ footer{
 	bottom: 0;
 	width: 100%;
 	text-align: center;
-	text-transform: uppercase;	
+	text-transform: uppercase;
 	font-weight: 700;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -148,7 +148,7 @@ code{
 	font-weight: bold;
 	font-size: 3rem;
 	white-space: pre;
-	
+
 	span{
 		color: #EDDE3E;
 	}
@@ -173,7 +173,7 @@ code{
 
 .slide--iframe{
 	background: transparent;
-	
+
 	h2, h4{
 		z-index: 2;
 	}
@@ -181,7 +181,7 @@ code{
 
 .slide--full{
 	padding: 0;
-	
+
 	iframe{
 		position: absolute;
 		top: 0;
@@ -210,15 +210,15 @@ code{
 	bottom: 0;
 	padding: .5em;
 	z-index: 100;
-	
+
 	a{
 		color: white;
 	}
-	
+
 	&.right{
 		right: 0;
 	}
-	
+
 	&.left{
 		left: 0;
 	}
@@ -231,21 +231,9 @@ code{
     text-transform: lowercase;
 }
 
-#cover{
-	flex-direction: row;
-	justify-content: flex-start;
-	
-	h2{
-		box-sizing: border-box;
-		padding: 0.5em;
-		font-size: 4rem;
-		font-weight: 100;
-		width: 50%;
-	}
-}
-
-#gsap-code code{
-	position: relative;
+.svg-js{
+	top: -50px;
+	left: -10px;
 }
 
 #webgl-code code{
@@ -254,13 +242,21 @@ code{
 	overflow-y: scroll;
 }
 
+#svg-demo{
+    padding: 0;
+}
+
 .threejs-code code{
 	font-size: 2rem;
 }
 
+.canvas-code code{
+    font-size: 2rem;
+}
+
 code.highlight{
 	color: rgba(255, 255, 255, 0.25);
-	
+
 	em{
 		color: white;
 		font-size: inherit;
@@ -269,42 +265,24 @@ code.highlight{
 	}
 }
 
-#surrogates{
-	background-image: url(../assets/images/surrogates.jpg);
-	background-size: cover;
-}
-
-#tools{
-	h2{
-		z-index: -1;
-	}
-}
-
-#pixar{
-	background-image: url(../assets/images/sully.jpg);
-	background-size: cover;
-	background-position: center;
-}
-
-
-#word-girl-psd{
-	background-image:  url(../assets/images/wordgirl-psd.png);
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
+#word-girl-psd {
+    background-image: url(../assets/images/wordgirl-psd.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #resources{
 	font-size: 1rem;
-	
+
 	h2{
 		font-size: 3rem;
 	}
-	
+
 	h3{
 		font-size: 2rem;
 	}
-	
+
 	a{
 		margin: 0.5em;
 	}
@@ -326,7 +304,7 @@ code.highlight{
 		color: white;
 		text-align: center;
 		z-index: 10000;
-		
+
 		p{
 			display: block;
 			margin: 100px auto;
@@ -337,16 +315,21 @@ code.highlight{
 }
 
 .touch{
+
+	body{
+		overflow: auto;
+	}
+
 	#preloader{
 		display: none;
 	}
-	
+
 	#deck{
 		position: static;
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
-	
+
 	.slide{
 		@include myflexbox;
 		left: 0;
@@ -355,9 +338,14 @@ code.highlight{
 		opacity: 1;
 		pointer-events: auto;
 	}
-	
+
 	.slide--iframe{
 		display: none;
+	}
+
+	#webgl-code code{
+		width: 70vw;
+		height: 50vh;
 	}
 
 }
@@ -367,4 +355,3 @@ code.highlight{
 		font-size: .3em;
 	}
 }
-

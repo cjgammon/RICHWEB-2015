@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://helloracer.com/webgl/ -->
+<html lang="en"><script>(function main() {
+    // Create enabled event
+    function fireEnabledEvent() {
+        // If gli exists, then we are already present and shouldn't do anything
+        if (!window.gli) {
+            setTimeout(function () {
+                var enabledEvent = document.createEvent("Event");
+                enabledEvent.initEvent("WebGLEnabledEvent", true, true);
+                document.dispatchEvent(enabledEvent);
+            }, 0);
+        } else {
+            //console.log("WebGL Inspector already embedded on the page - disabling extension");
+        }
+    };
+
+    // Grab the path root from the extension
+    document.addEventListener("WebGLInspectorReadyEvent", function (e) {
+        var pathElement = document.getElementById("__webglpathroot");
+        if (window["gliloader"]) {
+            gliloader.pathRoot = pathElement.innerText;
+        } else {
+            // TODO: more?
+            window.gliCssUrl = pathElement.innerText + "gli.all.css";
+        }
+    }, false);
+
+    // Rewrite getContext to snoop for webgl
+    var originalGetContext = HTMLCanvasElement.prototype.getContext;
+    if (!HTMLCanvasElement.prototype.getContextRaw) {
+        HTMLCanvasElement.prototype.getContextRaw = originalGetContext;
+    }
+    HTMLCanvasElement.prototype.getContext = function () {
+        var ignoreCanvas = this.internalInspectorSurface;
+        if (ignoreCanvas) {
+            return originalGetContext.apply(this, arguments);
+        }
+
+        var result = originalGetContext.apply(this, arguments);
+        if (result == null) {
+            return null;
+        }
+
+        var contextNames = ["moz-webgl", "webkit-3d", "experimental-webgl", "webgl", "3d"];
+        var requestingWebGL = contextNames.indexOf(arguments[0]) != -1;
+        if (requestingWebGL) {
+            // Page is requesting a WebGL context!
+            fireEnabledEvent(this);
+
+            // If we are injected, inspect this context
+            if (window.gli) {
+                if (gli.host.inspectContext) {
+                    // TODO: pull options from extension
+                    result = gli.host.inspectContext(this, result);
+                    // NOTE: execute in a timeout so that if the dom is not yet
+                    // loaded this won't error out.
+                    window.setTimeout(function() {
+                        var hostUI = new gli.host.HostUI(result);
+                        result.hostUI = hostUI; // just so we can access it later for debugging
+                    }, 0);
+                }
+            }
+        }
+
+        return result;
+    };
+})();</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>HelloRacer™ WebGL</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="HelloEnjoy, Carlos Ulloa, carlosulloa.com, Papervision3D, PV3D, Papervision, 3D, Flash, Unity, Unity3D, WebGL, iOS, iPhone, iPad, iPod, interactive 3D, high-end, interactive, design, director"> 
+
+		<meta itemprop="name" content="HelloRacer™">
+        <meta itemprop="description" content="High-end interactive car simulation">
+        <meta itemprop="image" content="http://helloracer.com/img/HelloRacer.jpg">
+
+        <meta name="description" content="High-end interactive car simulation">
+        <meta property="og:description" content="High-end interactive car simulation">
+        <meta property="og:image" content="http://helloracer.com/img/HelloRacer.jpg">
+        <link rel="image_src" href="http://helloracer.com/img/HelloRacer.jpg">
+
+		<link href="http://helloracer.com/favicon.ico" rel="shortcut icon"> 
+		<style type="text/css">
+			body {
+				background-color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				top: 0px; width: 100%;
+				color: #808080;
+				padding: 5px;
+				font-family: “helvetica neue”, helvetica, arial, sans-serif;
+				font-size: 13px;
+				text-align: center;
+			}
+
+			#info2 {
+				position: absolute;
+				bottom: 0px; width: 100%;
+				color: #808080;
+				padding: 5px;
+				font-family: “helvetica neue”, helvetica, arial, sans-serif;
+				font-size: 13px;
+				text-align: center;
+			}
+
+			a {
+				color: #000;
+				text-decoration: none;
+			}
+
+			a:hover {
+				color: #ff1561;
+            }
+
+            canvas:first-child{
+                display: none;
+            }
+		</style>
+	<script type="text/javascript" async="" src="./HelloRacer_files/in.php"></script></head>
+	<body>
+		<div id="log"></div>
+		<div id="container"><canvas width="1182" height="851"></canvas></div>
+
+		<div id="info">
+			<b>HelloRacer™ WebGL</b> — Created by <a href="http://helloenjoy.com/" target="_blank">HelloEnjoy™</a> — Powered by <a href="http://github.com/mrdoob/three.js" target="_blank">three.js</a>
+		</div>
+
+		<div id="info2">
+			Use WASD or cursor keys to drive, space for hand brake and enter to change camera.
+		</div>
+
+		<script type="text/javascript" src="./HelloRacer_files/Three.js"></script>
+		<script type="text/javascript" src="./HelloRacer_files/Detector.js"></script>
+		<script type="text/javascript" src="./HelloRacer_files/RequestAnimationFrame.js"></script>
+		<script type="text/javascript" src="./HelloRacer_files/Stats.js"></script>
+		<script type="text/javascript" src="./HelloRacer_files/HelloRacer.js"></script><div style="font-size: 0.8em; text-align: left; color: rgb(255, 255, 255); width: 140px; padding: 0.25em 0.25em 0.25em 0.5em; position: absolute; right: 0px; top: 0px; z-index: 1000; display: none; background: rgb(187, 0, 0);">Loading model ...</div>
+
+		<!--Clicky--> 
+		<script src="./HelloRacer_files/158241.js" type="text/javascript"></script> 
+
+		<!--Google-Analytics--> 
+		<script type="text/javascript"> 
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+			</script><script src="./HelloRacer_files/ga.js" type="text/javascript"></script> 
+			<script type="text/javascript"> 
+			try {
+			var pageTracker = _gat._getTracker("UA-6696929-1");
+			pageTracker._trackPageview();
+			} catch(err) {}
+		</script> 
+	
+
+</body></html>
