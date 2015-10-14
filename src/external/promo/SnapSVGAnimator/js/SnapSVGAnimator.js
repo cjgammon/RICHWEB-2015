@@ -1,6 +1,6 @@
 var SVGAnim = (function (root) {
     SVGAnim.version = "0.0.2";
-
+   
 
 var GarbagePool = function () {
     this.EMPTY_POOL = [];      //if empty remove
@@ -22,7 +22,7 @@ GarbagePool.prototype.addRef = function (el, refs) {
     for (i = 0; i < this.REF_POOL.length; i += 1) {
         if (this.REF_POOL[i].el.id == el.id) {
             for (j = 0; j < refs.length; j += 1) {
-                this.REF_POOL[i].refs.push(refs[j]);
+                this.REF_POOL[i].refs.push(refs[j]);   
             }
             return;
         }
@@ -84,7 +84,7 @@ GarbagePool.prototype.purgeRefPool = function () {
 
 var GP = new GarbagePool();
 
-
+	
 var Bitmap = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transform) {
     var instance = this,
         parentEl = parentMC.el;
@@ -153,7 +153,7 @@ var Text = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transfo
 
         for (j = 0; j < resourceManager.m_data.DOMDocument.Text.length; j++)
         {
-            if (resourceManager.m_data.DOMDocument.Text[j].charid == charId)
+            if (resourceManager.m_data.DOMDocument.Text[j].charid == charId) 
             {
                 instance.addText(resourceManager.m_data.DOMDocument.Text[j]);
             }
@@ -236,7 +236,7 @@ var Text = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transfo
             text = textBox.text(0, 0, data.txt);
             textY = parseFloat(textBounds[1]) + (parseFloat(textBounds[3]) / 2);
         } else {
-            text = instance.multiLine(textBox, data, textBounds, textStyles);
+            text = instance.multiLine(textBox, data, textBounds, textStyles); 
             textY = parseFloat(textBounds[1]) - (parseFloat(data.paras[0].linespacing) * 2);
         }
 
@@ -252,7 +252,7 @@ var Text = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transfo
     };
 
     this.multiLine = function (textBox, data, textBounds, textStyles) {
-
+        
         var string = data.txt,
             spans = [],
             chars = '',
@@ -326,11 +326,11 @@ var Shape = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transf
 
         for (j = 0; j < resourceManager.m_data.DOMDocument.Shape.length; j++)
         {
-            if (resourceManager.m_data.DOMDocument.Shape[j].charid == charId)
+            if (resourceManager.m_data.DOMDocument.Shape[j].charid == charId) 
             {
                 for (k = 0; k < resourceManager.m_data.DOMDocument.Shape[j].path.length; k++)
                 {
-                    instance.addPath(j, k);
+                    instance.addPath(j, k);   
                 }
             }
         }
@@ -391,13 +391,13 @@ var Shape = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transf
             src,
             exists;
 
-        patternArray = resourceImg.patternTransform.split(",");
+        patternArray = resourceImg.patternTransform.split(",");						
         p = 0;
         mat = new Snap.Matrix(patternArray[p],patternArray[p+1],patternArray[p+1],patternArray[p+3],patternArray[p+4],patternArray[p+5]);
         src = resourceImg.bitmapPath;
-
+        
         exists = parentMC.el.paper.select('defs pattern image');
-
+        
         if (exists) {
             if (exists.attr('href') == src) {	//check if image href matches as well as other props
                 fillImage = exists.parent();
@@ -438,23 +438,23 @@ var Shape = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transf
             _y = (shape1.getBBox().y + shape1.getBBox().height / 2) + grad.cy / 10;
             _fx = (shape1.getBBox().x + shape1.getBBox().width / 2) + parseFloat(grad.fx);
             _fy = (shape1.getBBox().y + shape1.getBBox().height / 2) + parseFloat(grad.fy);
-            gradientString = "R(";
+            gradientString = "R("; 
             gradientString += _x + ", ";
             gradientString += _y + ", ";
             gradientString += grad.r + ", ";
             gradientString += _fx + ", ";
             gradientString += _fy + ")";
         }
-
+        
         for (i = 0; i < grad.stop.length; i += 1)
-        {
+        {	
             rgb = hexToRgb(grad.stop[i].stopColor);
-            gradientString += 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + grad.stop[i].stopOpacity + ')';
+            gradientString += 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + grad.stop[i].stopOpacity + ')';		
             gradientString += ":";
             gradientString += grad.stop[i].offset;
             if (i !== grad.stop.length-1) {
                 gradientString += "-";
-            }
+            }		
         }
 
         gradientFill = parentMC.el.paper.gradient(gradientString);
@@ -474,19 +474,19 @@ var Shape = function (parentMC,resourceManager,charId,ObjectId,placeAfter,transf
             shape.attr({fill: fillColor});
         }
         if(resourcePath.image)
-        {
+        { 
             img = resourcePath.image;
             fillImage = instance.getFillImage(img);
             shape.attr({fill: fillImage});
         }
         if(resourcePath.linearGradient)
-        {
+        {	
             grad = resourcePath.linearGradient;
             fillGradient = instance.getFillGradient(grad, 'linear');
             shape.attr({fill: fillGradient});
         }
         if(resourcePath.radialGradient)
-        {
+        {	
             grad = resourcePath.radialGradient;
             fillGradient = instance.getFillGradient(grad, 'radial', shape);
             shape.attr({fill: fillGradient});
@@ -567,7 +567,7 @@ var MovieClip = function (parentMC, commandTimeline, resourceManager, objectID, 
     this.maskTill = null;
     this.loops = true;
 
-    if(this.transform !== undefined)
+    if(this.transform !== undefined) 
     {
         transformData = this.transform;
         transformArray = transformData.split(",");
@@ -579,7 +579,7 @@ var MovieClip = function (parentMC, commandTimeline, resourceManager, objectID, 
         afterMC = parentMC.getChildById(parseInt(placeAfter));
         afterMC.el.before(this.el);
     } else {
-        parentEl.add(this.el);
+        parentEl.add(this.el);         
     }
 };
 
@@ -693,10 +693,10 @@ MovieClip.prototype.loop = function (commandList) {
     }
 
     //Get the commands for the first frame
-    commands = frame.Command;
+    commands = frame.Command;	
 
     // Iterate through all the elements in the display list
-    // check if same instance exists in the first frame
+    // check if same instance exists in the first frame 
     for (i = 0; i < this.children.length; i += 1) {
 
         found = false;
@@ -753,7 +753,7 @@ MovieClip.prototype.play = function (resourceManager) {
     }
 
     //check to handle looping of movieclip
-    if(this.m_currentFrameNo == this.m_frameCount)
+    if(this.m_currentFrameNo == this.m_frameCount) 
     {
         if (!this.loops) {
             return;
@@ -767,13 +767,13 @@ MovieClip.prototype.play = function (resourceManager) {
             break;
         } else if (i >= this.m_timeline.Frame.length - 1) {
             if (this.m_currentFrameNo === 0) { //first frame is empty (execute any remove commands)
-                this.executeCommands(commandList, resourceManager);
+                this.executeCommands(commandList, resourceManager); 
             }
             this.m_currentFrameNo += 1;
             return;
         }
     }
-
+    
     if (!frame) {
         return;
     }
@@ -856,10 +856,10 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
 
 
 	var CMD = {};
-
+    
 
     //PlaceObjectCommand Class
-    CMD.PlaceObjectCommand = function(charID, objectID, placeAfter, transform, bounds)
+    CMD.PlaceObjectCommand = function(charID, objectID, placeAfter, transform, bounds) 
     {
         this.m_charID = charID;
         this.m_objectID = objectID;
@@ -886,13 +886,13 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
         {
             shapeObject = new Shape(parentMC, resourceManager, this.m_charID, this.m_objectID, this.m_placeAfter, this.m_transform);
             parentMC.insertAtIndex(shapeObject, this.m_placeAfter);
-        }
+        } 
         else if(bitmap !== null && bitmap !== undefined)
         {
             bmpObject = new Bitmap(parentMC, resourceManager, this.m_charID, this.m_objectID, this.m_placeAfter, this.m_transform);
             parentMC.insertAtIndex(bmpObject, this.m_placeAfter);
         }
-        else if (text !== null && text !== undefined)
+        else if (text !== null && text !== undefined) 
         {
             textObject = new Text(parentMC, resourceManager, this.m_charID, this.m_objectID, this.m_placeAfter, this.m_transform, this.m_bounds);
             parentMC.insertAtIndex(textObject, this.m_placeAfter);
@@ -910,10 +910,10 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
     };
 
     //MoveObjectCommand Class
-    CMD.MoveObjectCommand = function(objectID, transform)
+    CMD.MoveObjectCommand = function(objectID, transform) 
     {
         this.m_objectID = objectID;
-        this.m_transform = transform;
+        this.m_transform = transform;	
     };
 
     //Execute function for PlaceObjectCommand
@@ -924,7 +924,7 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
         var transform,
             transformArray,
             transformMat;
-
+            
         transform =  this.m_transform;
         transformArray = transform.split(",");
         transformMat = new Snap.Matrix(transformArray[0],transformArray[1],transformArray[2],transformArray[3],transformArray[4],transformArray[5]);
@@ -934,7 +934,7 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
     };
 
     //UpdateObjectCommand Class
-    CMD.UpdateObjectCommand = function(objectID, placeAfter)
+    CMD.UpdateObjectCommand = function(objectID, placeAfter) 
     {
         this.m_objectID = objectID;
         this.m_placeAfter = placeAfter;
@@ -947,9 +947,9 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
     };
 
     //RemoveObjectCommand Class
-    CMD.RemoveObjectCommand = function(objectID)
+    CMD.RemoveObjectCommand = function(objectID) 
     {
-        this.m_objectID = objectID;
+        this.m_objectID = objectID;	
     };
 
     //Execute function for RemoveObjectCommand
@@ -963,9 +963,9 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
     };
 
     //UpdateVisbilityCommand Class
-    CMD.UpdateVisibilityCommand = function(objectID,visibility)
+    CMD.UpdateVisibilityCommand = function(objectID,visibility) 
     {
-        this.m_objectID = objectID;
+        this.m_objectID = objectID;	
         this.m_visibility = visibility;
     };
 
@@ -979,8 +979,8 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
         visibleValue = this.m_visibility == "true" ? "visible" : "hidden";
         child.el.attr({'visibility': visibleValue});
     };
-
-    CMD.UpdateMaskCommand = function (objectID,maskTill)
+    
+    CMD.UpdateMaskCommand = function (objectID,maskTill) 
     {
         this.m_objectID = objectID;
         this.m_maskTill = maskTill;
@@ -998,8 +998,9 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
         def.append(clone);
     }
 
-    CMD.UpdateMaskCommand.prototype.execute = function (parentMC, resourceManager)
+    CMD.UpdateMaskCommand.prototype.execute = function (parentMC, resourceManager) 
     {
+        //console.log('updatemask', this.m_objectID, this.m_maskTill);
 
         var maskConetent,
             mask,
@@ -1038,7 +1039,7 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
             currentMaskEl = null,
             currentTill = null,
             currentMaskGroup;
-
+        
         for (i = 0; i < parentMC.children.length; i += 1) {
             child = parentMC.children[i];
 
@@ -1058,7 +1059,6 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
                 GP.addEmpty(currentMaskGroup);
                 GP.addRef(currentMaskEl, [currentMaskGroup]);
 
-                //console.log(child.id, child.maskTill, child);
                 if (child.id == child.maskTill) {
                     insideMask = false;
                 }
@@ -1087,7 +1087,7 @@ MovieClip.prototype.executeCommands = function (commandList, resourceManager) {
         this.m_colorMatrix = colorMatrix;
     };
 
-    CMD.UpdateColorTransformCommand.prototype.execute = function (parentMC, resourceManager)
+    CMD.UpdateColorTransformCommand.prototype.execute = function (parentMC, resourceManager) 
     {
         var child,
             matrix;
@@ -1106,8 +1106,8 @@ var ResourceManager = function (data) {
     this.m_bitmaps = [];
     this.m_text = [];
     this.m_data = data;
-
-    //Parse shapes and movieClips
+    
+    //Parse shapes and movieClips	
     for(var shapeIndex =0; shapeIndex < this.m_data.DOMDocument.Shape.length; shapeIndex++)
     {
         id = this.m_data.DOMDocument.Shape[shapeIndex].charid;
@@ -1128,7 +1128,7 @@ var ResourceManager = function (data) {
         var textData = this.m_data.DOMDocument.Text[textIndex];
         this.m_text[id] = textData;
     }
-
+    
     if(this.m_data.DOMDocument.Timeline !== undefined)
     {
         for(var movieClipIndex =0; movieClipIndex < this.m_data.DOMDocument.Timeline.length - 1; movieClipIndex++)
@@ -1139,6 +1139,7 @@ var ResourceManager = function (data) {
         }
     }
 
+    console.log(this.m_data.DOMDocument);
 };
 
 //Member functions
@@ -1174,9 +1175,9 @@ function SVGAnim(data, w, h, fps, params) {
     fps = fps || 24;
     w = w || 100;
     h = h || 100;
-
-    autoplay = params.autoplay;
-
+    
+    autoplay = params.autoplay;    
+    
     instance.debug = false;
 
     SVGAnim.prototype.toString = function () {
@@ -1194,7 +1195,7 @@ function SVGAnim(data, w, h, fps, params) {
     instance.s.attr('overflow', 'hidden');
 
     create(instance.s);
-
+    
     if (instance.debug) {
         window.addEventListener('keydown', handleKeyDown);
     }
@@ -1202,12 +1203,12 @@ function SVGAnim(data, w, h, fps, params) {
     function create(s) {
         var maintimelineIndex,
             mainTimeline;
-
-        if(instance.rootAnimator !== undefined)
+        
+        if(instance.rootAnimator !== undefined) 
         {
             instance.rootAnimator.dispose();
         }
-
+        
         maintimelineIndex = instance.resourceManager.m_data.DOMDocument.Timeline.length - 1;
         mainTimeline = instance.resourceManager.m_data.DOMDocument.Timeline[maintimelineIndex];
         instance.movieclip = new MovieClip(instance.s, mainTimeline, instance.resourceManager, id);
@@ -1224,11 +1225,11 @@ function SVGAnim(data, w, h, fps, params) {
     this.pause = function () {
         instance.playing = false;
 
-        if(cbk !== undefined)
+        if(cbk !== undefined) 
         {
             clearTimeout(cbk);
             cbk = undefined;
-        }
+        }	
     };
 
     this.stop = function () {
@@ -1268,7 +1269,7 @@ function SVGAnim(data, w, h, fps, params) {
         var debug = document.getElementById('debug'),
             str = '';
 
-        if (!debug) {
+        if (!debug) { 
             debug = document.createElement('div');
             debug.id = 'debug';
             debug.style.position = 'absolute';
@@ -1290,20 +1291,20 @@ function SVGAnim(data, w, h, fps, params) {
                     str += '-';
                 }
                 str += el.children[i].id + ':' + el.children[i].children.length;
-
+                
                 if (el.children[i].isMask) {
-                    str += ' (MASK till:' + el.children[i].maskTill + ')';
+                    str += ' (MASK till:' + el.children[i].maskTill + ')'; 
                 }
 
                 if (el.children[i].isMasked) {
-                    str += ' (masked by: ' + el.children[i].mask + ')';
+                    str += ' (masked by: ' + el.children[i].mask + ')'; 
                 }
 
                 str += '<br/>';
                 traceChildren(j + 5, el.children[i]);
             }
         }
-
+     
         str += instance.movieclip.id + '<br/>';
         traceChildren(2, instance.movieclip);
 

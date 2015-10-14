@@ -139,6 +139,7 @@ em{
 }
 
 code{
+	position: relative;
 	display: block;
 	max-width: 100%;
 	max-height: 75vh;
@@ -147,6 +148,7 @@ code{
 	font-family: 'source code pro', courier, monospace;
 	font-weight: bold;
 	font-size: 3rem;
+	z-index: 2;
 	white-space: pre;
 
 	span{
@@ -263,6 +265,63 @@ code.highlight{
 		font-style: inherit;
 		letter-spacing: inherit;
 	}
+}
+
+@mixin stroke($width, $color) {
+    $width: $width + 0;
+    $shadow: 0 0 0 transparent;
+    $i: 0;
+    $w: 1;
+
+    @while ($i < $width) {
+        $i: $i + 1;
+        $j: 0;
+        $w: $w + 2;
+
+        @for $r from 1 through $w {
+            @for $c from 1 through $w {
+                $x: $c - ceil($w / 2);
+                $y: $r - ceil($w / 2);
+
+                $shadow: #{$shadow}, #{$x}px #{$y}px 0 $color;
+            }
+        }
+    }
+
+    text-shadow: $shadow;
+}
+
+#animation-code-demo, #animation-timeline-demo{
+    color: #333;
+    @include stroke(5px, white);
+}
+
+@-webkit-keyframes beat{
+     0%{
+     transform: scale(0.5);
+     fill: #fbcbf2;
+     }
+     50%{
+     transform: scale(1);
+     fill: #ffffff;
+     }
+     100%{
+     transform: scale(0.5);
+     fill: #fbcbf2;
+     }
+}
+
+.heart{
+    transform-origin: 75px 75px;
+    transform: scale(0.5);
+    animation: beat 1s infinite;
+}
+
+#animation-code-demo{
+    background-image: url(../assets/images/generative.gif);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 #word-girl-psd {

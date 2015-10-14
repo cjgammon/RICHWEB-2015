@@ -27,12 +27,12 @@
     </head>
     <body>
 
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
 
-        <canvas id="bg-3d" class="bg"></canvas>
-        <canvas id="bg" class="bg"></canvas>
+    <canvas id="bg-3d" class="bg"></canvas>
+    <canvas id="bg" class="bg"></canvas>
 
 		<div id="deck">
 			<section id="cover" class="slide slide--iframe slide--full" data-class="iframe-full" data-color="#333333" data-src="external/cover/index.html">
@@ -383,6 +383,10 @@
 &lt;p&gt;This is a paragraph.&lt;/p&gt;</pre></code>
 			</section>
 
+      <section id="strongbad" class="slide slide--iframe slide--full" data-class="iframe-full" data-color="#ffffff" data-zoom="1.7" data-src="http://www.homestarrunner.com/sbemail10.html">
+        <header>2001</header>
+      </section>
+
       <section id="red-universe" class="slide slide--iframe" data-class="iframe" data-color="#ffffff" data-src="http://reduniverse.com/">
         <header>2007</header>
       </section>
@@ -391,19 +395,40 @@
         <header>2010</header>
       </section>
 
+      <section id="thoughts" class="slide" data-class="basic" data-color="#333333" data-trans="6">
+				<blockquote>thoughts on flash</blockquote>
+			</section>
+
       <section id="mobile" class="slide slide--iframe slide--full" data-class="sequence" data-src="external/versus/versus.html" data-color="#eb8b00" data-trans="3">
 			</section>
 
-      <section id="simplify" class="slide" data-class="basic" data-color="#55acee" data-trans="4">
-				<blockquote>SIMPLIFY THE CREATION OF MORE COMPLEX CONTENT</blockquote>
+      <section id="tragedy" class="slide" data-class="basic" data-color="#333333" data-trans="1">
+				<blockquote>the web has more<br/> advanced features<br/> than ever before, but...</blockquote>
 			</section>
 
-      <section id="graphics" class="slide" data-class="basic" data-color="#5e7f70" data-trans="8">
-				<h2>GRAPHICS</h2>
+      <section id="tragedy2" class="slide" data-class="basic" data-color="#000000" data-trans="5">
+				<blockquote>much of the best<br/> technology is only<br/> found in demos</blockquote>
+			</section>
+
+      <section id="tragedy3" class="slide" data-class="basic" data-color="#333333" data-trans="5">
+				<blockquote>the web is fragmented<br/> and increasingly<br/> complicated</blockquote>
+			</section>
+
+      <section id="simplify" class="slide" data-class="basic" data-color="#55acee" data-trans="4">
+				<blockquote>how do we manage<br/> this complexity?</blockquote>
 			</section>
 
       <section id="caniuse" class="slide" data-class="basic" data-color="#5e7f70" data-trans="7">
-				<h2>caniuse.com</h2>
+        <h4>(shameless plug)</h4>
+      	<h2>caniuse.com</h2>
+			</section>
+
+      <section id="outline" class="slide" data-class="basic" data-color="#5e7f70" data-trans="8">
+				<h2>Rendering,<br/> Animation,<br/> &amp; Tools</h2>
+			</section>
+
+      <section id="rendering" class="slide" data-class="basic" data-color="#55acee" data-trans="8">
+				<h2>Rendering</h2>
 			</section>
 
       <section id="high-level" class="slide" data-class="basic" data-color="#5e7f70">
@@ -412,7 +437,6 @@
 			</section>
 
       <section id="svg" class="slide" data-class="basic" data-color="#eb8b00">
-                <img src="assets/images/monster.svg" width="100%" height="100%" style="position: absolute; top: 0px;"/>
 				<h4>scalable vector graphics</h4>
 				<h2>SVG</h2>
 			</section>
@@ -425,10 +449,6 @@
     &lt;circle cx="50" cy="50" r="50"/&gt;
 &lt;/svg&gt;</pre></code>
 			</section>
-
-      <section id="svg-demo" class="slide" data-class="basic" data-color="#ffffff">
-          <img src="assets/images/scene.svg" width="100%" height="100%"/>
-      </section>
 
       <section id="svg-demo-code" class="slide slide--iframe" data-class="iframe" data-color="#333333" data-src="external/svg-demo-code/scene.html">
       </section>
@@ -458,10 +478,6 @@ var circ = s.circle(50, 50, 50);</pre></code>
 			</section>
 
       <section id="svg-demo-3" class="slide slide--iframe" data-class="iframe" data-color="#ffffff" data-src="external/snap-ad/site/index.html">
-			</section>
-
-      <section id="svg-demo-4" class="slide" data-class="basic" data-color="#eb8b00">
-          <a href="http://cjgammon.github.io/svg-art-generator/" target="blank"><h2>generative<br/> application</h2></a>
 			</section>
 
       <section id="drawing-api" class="slide" data-class="basic" data-color="#36AD8E" data-trans="6">
@@ -839,24 +855,116 @@ renderer.render(scene, camera);</pre></code>
 				<h2>WebGL + CSS</h2>
 			</section>
 
-      <section id="camera-tool" class="slide" data-class="basic" data-color="#247662" data-pos="0.23" >
+      <section id="creative" class="slide" data-class="basic" data-pos="0.25">
+				<blockquote>mix rendering<br/> surfaces in<br/> creative ways</blockquote>
+			</section>
+
+      <section id="animation" class="slide" data-class="basic" data-color="#55acee" data-trans="8">
+				<h2>Animation</h2>
+			</section>
+
+      <section id="greensock" class="slide" data-class="basic" data-color="rgb(38, 38, 38)" data-trans="3">
+          <h2>GSAP</h2>
+          <h4><span style="color: #88CE02">greensock</span> animation platform</h4>
+			</section>
+
+      <section id="greensock-code" class="slide" data-class="basic" data-color="rgb(38, 38, 38)">
+          <code><pre>
+TweenMax.to('#elem', 1, {
+  x: 100,
+  scale: 0.5,
+  ease: Back.easeOut,
+  repeat: -1,
+  yoyo: true
+});
+          </pre></code>
+			</section>
+
+      <section id="tween-demo" class="slide slide--iframe slide--full" data-class="iframe-full" data-color="rgb(38, 38, 38)" data-src="external/tween/index.html">
+        <code style="opacity: 0.5;"><pre>
+TweenMax.to('#elem', 1, {
+  x: 100,
+  scale: 0.5,
+  ease: Back.easeOut,
+  repeat: -1,
+  yoyo: true
+});
+        </pre></code>
+      </section>
+
+      <section id="greensock-code=2" class="slide" data-class="basic" data-color="rgb(38, 38, 38)">
+          <code><pre>
+var tl = new TimelineMax({repeat: -1});
+
+tl.to('#elem', 1, {x: 100})
+.to('#elem', 1, {scaleX: 0.5})
+.to('#elem', 2, {y: 50}, '-=2');
+          </pre></code>
+			</section>
+
+      <section id="timeline-demo" class="slide slide--iframe slide--full" data-class="iframe-full" data-color="rgb(38, 38, 38)" data-src="external/timeline/index.html">
+        <code style="opacity: 0.5;"><pre>
+var tl = new TimelineMax({repeat: -1});
+
+tl.to('#elem', 1, {x: 100})
+.to('#elem', 1, {scaleX: 0.5})
+.to('#elem', 2, {y: 50}, '-=2');
+        </pre></code>
+			</section>
+
+      <section id="greensock-draw" class="slide" data-class="basic" data-color="rgb(38, 38, 38)">
+        <header><span style="color: #88CE02">greensock</span> animation platform</header>
+        <h2><span style="color:#88CE02;font-weight:800;">draw</span>SVG</h2>
+			</section>
+
+      <section id="greensock-code-3" class="slide" data-class="basic" data-color="rgb(38, 38, 38)">
+          <code><pre>TweenMax.to('#elem', 1, {
+    drawSVG: "50%"
+});
+          </pre></code>
+			</section>
+
+      <section id="draw-demo" class="slide slide--iframe slide--full" data-class="iframe-full" data-color="#ffffff" data-src="external/draw/index.html">
+      </section>
+
+      <section id="greensock-morph" class="slide" data-class="basic" data-color="rgb(38, 38, 38)">
+        <header><span style="color: #88CE02">greensock</span> animation platform</header>
+        <h2><span style="color:#88CE02;font-weight:800;">morph</span>SVG</h2>
+			</section>
+
+      <section id="greensock-code-4" class="slide" data-class="basic" data-color="rgb(38, 38, 38)">
+          <code><pre>TweenMax.to('#elem', 1, {
+   morphSVG: '#shape'
+});
+          </pre></code>
+			</section>
+
+      <section id="morph-demo" class="slide slide--iframe slide--full" data-class="iframe-full" data-color="#ffffff" data-src="external/morph/index.html">
+			</section>
+
+      <section id="tools" class="slide" data-class="basic" data-color="#55acee" data-trans="8">
+				<h2>tools</h2>
+			</section>
+
+      <section id="libraries-code" class="slide" data-class="basic" data-trans="5" data-color="#70468E" data-pos="0.34">
+          <blockquote>libraries make it easier<br/> ...to code</blockquote>
+      </section>
+
+      <section id="workflows" class="slide" data-class="basic" data-trans="4" data-color="#55acee" data-pos="0.4">
+          <blockquote>tools make it easier<br/> to design</blockquote>
+			</section>
+
+      <section id="camera-tool" class="slide" data-class="basic" data-color="#247662" data-pos="0.43" >
           <a href="http://cjgammon.github.io/three.js-camera-path-tool/" target="blank"><h3>three.js camera<br/> mapping tool</h3></a>
           <a href="http://bit.ly/cameratool" target="blank"><h4>bit.ly/cameratool</h4></a>
       </section>
 
-      <section id="libraries-4" class="slide" data-class="basic" data-trans="4" data-color="#55acee" data-pos="0.43" >
-          <blockquote>libraries make it easier</blockquote>
+      <section id="editor" class="slide" data-class="basic" data-color="#70468E" data-trans="2">
+				<h2><a href="http://threejs.org/editor/" target="_blank">three.js editor</a></h2>
+        <h4>by mr.doob</h4>
 			</section>
 
-      <section id="libraries-code" class="slide" data-class="basic" data-trans="5" data-color="#70468E">
-          <blockquote>libraries make it easier<br/> ...to code</blockquote>
-			</section>
-
-      <section id="workflows" class="slide" data-class="basic" data-trans="4" data-color="#55acee">
-          <blockquote>what about<br/> designer workflows</blockquote>
-			</section>
-
-      <section id="blender" class="slide slide--iframe slide--full" data-class="iframe" data-src="external/blender/index.html" data-color="#70468E">
+      <section id="blender" class="slide slide--iframe slide--full" data-class="iframe-full" data-src="external/blender/index.html" data-color="#70468E">
 				<h2>blender</h2>
 				<h4>three.js plugin</h4>
 			</section>
@@ -884,38 +992,32 @@ renderer.render(scene, camera);</pre></code>
           <h4>custom platforms</h4>
       </section>
 
-			<section id="snap-svg-animator" class="slide" data-class="basic" data-color="#70468E">
-          <h2>Snap.svg<br/> Animator<h2>
-          <h4><a href="http://bit.ly/svg-anim" target="_blank">http://bit.ly/svg-anim</a></h4>
+			<section id="snap-svg-animator" class="slide slide--iframe slide--full" data-class="iframe-full" data-src="external/animator/animator.html" data-color="#70468E">
       </section>
 
-      <section id="snap-animator-demo" class="slide slide--iframe slide--full" data-class="iframe" data-color="#ffffff" data-src="external/animator/promo.html">
+      <section id="snap-animator-demo" class="slide slide--iframe slide--full" data-class="iframe-full" data-color="#ffffff" data-src="external/promo/promo.html">
 			</section>
 
-      <section id="visual-tools" class="slide" data-class="basic" data-trans="8" data-color="#70468E" data-pos="0.5">
-          <blockquote>let's build visual content<br/> with visual tools</blockquote>
+      <section id="bodymovin" class="slide slide--iframe slide--full" data-class="iframe-full" data-src="external/bodymovin/index.html" data-color="#ffffff">
+      </section>
+
+      <section id="explore" class="slide" data-class="basic" data-trans="8" data-color="#70468E" data-pos="0.5">
+          <blockquote>we must always explore<br/> new ways of creating</blockquote>
 			</section>
 
-			<section id="simplification" class="slide" data-class="basic" data-trans="4" data-color="#55acee" data-pos="0.62">
-          <blockquote>tools + libraries<br/> simplify the complex</blockquote>
+			<section id="past" class="slide" data-class="basic" data-trans="4" data-color="#55acee" data-pos="0.62">
+          <blockquote>and not forget great<br/> innovations of the past</blockquote>
 			</section>
 
       <section id="amazing" class="slide" data-class="basic" data-trans="4" data-color="#55acee" data-pos="0.75">
-          <blockquote>let's make the web<br/> more amazing together</blockquote>
+        <blockquote>tools + libraries<br/> simplify the complex</blockquote>
 			</section>
 
-      <section id="survey" class="slide" data-class="basic" data-trans="8" data-color="#55acee" data-pos="0.8">
-          <h3>like this talk?</h3>
-          <h2>take the survey!</h2>
-          <h4>win stuff!</h4>
+      <section id="create" class="slide" data-class="basic" data-trans="8" data-color="#55acee" data-pos="0.8">
+          <blockquote>let's make the web<br/> more amazing together</blockquote>
       </section>
 
 			<section id="thanks" class="slide" data-class="basic" data-color="#333333" data-trans="7" data-pos="0.97">
-        <!--
-				    <h2>thanks</h2>
-				    <h4><a href="http://bit.ly/richweb2015" target="_blank">http://bit.ly/richweb2015</a></h4>
-            <h4><a href="http://www.twitter.com/cjgammon" target="_blank">@cjgammon</a></h4>
-        -->
 			</section>
 
       <section id="thanks2" class="slide" data-class="basic" data-color="#333333" data-trans="8">

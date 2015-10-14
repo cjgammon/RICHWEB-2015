@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title></title>
+    <style>
+    body{
+      margin: 0;
+      overflow: hidden;
+    }
+
+    svg{
+      width: 100vw;
+      height: 100vh;
+    }
+
+</style>
+</head>
+<body>
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  	 viewBox="0 0 300 250" preserveAspectRatio="xMidYMid meet" style="enable-background:new 0 0 612 792;" xml:space="preserve">
+    <circle id="circle" cx="150" cy="125" r="50" fill="#993300"/>
+  </svg>
+
+<script src="TweenMax.min.js"></script>
+
+<script>
+TweenMax.to('#circle', 1, {
+  x: 100,
+  scaleX: 0.5,
+  scaleY: 0.5,
+  ease: Back.easeOut,
+  repeat: -1,
+  yoyo: true
+});
+</script>
+</body>
+</html>

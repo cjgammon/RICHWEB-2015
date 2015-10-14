@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+        body{
+          margin: 0;
+          overflow: hidden;
+        }
+        svg{
+              width: 100vw;
+              height: 100vh;
+        }
+        </style>
+        </head>
+
+        <body>
+    <script src="./SnapSVGAnimator/js/vendor/snap.svg/snap.svg-min.js"></script>
+    <script src="./SnapSVGAnimator/js/SnapSVGAnimator.js"></script>
+
+    <script type="text/javascript">
+        var jsonfile = "animator.json",
+            fps = 60,
+            width = 1024,
+            height = 768,
+            AJAX_req,
+            loaded = false,
+            pauseframe = 40;
+
+    AJAX_JSON_Req(jsonfile);
+
+    function handle_AJAX_Complete() {
+        if( AJAX_req.readyState == 4 && AJAX_req.status == 200 && loaded == false)
+        {
+            loaded = true;
+            json = JSON.parse(AJAX_req.responseText);
+            comp = new SVGAnim(
+                           json,
+                           width,
+                           height,
+                           fps);
+
+            setTimeout(function () {
+                comp.play();
+            }, 500);
+
+            var i = setInterval(function () {
+                if (comp.movieclip.m_currentFrameNo > pauseframe) {
+                    comp.pause();
+                    clearInterval(i);
+                }
+            }, 10);
+
+        }
+    }
+
+    function AJAX_JSON_Req( url )
+    {
+        AJAX_req = new XMLHttpRequest();
+        AJAX_req.open("GET", url, true);
+        AJAX_req.setRequestHeader("Content-type", "application/json");
+
+        AJAX_req.onreadystatechange = handle_AJAX_Complete;
+        AJAX_req.send();
+    }
+
+    window.animIn = function () {
+        AJAX_JSON_Req(jsonfile);
+    }
+
+    window.animOut = function (cb) {
+        if (comp && comp.movieclip.m_currentFrameNo > pauseframe) {
+            comp.play();
+        }
+
+        setInterval(function () {
+            if (comp.movieclip.m_currentFrameNo >= parseInt(comp.movieclip.m_frameCount)) {
+                cb();
+            }
+        }, 10);
+    }
+
+            </script>
+        </body>
+        </html>
