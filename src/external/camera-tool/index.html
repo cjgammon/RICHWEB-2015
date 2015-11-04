@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>camera path tool</title>
+
+		<style>
+			body{
+				background-color: white;
+				margin: 0;
+				overflow: hidden;
+			}
+			
+			#code{
+				display: none;
+				position: fixed;
+				box-sizing: border-box;
+				left: 0;
+				top: 0;
+				width: 50%;
+				height: 100vh;
+				padding: 5em 2em 1em;
+				font-family: courier;
+				color: white;
+				background: rgba(0, 0, 0, 0.8);
+				z-index: 10;
+				overflow: auto;
+			}
+			
+			#ui{
+				display: none;
+				position: fixed;
+				right: 0;
+				top: 0;
+				width: 25%;
+				height: 100vh;
+				padding: 1em;
+				color: white;
+				font-family: helvetica, sans-serif;
+				background: rgba(0, 0, 0, 0.8);
+				z-index: 10;
+			}
+			
+			#codeButton, #helpButton{
+				position: absolute;
+				top: 2em;
+				right: 2em;
+			}
+			
+			#helpButton{
+				width: 30px;
+				height: 30px;
+				border: 1px solid black;
+				border-radius: 30px;
+				z-index: 1000;
+			}
+			
+			.button{
+				padding: .5em 1em;
+				border-radius: 5px;
+				border: none;
+				font-weight: bold;
+				background: white;
+				cursor: pointer;	
+			}
+			
+			#fileInput{
+				display: none;
+			}
+			
+			#nodeDetails{
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 70px;
+				padding: .5em;
+				color: white;
+				font-family: sans-serif;
+				background: rgba(0, 0, 0, 0.5);
+			}
+			
+			#sliderHolder{
+				display: none;
+				position: fixed;
+				bottom: 0;
+				left: 200px;
+				width: 300px;
+				height: 20px;
+				background: rgba(255, 0, 0, 0.5);
+			}
+			
+			#slider{
+				position: absolute;
+				height: 20px;
+				width: 20px;
+				background: rgba(0, 0, 0, 0.5);
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="helpButton" class="button">?</button>
+
+		<div id="ui">
+			<input type="file" id="fileInput" />
+			<button id="loadButton" class="button">Load</button>
+			<button id="saveButton" class="button">Save</button>
+			<div>
+				<h3>Instructions</h3>
+				<small>
+					<p>Click a Node to Move</p>
+					<table>
+						<tr><td><strong>=</strong></td><td>Add Spline</td></tr>
+						<tr><td><strong>-</strong></td><td>Remove Spline</td></tr>
+						<tr><td><strong>H</strong></td><td>Toggle Code View</td></tr>
+						<tr><td><strong>UP/DOWN</strong></td><td>Y Axis</td></tr>
+						<tr><td><strong>LEFT/RIGHT</strong></td><td>X Axis</td></tr>
+						<tr><td><strong>OPTION + UP/DOWN</strong></td><td>Z Axis</td></tr>
+						<tr><td><strong>SHIFT</strong></td><td>Speed Up</td></tr>
+						
+					</table>
+				</small>
+			</div>
+		</div>
+		
+		<div id="sliderHolder">
+			<div id="slider"></div>
+		</div>
+		
+		<div id="nodeDetails"></div>
+		
+		<div id="code">
+			<button id="codeButton" class="button">Select</button>
+			<div id="codeCopy"></div>
+		</div>
+		
+		<script src="js/FileSaver.js"></script>
+		<script src="js/threejs/build/three.js"></script>
+		<script src="js/threejs/examples/js/controls/EditorControls.js"></script>
+		<script src="js/threejs/examples/js/CurveExtras.js"></script>
+		<script src="js/main.js"></script>
+		
+	</body>
+</html>
